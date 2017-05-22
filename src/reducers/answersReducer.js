@@ -33,7 +33,6 @@ const answersReducer = (state = initialState.answers, action) => {
       return initialState.answers
 
     case ActionTypes.LOAD_USER_ANSWERS_SUCCESS:
-      console.log(action)
       return action.answers
 
     default:

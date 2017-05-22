@@ -11,9 +11,6 @@ class Root extends Component {
   constructor(props) {
     super(props)
 
-    console.log('root')
-    console.log(store)
-
     this.state = {
       isStoreLoading: true,
       store: store

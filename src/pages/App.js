@@ -28,8 +28,6 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    console.log('app')
-
     this.handleBack = this.handleBack.bind(this)
     this.renderScene = this.renderScene.bind(this)
     this.changeSearchText = this.changeSearchText.bind(this)
@@ -42,8 +40,6 @@ class App extends Component {
     loadApprovedPrompts()
     loadCategories()
     loadTodayPrompt()
-
-    console.log('app will mount')
 
     if (!isToday(seen.today)) {
       resetSeen()
@@ -156,8 +152,6 @@ class App extends Component {
 
   render() {
     const { user, state, category, list, answer, answerState } = this.props
-
-    console.log('app render')
 
     return (
       <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss(0)}>
