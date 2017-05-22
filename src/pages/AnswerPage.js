@@ -1,0 +1,392 @@
+import React, { Component, PropTypes } from 'react'
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, ActionSheetIOS, Keyboard } from 'react-native'
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+import { connect } from 'react-redux'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import ObjectID from 'bson-objectid'
+import { createNewAnswer, saveAnswer, loadAnswer, changeAnswerText, removeDailyPrompt, addDailyPrompt, removeFavoritePrompt, addFavoritePrompt, removeSavePrompt, addSavePrompt } from '../actions/answerActions'
+import { updateStreak, resetStreak } from '../actions/userActions'
+import { loadCategory } from '../actions/promptActions'
+import { isToday, isYesterday } from '../functions/dateFunctions'
+import { capitalizeFirstLetter } from '../functions/stringFunctions'
+import Answer from '../objects/Answer'
+import Page from '../containers/Page'
+import Container from '../containers/Container'
+import Message from '../components/Message'
+import PromptTitle from '../components/PromptTitle'
+import Footer from '../containers/Footer'
+import FooterButton from '../components/FooterButton'
+
+class AnswerPage extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      height: 0,
+    }
+
+    this.loadRandom = this.loadRandom.bind(this)
+    this.saveAnswer = this.saveAnswer.bind(this)
+    this.handleSettings = this.handleSettings.bind(this)
+    this.handleChangeAnswer = this.handleChangeAnswer.bind(this)
+    this.handleNext = this.handleNext.bind(this)
+    this.handleNewAnswer = this.handleNewAnswer.bind(this)
+    this.checkPrompt = this.checkPrompt.bind(this)
+    this.handleSavePrompt = this.handleSavePrompt.bind(this)
+    this.handleFavoritePrompt = this.handleFavoritePrompt.bind(this)
+    this.handleDailyPrompt = this.handleDailyPrompt.bind(this)
+    this.focusAnswer = this.focusAnswer.bind(this)
+    this.showActionSheet = this.showActionSheet.bind(this)
+    this.getHeight = this.getHeight.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.checkSave()
+  }
+
+  checkSave() {
+    let { answer, answerState } = this.props
+    if (answerState === 'changed' && answer.text) {
+      this.saveAnswer()
+    }
+  }
+
+  loadRandom() {
+    let { user, answers, prompts, createNewAnswer, answer, category, list, loadCategory, navigator, seen } = this.props
+
+    Keyboard.dismiss(0)
+
+    if (category === 'Everything' || category === "Today's Prompt") {
+      category = ''
+      loadCategory('')
+    }
+
+    let prompt = {}
+    if (list) {
+      let listIds = user[list]
+      let listPrompts = prompts.filter(p => listIds.find(id => id === p._id) && answer.prompt_id !== p._id)
+
+      if (list === 'daily') answers = answers.filter(a => isToday(a.answered))
+
+      let unansweredListPrompts = listPrompts.filter(p => !answers.some(a => a.prompt_id === p._id) && !seen.prompts.some(s => s === p._id))
+      let roundPrompts = []
+      if (unansweredListPrompts.length === 0) {
+        if (listPrompts.length === 0) {
+          loadCategory('')
+          roundPrompts = prompts
+        } else {
+          roundPrompts = listPrompts
+        }
+      } else {
+        roundPrompts = unansweredListPrompts
+      }
+
+      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)]
+    } else if (category) {
+      let categoryPrompts = prompts.filter(p => p.categories.some(c => c === category) && answer.prompt_id !== p._id) //&& !user.hide.includes(prompt._id))
+
+      let unansweredPrompts = categoryPrompts.filter(p => !answers.some(a => a.prompt_id === p._id) && !seen.prompts.some(s => s === p._id))
+      let roundPrompts = []
+      if (unansweredPrompts.length < 10) {
+        roundPrompts = categoryPrompts
+      } else if (user.answered.length > 10) {
+        roundPrompts = unansweredPrompts
+      } else {
+        roundPrompts = unansweredPrompts.filter(p => p.round === '1')
+        if (roundPrompts.length < 5) {
+          roundPrompts = unansweredPrompts
+        }
+      }
+
+      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)]
+    } else {
+      let unansweredPrompts = prompts.filter(p => !answers.some(a => a.prompt_id === p._id) && answer.prompt_id !== p._id && !seen.prompts.some(s => s === p._id))
+      let roundPrompts = []
+      if (unansweredPrompts.length < 10) {
+        roundPrompts = prompts
+      } else if (user.answered.length > 10) {
+        roundPrompts = unansweredPrompts
+      } else {
+        roundPrompts = unansweredPrompts.filter(p => p.round === '1')
+        if (roundPrompts.length < 5) {
+          roundPrompts = unansweredPrompts
+        }
+      }
+
+      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)]
+    }
+
+    if (prompt) {
+      createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
+    } else {
+      navigator.pop(0)
+    }
+  }
+
+  saveAnswer() {
+    let { answer, answers, saveAnswer, answerState } = this.props
+
+    Keyboard.dismiss(0)
+
+    if (answerState === 'changed') {
+      const newAnswerScore = Math.round(answer.text.split(' ').length / 3)
+      let score = 0
+
+      const oldAnswerIndex = answers.findIndex(a => a._id === answer._id)
+      if (oldAnswerIndex === -1) {
+        score = newAnswerScore
+      } else {
+        score = newAnswerScore - Math.round(answers[oldAnswerIndex].text.split(' ').length / 3)
+      }
+      answer.score = score
+
+      saveAnswer(answer)
+    }
+  }
+
+  handleSettings() {
+    this.props.navigator.push({ name: 'AnswerSettings' })
+  }
+
+  handleClick(e) {
+    e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true
+  }
+
+  focusAnswer() {
+    if (!this.refs.Answer.isFocused()) {
+      this.refs.Answer.focus()
+    } else {
+      Keyboard.dismiss(0)
+    }
+  }
+
+  handleChangeAnswer(text) {
+    this.props.changeAnswerText(capitalizeFirstLetter(text))
+  }
+
+  handleNext() {
+    let { user, updateStreak, resetStreak, category, loadCategory, navigator } = this.props
+
+    Keyboard.dismiss(0)
+
+    if (category === "Today's Prompt") {
+      loadCategory('')
+    }
+
+    this.saveAnswer()
+
+    if (!user.last) {
+      user.last = new Date()
+      user.seen = false
+      user.streak = 0
+    }
+
+    if (isToday(user.last)) {
+      if (!user.seen) {
+        updateStreak(user._id)
+      } else {
+        this.loadRandom()
+        return
+      }
+    } else {
+      if (isYesterday(user.last)) {
+        updateStreak(user._id)
+      } else {
+        resetStreak(user._id)
+      }
+    }
+    navigator.push({ name: 'Streak' })
+  }
+
+  handleNewAnswer() {
+    const { user, answer, createNewAnswer } = this.props
+    createNewAnswer(new Answer(user._id, user.name, answer.prompt_id, answer.prompt_title, answer.type, answer.categories))
+  }
+
+  showActionSheet(e) {
+    e ? e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true : null
+
+    Keyboard.dismiss(0)
+
+    const { answers, answer } = this.props
+
+    let buttons = []
+
+    const filteredAnswers = answers.filter(a => a.prompt_id === answer.prompt_id)
+
+    answer.text && buttons.push('New Answer')
+    filteredAnswers.length > 0 && buttons.push('Show Prompt Answers')
+
+    const saveLabel = this.checkPrompt('saved') ? 'Remove from Saved List' : 'Add to Saved List'
+    const favoriteLabel = this.checkPrompt('favorites') ? 'Remove from Favorites List' : 'Add to Favorites List'
+    const dailyLabel = this.checkPrompt('daily') ? 'Remove from Daily List' : 'Add to Daily List'
+
+    const lists = [ saveLabel, favoriteLabel, dailyLabel ]
+    buttons.push(...lists)
+
+    buttons.push('Cancel')
+
+    const CANCEL_INDEX = buttons.length - 1
+
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: buttons,
+      cancelButtonIndex: CANCEL_INDEX,
+      tintColor: '#474747',
+    },
+    (buttonIndex) => {
+      switch(buttons[buttonIndex]) {
+        case saveLabel:
+          return this.handleSavePrompt()
+        case favoriteLabel:
+          return this.handleFavoritePrompt()
+        case dailyLabel:
+          return this.handleDailyPrompt()
+        case 'Show Prompt Answers':
+          return this.handleSettings()
+        case 'New Answer':
+          return this.handleNewAnswer()
+        default:
+          null
+      }
+    })
+  }
+
+  checkPrompt(list) {
+    const { user, answer } = this.props
+    return user[list].includes(answer.prompt_id)
+  }
+
+  handleSavePrompt() {
+    const { answer, removeSavePrompt, addSavePrompt, user, prompt } = this.props
+    if (this.checkPrompt('saved')) {
+      removeSavePrompt(user._id, answer.prompt_id)
+    } else {
+      addSavePrompt(user._id, answer.prompt_id)
+    }
+  }
+
+  handleFavoritePrompt() {
+    const { answer, removeFavoritePrompt, addFavoritePrompt, user } = this.props
+    if (this.checkPrompt('favorites')) {
+      removeFavoritePrompt(user._id, answer.prompt_id)
+    } else {
+      addFavoritePrompt(user._id, answer.prompt_id)
+    }
+  }
+
+  handleDailyPrompt() {
+    const { answer, removeDailyPrompt, addDailyPrompt, user } = this.props
+    if (this.checkPrompt('daily')) {
+      removeDailyPrompt(user._id, answer.prompt_id)
+    } else {
+      addDailyPrompt(user._id, answer.prompt_id)
+    }
+  }
+
+  getHeight(layout) {
+    this.setState({ height: layout.height })
+  }
+
+  hideKeyboard() {
+    Keyboard.dismiss(0)
+  }
+
+  render() {
+    const { user, answer, answerState } = this.props
+
+    return (
+      <Page>
+        <Container>
+          <TouchableOpacity style={styles.promptAnswer} onPress={this.focusAnswer} activeOpacity={1}>
+            <TouchableOpacity style={styles.promptTitle} onPress={(e) => this.showActionSheet(e)} activeOpacity={.7}>
+              <PromptTitle title={answer.prompt_title} />
+              <View style={styles.answerButton}><Ionicons size={22} name="md-more" color="#474747" /></View>
+            </TouchableOpacity>
+            <View style={styles.answerContainer} onLayout={(event) => { this.getHeight(event.nativeEvent.layout) }}>
+              <AutoGrowingTextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.answer} ref='Answer' value={answer.text} onChangeText={this.handleChangeAnswer} placeholder='Type here...' autoCapitalize="sentences" multiline={true} maxHeight={this.state.height} />
+            </View>
+          </TouchableOpacity>
+        </Container>
+        <Footer>
+          { !answer.text ? <FooterButton handleClick={this.hideKeyboard} big text="Save" id="save"></FooterButton> : answerState === 'changed' ? <FooterButton handleClick={this.saveAnswer} big green text="Save" id="save" /> : <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} /> }
+          { !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
+        </Footer>
+        <KeyboardSpacer/>
+      </Page>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  promptAnswer: {
+    flex: 1,
+  },
+  promptTitle: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: 12,
+    marginTop: 3,
+    marginBottom: 5,
+    flexDirection: 'row',
+  },
+  answerButton: {
+    flexShrink: 0,
+    minWidth: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  answerContainer: {
+    flex: 1,
+  },
+  answer: {
+    fontSize: 16,
+    color: '#474747',
+    marginTop: 2,
+    paddingLeft: 12,
+    paddingRight: 12,
+    lineHeight: 1.3,
+    fontWeight: '600',
+  },
+})
+
+AnswerPage.propTypes = {
+  user: PropTypes.object.isRequired,
+  answer: PropTypes.object.isRequired,
+  answers: PropTypes.array.isRequired,
+  prompts: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  category: PropTypes.string,
+  list: PropTypes.string,
+  createNewAnswer: PropTypes.func.isRequired,
+  saveAnswer: PropTypes.func.isRequired,
+  loadAnswer: PropTypes.func.isRequired,
+  changeAnswerText: PropTypes.func.isRequired,
+  updateStreak: PropTypes.func.isRequired,
+  resetStreak: PropTypes.func.isRequired,
+  loadCategory: PropTypes.func.isRequired,
+  removeDailyPrompt: PropTypes.func.isRequired,
+  addDailyPrompt: PropTypes.func.isRequired,
+  removeFavoritePrompt: PropTypes.func.isRequired,
+  addFavoritePrompt: PropTypes.func.isRequired,
+  removeSavePrompt: PropTypes.func.isRequired,
+  addSavePrompt: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = ({ user, answer, answers, prompts, myPrompts, loading, category, list, answerState, seen }) => {
+  prompts = prompts.slice()
+  myPrompts.forEach(prompt => {
+    if (!prompts.some(p => p._id === prompt._id)) {
+      prompts.push(prompt)
+    }
+  })
+
+  return { user, answer, answers, prompts, loading, category, list, answerState, seen }
+}
+
+AnswerPage = connect(
+  mapStateToProps,
+  { createNewAnswer, saveAnswer, loadAnswer, changeAnswerText, updateStreak, resetStreak, loadCategory, removeDailyPrompt, addDailyPrompt, removeFavoritePrompt, addFavoritePrompt, removeSavePrompt, addSavePrompt }
+)(AnswerPage)
+
+export default AnswerPage
