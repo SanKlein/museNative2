@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import { formattedDate } from '../functions/dateFunctions'
-import { loadList } from '../actions/promptActions'
+import { loadListTitle } from '../actions/promptActions'
 import { editUser } from '../actions/userActions'
 import Page from '../containers/Page'
 import SignupButton from '../components/SignupButton'
@@ -33,9 +33,8 @@ class UserProfilePage extends Component {
   }
 
   handleLoadList(list) {
-    const { loadList, navigator } = this.props
-
-    loadList(list)
+    const { loadListTitle, navigator } = this.props
+    loadListTitle(list)
     navigator.push({ name: 'List' })
   }
 
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
 
 UserProfilePage.propTypes = {
   user: PropTypes.object.isRequired,
-  loadList: PropTypes.func.isRequired,
+  loadListTitle: PropTypes.func.isRequired,
   editUser: PropTypes.func.isRequired,
 }
 
@@ -136,7 +135,7 @@ const mapStateToProps = ({ user }) => ({ user })
 
 UserProfilePage = connect(
   mapStateToProps,
-  { loadList, editUser }
+  { editUser, loadListTitle }
 )(UserProfilePage)
 
 export default UserProfilePage

@@ -46,6 +46,7 @@ export default {
   },
   category: '',
   list: '',
+  listTitle: '',
   search: '',
   newPrompt: {
     title: '',

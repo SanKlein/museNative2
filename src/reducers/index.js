@@ -10,6 +10,7 @@ import answer from './answerReducer'
 import categories from './categoriesReducer'
 import category from './categoryReducer'
 import list from './listReducer'
+import listTitle from './listTitleReducer'
 import search from './searchReducer'
 import newPrompt from './newPromptReducer'
 import todayPrompt from './todayPromptReducer'
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   categories,
   category,
   list,
+  listTitle,
   search,
   newPrompt,
   todayPrompt,

@@ -7,6 +7,9 @@ export const loadCategory = (category) => ({ type: ActionTypes.LOAD_CATEGORY, ca
 // load list
 export const loadList = (list) => ({ type: ActionTypes.LOAD_LIST, list })
 
+// load list title
+export const loadListTitle = (listTitle) => ({ type: ActionTypes.LOAD_LIST_TITLE, listTitle })
+
 // edit new prompt title
 export const changeNewPromptTitle = (title) => ({ type: ActionTypes.CHANGE_NEW_PROMPT_TITLE, title })
 

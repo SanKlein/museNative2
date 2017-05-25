@@ -3,6 +3,7 @@ import { AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { createNewAnswer, removeDailyPrompt, removeFavoritePrompt, removeSavePrompt } from '../actions/answerActions'
+import { loadList } from '../actions/promptActions'
 import Answer from '../objects/Answer'
 import { isToday } from '../functions/dateFunctions'
 import Page from '../containers/Page'
@@ -26,9 +27,9 @@ class ListPage extends Component {
   }
 
   componentWillMount() {
-    const { list, navigator } = this.props
+    const { listTitle, navigator } = this.props
 
-    if (!list) {
+    if (!listTitle) {
       navigator.pop(0)
     }
   }
@@ -45,26 +46,28 @@ class ListPage extends Component {
   }
 
   handleRandom() {
-    let { user, unansweredListPrompts, answeredListPrompts, createNewAnswer, navigator } = this.props
+    let { user, listTitle, unansweredListPrompts, answeredListPrompts, createNewAnswer, navigator, loadList } = this.props
     if (unansweredListPrompts.length === 0) {
       unansweredListPrompts = answeredListPrompts
     }
     const prompt = unansweredListPrompts[Math.floor(Math.random() * unansweredListPrompts.length)]
+    loadList(listTitle)
     createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
     const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
     route ? navigator.popToRoute(route) : navigator.push({ name: 'Answer' })
   }
 
   handleLoadPrompt(prompt) {
-    const { user, createNewAnswer, navigator } = this.props
+    const { user, listTitle, createNewAnswer, navigator, loadList } = this.props
+    loadList(listTitle)
     createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
     const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
     route ? navigator.popToRoute(route) : navigator.push({ name: 'Answer' })
   }
 
   handleRemovePrompt(prompt) {
-    const { user, list, removeDailyPrompt, removeFavoritePrompt, removeSavePrompt } = this.props
-    switch(list) {
+    const { user, listTitle, removeDailyPrompt, removeFavoritePrompt, removeSavePrompt } = this.props
+    switch(listTitle) {
       case 'daily':
         return removeDailyPrompt(user._id, prompt._id)
       case 'favorites':
@@ -77,24 +80,24 @@ class ListPage extends Component {
   }
 
   render() {
-    const { list, answeredListPrompts, unansweredListPrompts } = this.props
+    const { listTitle, answeredListPrompts, unansweredListPrompts } = this.props
     const allPrompts = answeredListPrompts.concat(unansweredListPrompts)
 
     return (
       <Page>
         <Container>
           <ScrollContainer>
-            { (unansweredListPrompts.length + answeredListPrompts.length) === 0 ? <Message message={`You have no ${list} prompts`} /> : null }
+            { (unansweredListPrompts.length + answeredListPrompts.length) === 0 ? <Message message={`You have no ${listTitle} prompts`} /> : null }
             { unansweredListPrompts.map(prompt => (
               <ListComponent key={prompt._id}>
                 <ListTitle handleClick={() => this.handleLoadPrompt(prompt)} title={prompt.title} />
-                { list !== 'created' && <ComponentButton handleClick={() => this.confirmRemove(prompt)} remove right><Entypo size={22} name="minus" color="#F08080" /></ComponentButton> }
+                { listTitle !== 'created' && <ComponentButton handleClick={() => this.confirmRemove(prompt)} remove right><Entypo size={22} name="minus" color="#F08080" /></ComponentButton> }
               </ListComponent>
             )) }
             { answeredListPrompts.map(prompt => (
               <ListComponent key={prompt._id}>
                 <ListTitle handleClick={() => this.handleLoadPrompt(prompt)} answered title={prompt.title} />
-                { list !== 'created' && <ComponentButton handleClick={() => this.confirmRemove(prompt)} remove right><Entypo size={22} name="minus" color="#F08080" /></ComponentButton> }
+                { listTitle !== 'created' && <ComponentButton handleClick={() => this.confirmRemove(prompt)} remove right><Entypo size={22} name="minus" color="#F08080" /></ComponentButton> }
               </ListComponent>
             )) }
           </ScrollContainer>
@@ -109,7 +112,7 @@ class ListPage extends Component {
 
 ListPage.propTypes = {
   user: PropTypes.object.isRequired,
-  list: PropTypes.string.isRequired,
+  listTitle: PropTypes.string.isRequired,
   answeredListPrompts: PropTypes.array.isRequired,
   unansweredListPrompts: PropTypes.array.isRequired,
   createNewAnswer: PropTypes.func.isRequired,
@@ -118,8 +121,8 @@ ListPage.propTypes = {
   removeSavePrompt: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ user, list, prompts, myPrompts, answers, seen }) => {
-  let listIds = user[list]
+const mapStateToProps = ({ user, listTitle, prompts, myPrompts, answers }) => {
+  let listIds = user[listTitle]
   prompts = prompts.slice()
   myPrompts.forEach(prompt => {
     if (!prompts.some(p => p._id === prompt._id)) {
@@ -128,17 +131,17 @@ const mapStateToProps = ({ user, list, prompts, myPrompts, answers, seen }) => {
   })
   let listPrompts = prompts.filter(p => listIds.find(id => id === p._id))
 
-  if (list === 'daily') answers = answers.filter(a => isToday(a.answered))
+  if (listTitle === 'daily') answers = answers.filter(a => isToday(a.answered))
 
   const answeredListPrompts = listPrompts.filter(p => answers.some(a => a.prompt_id === p._id))
-  const unansweredListPrompts = listPrompts.filter(p => !answers.some(a => a.prompt_id === p._id) && !seen.prompts.some(s => s === p._id))
+  const unansweredListPrompts = listPrompts.filter(p => !answers.some(a => a.prompt_id === p._id))
 
-  return { user, list, answeredListPrompts, unansweredListPrompts }
+  return { user, listTitle, answeredListPrompts, unansweredListPrompts }
 }
 
 ListPage = connect(
   mapStateToProps,
-  { createNewAnswer, removeDailyPrompt, removeFavoritePrompt, removeSavePrompt }
+  { createNewAnswer, removeDailyPrompt, removeFavoritePrompt, removeSavePrompt, loadList }
 )(ListPage)
 
 export default ListPage
