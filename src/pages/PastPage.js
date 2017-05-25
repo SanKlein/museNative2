@@ -70,7 +70,7 @@ PastPage.propTypes = {
 
 const mapStateToProps = ({ user, answers, search }) => {
   search = search.toLowerCase()
-  answers = answers.filter(answer => answer.text && (answer.text.toLowerCase().indexOf(search) >= 0 || answer.prompt_title.toLowerCase().indexOf(search) >= 0))
+  answers = answers.filter(a => a.text && (a.text.toLowerCase().indexOf(search) >= 0 || a.prompt_title.toLowerCase().indexOf(search) >= 0))
 
   return { user, answers, search }
  }

@@ -126,12 +126,12 @@ const mapStateToProps = ({ user, list, prompts, myPrompts, answers, seen }) => {
       prompts.push(prompt)
     }
   })
-  let listPrompts = prompts.filter(prompt => listIds.find(id => id === prompt._id))
+  let listPrompts = prompts.filter(p => listIds.find(id => id === p._id))
 
-  if (list === 'daily') answers = answers.filter(answer => isToday(answer.answered))
+  if (list === 'daily') answers = answers.filter(a => isToday(a.answered))
 
-  const answeredListPrompts = listPrompts.filter(prompt => answers.some(answer => answer.prompt_id === prompt._id))
-  const unansweredListPrompts = listPrompts.filter(prompt => !answers.some(answer => answer.prompt_id === prompt._id) && !seen.prompts.some(s => s === p._id))
+  const answeredListPrompts = listPrompts.filter(p => answers.some(a => a.prompt_id === p._id))
+  const unansweredListPrompts = listPrompts.filter(p => !answers.some(a => a.prompt_id === p._id) && !seen.prompts.some(s => s === p._id))
 
   return { user, list, answeredListPrompts, unansweredListPrompts }
 }
