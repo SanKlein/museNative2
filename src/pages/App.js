@@ -151,7 +151,7 @@ class App extends Component {
   }
 
   render() {
-    const { user, state, category, list, answer, answerState } = this.props
+    const { user, state, category, list, answer, answerState, listTitle } = this.props
 
     return (
       <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss(0)}>
@@ -214,7 +214,7 @@ class App extends Component {
                       case 'UserSettings':
                         return (<Text style={styles.title}>Profile Settings</Text>)
                       case 'List':
-                        return (<Text style={styles.title}>{capitalizeFirstLetter(list)}</Text>)
+                        return (<Text style={styles.title}>{capitalizeFirstLetter(listTitle)}</Text>)
                       default:
                         return null
                     }
@@ -320,7 +320,7 @@ App.propTypes = {
   editUser: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ user, state, answers, answer, list, category, seen }) => ({ user, state, answers, answer, list, category, seen })
+const mapStateToProps = ({ user, state, answers, answer, list, category, seen, listTitle }) => ({ user, state, answers, answer, list, category, seen, listTitle })
 
 App = connect(
   mapStateToProps,
