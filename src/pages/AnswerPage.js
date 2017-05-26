@@ -177,24 +177,19 @@ class AnswerPage extends Component {
     this.saveAnswer()
 
     if (!user.last) {
-      user.last = new Date()
-      user.seen = false
+      let newDate  = new Date()
+      newDate.setDate(newDate.getDate() - 1)
+      user.last = newDate
       user.streak = 0
     }
 
     if (isToday(user.last)) {
-      if (!user.seen) {
-        updateStreak(user._id)
-      } else {
-        this.loadRandom()
-        return
-      }
+      this.loadRandom()
+      return
+    } else if (isYesterday(user.last)) {
+      updateStreak(user._id)
     } else {
-      if (isYesterday(user.last)) {
-        updateStreak(user._id)
-      } else {
-        resetStreak(user._id)
-      }
+      resetStreak(user._id)
     }
     navigator.push({ name: 'Streak' })
   }

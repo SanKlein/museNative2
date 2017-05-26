@@ -19,7 +19,6 @@ export default {
     last: newDate,
     longestStreak: 0,
     streak: 0,
-    seen: false,
     score: 0,
     created: [],
     answered: [],

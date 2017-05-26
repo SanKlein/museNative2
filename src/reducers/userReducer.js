@@ -86,10 +86,10 @@ const userReducer = (state = initialState.user, action) => {
       let newState = { ...state }
       const streak = newState.streak + 1
       const longest = newState.longestStreak > streak ? newState.longestStreak : streak
-      return { ...state, streak: streak, last: new Date(), seen: true, longestStreak: longest }
+      return { ...state, streak: streak, last: new Date(), longestStreak: longest }
 
     case ActionTypes.RESET_STREAK:
-      return { ...state, streak: 1, last: new Date(), seen: true }
+      return { ...state, streak: 1, last: new Date() }
 
     case ActionTypes.SAVE_EDIT_USER_SUCCESS:
       return { ...state, name: action.user.name, email: action.user.email }

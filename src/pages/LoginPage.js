@@ -90,7 +90,9 @@ class LoginPage extends Component {
     login.favorites = user.favorites
     login.saved = user.saved
     login.daily = user.daily
-    login.categories = user.categories
+    login.longestStreak = user.longestStreak
+    login.streak = user.streak
+    login.last = user.last
 
     if (login.login) {
       loginUser(login)
