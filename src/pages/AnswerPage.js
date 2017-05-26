@@ -23,6 +23,7 @@ class AnswerPage extends Component {
     super(props)
 
     this.state = {
+      answered: false,
       height: 0,
     }
 
@@ -163,6 +164,7 @@ class AnswerPage extends Component {
 
   handleChangeAnswer(text) {
     this.props.changeAnswerText(capitalizeFirstLetter(text))
+    this.setState({ answered: true })
   }
 
   handleNext() {
@@ -172,6 +174,11 @@ class AnswerPage extends Component {
 
     if (category === "Today's Prompt") {
       loadCategory('')
+    }
+
+    if (!this.state.answered) {
+      this.loadRandom()
+      return
     }
 
     this.saveAnswer()
