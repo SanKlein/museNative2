@@ -14,7 +14,7 @@ SignupButton.propTypes = {
 const styles = StyleSheet.create({
   signupButton: {
     backgroundColor: '#F0F0F0',
-    color: '#474747',
+    color: '#333',
     fontSize: 20,
     padding: 8,
     borderRadius: 50,

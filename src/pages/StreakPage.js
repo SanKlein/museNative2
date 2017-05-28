@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   congrats: {
-    color: '#474747',
+    color: '#333',
     fontSize: 28,
     marginBottom: 15,
     fontWeight: '700',
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   number: {
-    color: '#474747',
+    color: '#333',
     fontSize: 84,
     fontWeight: '700',
   },

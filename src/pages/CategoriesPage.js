@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createNewAnswer, loadAnswer } from '../actions/answerActions'
-import { loadCategory } from '../actions/promptActions'
+import { loadCategory, loadTodayPrompt } from '../actions/promptActions'
 // import { addLife } from '../actions/userActions'
 import Page from '../containers/Page'
 import Container from '../containers/Container'
@@ -26,6 +26,8 @@ class CategoriesPage extends Component {
 
     if (state === 'home') {
       navigator.push({ name: 'Home' })
+    } else {
+      this.props.loadTodayPrompt()
     }
   }
 
@@ -122,7 +124,7 @@ class CategoriesPage extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    color: '#474747',
+    color: '#333',
     zIndex: 2,
     fontSize: 22,
     fontWeight: '700',
@@ -159,7 +161,7 @@ const mapStateToProps = ({ user, answer, categories, prompts, myPrompts, answers
 
 CategoriesPage = connect(
   mapStateToProps,
-  { createNewAnswer, loadCategory, loadAnswer }
+  { createNewAnswer, loadCategory, loadAnswer, loadTodayPrompt }
 )(CategoriesPage)
 
 export default CategoriesPage

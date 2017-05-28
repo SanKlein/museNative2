@@ -6,7 +6,7 @@ const PromptTitle = ({ title }) => (<Text style={styles.promptTitle}>{title}</Te
 const styles = StyleSheet.create({
   promptTitle: {
     fontSize: 22,
-    color: '#474747',
+    color: '#333',
     fontWeight: '700',
     flex: 1,
   },

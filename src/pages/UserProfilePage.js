@@ -39,7 +39,7 @@ class UserProfilePage extends Component {
   }
 
   handleEmail() {
-    Linking.openURL('mailto:paklein3@gmail.com?subject=Hi Parker')
+    Linking.openURL('mailto:parker@reflectwithmuse.com?subject=Hi Parker')
   }
 
   render() {
@@ -76,7 +76,7 @@ class UserProfilePage extends Component {
 
 const styles = StyleSheet.create({
   name: {
-    color: '#474747',
+    color: '#333',
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 5,

@@ -33,7 +33,7 @@ class Root extends Component {
       <View style={styles.app}>
         { this.state.isStoreLoading ?
           <View style={styles.container}>
-            <ActivityIndicator animating={true} size="large" color="#474747" />
+            <ActivityIndicator animating={true} size="large" color="#333" />
           </View>
           :
           <Provider store={this.state.store}>

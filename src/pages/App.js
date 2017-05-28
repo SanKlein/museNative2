@@ -51,7 +51,8 @@ class App extends Component {
       loadUserAnswers(user._id)
     } else {
       var newUser = {
-        _id: ObjectID()
+        _id: ObjectID(),
+        last: user.last
       }
       createUser(newUser)
     }
@@ -62,7 +63,8 @@ class App extends Component {
 
     if (!nextProps.user._id) {
       var newUser = {
-        _id: ObjectID()
+        _id: ObjectID(),
+        last: user.last
       }
       createUser(newUser)
     }
@@ -95,7 +97,7 @@ class App extends Component {
 
   handleBack(navigator) {
     Keyboard.dismiss(0)
-    if (this.props.state === 'login') {
+    if (this.props.state !== 'started') {
       this.props.cancelLogin()
     }
 
@@ -170,7 +172,7 @@ class App extends Component {
                       case 'Categories':
                         return (
                           <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleHome(navigator)}>
-                            <FontAwesome size={22} name="home" color="#474747" />
+                            <FontAwesome size={22} name="home" color="#333" />
                           </TouchableOpacity>
                         )
                       case 'Home':
@@ -184,19 +186,19 @@ class App extends Component {
                       case 'Login':
                         return (
                           <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
-                            <MaterialIcons size={26} name="close" color="#474747" />
+                            <MaterialIcons size={26} name="close" color="#333" />
                           </TouchableOpacity>
                         )
                       case 'Answer':
                         return (
                           <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleCategories(navigator)}>
-                            <Ionicons size={22} name="md-arrow-round-back" color="#474747" />
+                            <Ionicons size={22} name="md-arrow-round-back" color="#333" />
                           </TouchableOpacity>
                         )
                       default:
                         return (
                           <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
-                            <Ionicons size={22} name="md-arrow-round-back" color="#474747" />
+                            <Ionicons size={22} name="md-arrow-round-back" color="#333" />
                           </TouchableOpacity>
                         )
                     }
@@ -230,14 +232,14 @@ class App extends Component {
                       case 'UserProfile':
                         return user.name ? (
                           <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleSettings(navigator)}>
-                            <Octicons size={22} name="gear" color="#474747" />
+                            <Octicons size={22} name="gear" color="#333" />
                           </TouchableOpacity>
                         ) : null
 
                       default:
                         return (
                           <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleProfile(navigator)}>
-                            <MaterialIcons name="person" size={22} color="#474747" />
+                            <MaterialIcons name="person" size={22} color="#333" />
                           </TouchableOpacity>
                         )
                     }
@@ -267,7 +269,7 @@ const styles = StyleSheet.create({
     lineHeight: 44,
     fontSize: 17,
     alignSelf: 'center',
-    color: '#474747',
+    color: '#333',
     fontWeight: '700',
   },
   leftButton: {
@@ -291,13 +293,13 @@ const styles = StyleSheet.create({
   headerButtonText: {
     fontSize: 17,
     textAlign: 'center',
-    color: '#474747',
+    color: '#333',
   },
   searchBar: {
     height: 44,
     lineHeight: 44,
     fontSize: 17,
-    color: '#474747',
+    color: '#333',
     paddingLeft: 50,
     paddingRight: 40,
     fontWeight: '700',

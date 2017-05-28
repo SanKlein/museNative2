@@ -63,7 +63,9 @@ const userReducer = (state = initialState.user, action) => {
       return { ...state, created: [ ...state.created, action.prompt._id ] }
 
     case ActionTypes.LOGOUT:
-      return initialState.user
+      let newDate = new Date()
+      newDate.setDate(newDate.getDate() - 1)
+      return { ...initialState.user, last: newDate }
 
     case ActionTypes.SIGNUP_USER_SUCCESS:
       return { ...state, name: action.user.name, email: action.user.email }

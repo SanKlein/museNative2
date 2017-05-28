@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   componentText: {
-    color: '#474747',
+    color: '#333',
     fontSize: 16,
     fontWeight: '600',
   },

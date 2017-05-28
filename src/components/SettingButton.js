@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     padding: 20,
-    color: '#474747',
+    color: '#333',
     textAlign: 'center',
   },
   fadeButton: {

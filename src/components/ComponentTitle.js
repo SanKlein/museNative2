@@ -9,7 +9,7 @@ const ComponentTitle = ({ children, answered, small, title }) => {
 
 const styles = StyleSheet.create({
   componentTitle: {
-    color: '#474747',
+    color: '#333',
     flex: 1,
     fontSize: 18,
     fontWeight: '700',

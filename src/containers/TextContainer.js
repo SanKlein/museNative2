@@ -6,8 +6,8 @@ const TextContainer = ({ children }) => (<View style={styles.textContainer}>{chi
 const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
-    paddingTop: 5,
-    paddingBottom: 10,
+    paddingTop: 2,
+    paddingBottom: 18,
   },
 })
 

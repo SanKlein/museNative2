@@ -109,7 +109,7 @@ class LoginPage extends Component {
     const { login, loading, error, navigator } = this.props
     const loginButton = loading && login.name ? 'Loading...' : login.login ? 'Log in' : 'Sign up'
     const policyButton = login.login ? 'Log in' : 'Sign up'
-    const switchButton = login.login ? 'Sign up' : 'Log in'
+    const switchButton = login.login ? "Sign up" : 'Log in'
 
     let loginState
     if (error) {
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 15,
-    color: '#474747',
+    color: '#333',
     lineHeight: 24,
     height: 32,
     marginBottom: 5,
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   email: {
     fontSize: 15,
-    color: '#474747',
+    color: '#333',
     lineHeight: 24,
     height: 32,
     marginBottom: 5,
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   },
   password: {
     fontSize: 15,
-    color: '#474747',
+    color: '#333',
     lineHeight: 32,
     height: 32,
     marginBottom: 25,
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loginButtonText: {
-    color: '#474747',
+    color: '#333',
     fontSize: 17,
     textAlign: 'center',
     fontWeight: '700',

@@ -234,7 +234,7 @@ class AnswerPage extends Component {
     ActionSheetIOS.showActionSheetWithOptions({
       options: buttons,
       cancelButtonIndex: CANCEL_INDEX,
-      tintColor: '#474747',
+      tintColor: '#333',
     },
     (buttonIndex) => {
       switch(buttons[buttonIndex]) {
@@ -303,7 +303,7 @@ class AnswerPage extends Component {
           <TouchableOpacity style={styles.promptAnswer} onPress={this.focusAnswer} activeOpacity={1}>
             <TouchableOpacity style={styles.promptTitle} onPress={(e) => this.showActionSheet(e)} activeOpacity={.7}>
               <PromptTitle title={answer.prompt_title} />
-              <View style={styles.answerButton}><Ionicons size={22} name="md-more" color="#474747" /></View>
+              <View style={styles.answerButton}><Ionicons size={22} name="md-more" color="#333" /></View>
             </TouchableOpacity>
             <View style={styles.answerContainer} onLayout={(event) => { this.getHeight(event.nativeEvent.layout) }}>
               <AutoGrowingTextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.answer} ref='Answer' value={answer.text} onChangeText={this.handleChangeAnswer} placeholder='Type here...' autoCapitalize="sentences" multiline={true} maxHeight={this.state.height} />
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
   },
   answer: {
     fontSize: 16,
-    color: '#474747',
+    color: '#333',
     marginTop: 2,
     paddingLeft: 12,
     paddingRight: 12,

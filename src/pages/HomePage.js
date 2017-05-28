@@ -11,15 +11,27 @@ class HomePage extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      showAgree: true
+    }
+
     this.handleLogin = this.handleLogin.bind(this)
     this.handleStart = this.handleStart.bind(this)
     this.goBack = this.goBack.bind(this)
   }
 
+  componentWillMount() {
+    if (this.props.state !== 'home') {
+      this.setState({ showAgree: false })
+    }
+  }
+
   handleLogin() {
     const { loadLogin, navigator } = this.props
 
-    loadLogin()
+    if (this.props.state === 'home') {
+      loadLogin()
+    }
     navigator.push({ name: 'Login' })
   }
 
@@ -42,7 +54,7 @@ class HomePage extends Component {
   }
 
   handleEmail() {
-    Linking.openURL('mailto:paklein3@gmail.com?subject=Hi Parker')
+    Linking.openURL('mailto:parker@reflectwithmuse.com?subject=Hi Parker')
   }
 
   handleTwitter() {
@@ -68,12 +80,12 @@ class HomePage extends Component {
           <Text style={styles.mission}>{"Help you clarify your values through daily reflection, so you can create a happier, more meaningful life, doing what you love"}</Text>
         </View>
         <Footer margin top>
-          { (state !== 'home' && state !== 'login') ? <FooterButton handleClick={this.goBack} big purple text='Back to müse' /> : <FooterButton handleClick={this.handleStart} big purple text='Start' /> }
+          { !this.state.showAgree ? <FooterButton handleClick={this.goBack} big purple text='Back to müse' /> : <FooterButton handleClick={this.handleStart} big purple text='Start' /> }
         </Footer>
         <Footer margin>
           { !user.name && <FooterButton handleClick={this.handleLogin} big text='Log in' /> }
         </Footer>
-        { (state === 'home' || state === 'login') && <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing 'Start', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity> }
+        { this.state.showAgree && <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing 'Start', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity> }
         <TouchableOpacity onPress={this.handleEmail} style={styles.contactButton} activeOpacity={.7}>
           <Text style={styles.contactText} onClick={this.handleEmail}>Contact</Text>
         </TouchableOpacity>
@@ -102,18 +114,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   logo: {
-    marginTop: 40,
+    marginTop: 30,
     height: 83,
+    minHeight: 83,
     width: 224,
+    minWidth: 224,
     alignSelf: 'center',
-  },
-  header: {
-    textAlign: 'center',
-    fontSize: 64,
-    marginTop: 35,
-    fontWeight: '700',
-    color: '#474747',
-    marginBottom: 0,
+    marginTop: 40,
   },
   content: {
     marginTop: 35,
@@ -132,7 +139,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingLeft: 15,
     paddingRight: 15,
-    color: '#474747',
+    color: '#333',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -157,7 +164,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   socialButtons: {
-    marginTop: 20,
+    marginTop: 40,
     flexDirection: 'row',
     justifyContent: 'center',
   },

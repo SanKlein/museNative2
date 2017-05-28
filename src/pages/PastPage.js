@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import { Keyboard } from 'react-native'
+import { Keyboard, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { loadCategory } from '../actions/promptActions'
 import { loadAnswer } from '../actions/answerActions'
 import { changeSearch } from '../actions/searchActions'
+import { formattedDate } from '../functions/dateFunctions'
 import Page from '../containers/Page'
 import Container from '../containers/Container'
 import ScrollContainer from '../containers/ScrollContainer'
@@ -46,6 +47,7 @@ class PastPage extends Component {
             { answers.length > 0 ? answers.reverse().map(answer => (
                 <ListComponent key={answer._id} handleClick={() => this.handleLoadAnswer(answer)}>
                   <TextContainer>
+                    <Text style={styles.pastAnswered}>{formattedDate(answer.answered)}</Text>
                     <ComponentTitle title={answer.prompt_title} />
                     <ComponentSubtext text={answer.text} />
                   </TextContainer>
@@ -58,6 +60,15 @@ class PastPage extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  pastAnswered: {
+    fontSize: 10,
+    color: '#AAA',
+    fontWeight: '700',
+    paddingBottom: 5,
+  },
+})
 
 PastPage.propTypes = {
   user: PropTypes.object.isRequired,
