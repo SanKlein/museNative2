@@ -29,9 +29,7 @@ class HomePage extends Component {
   handleLogin() {
     const { loadLogin, navigator } = this.props
 
-    if (this.props.state === 'home') {
-      loadLogin()
-    }
+    loadLogin()
     navigator.push({ name: 'Login' })
   }
 
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   logo: {
-    marginTop: 30,
+    marginTop: 20,
     height: 83,
     minHeight: 83,
     width: 224,
@@ -123,13 +121,13 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   content: {
-    marginTop: 35,
-    marginBottom: 30,
+    marginTop: 30,
+    marginBottom: 25,
   },
   subheader: {
     textAlign: 'center',
     fontSize: 16,
-    marginBottom: 10,
+    marginBottom: 8,
     paddingLeft: 50,
     paddingRight: 50,
     color: '#777',
@@ -144,7 +142,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   contactButton: {
-    marginTop: 50,
+    marginTop: 40,
   },
   contactText: {
     color: '#777',
@@ -164,7 +162,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   socialButtons: {
-    marginTop: 40,
+    marginTop: 20,
+    marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
   },

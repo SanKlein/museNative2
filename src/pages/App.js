@@ -214,7 +214,7 @@ class App extends Component {
                       case 'NewPrompt':
                         return (<Text style={styles.title}>New Prompt</Text>)
                       case 'UserSettings':
-                        return (<Text style={styles.title}>Profile Settings</Text>)
+                        return (<Text style={styles.title}>Edit Profile</Text>)
                       case 'List':
                         return (<Text style={styles.title}>{capitalizeFirstLetter(listTitle)}</Text>)
                       default:

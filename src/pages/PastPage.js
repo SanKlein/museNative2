@@ -63,10 +63,10 @@ class PastPage extends Component {
 
 const styles = StyleSheet.create({
   pastAnswered: {
-    fontSize: 10,
+    fontSize: 11,
     color: '#AAA',
-    fontWeight: '700',
-    paddingBottom: 5,
+    fontWeight: '600',
+    paddingBottom: 4,
   },
 })
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, ScrollView, Text } from 'react-native'
 import { connect } from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createNewAnswer, loadAnswer } from '../actions/answerActions'
@@ -111,11 +111,11 @@ class CategoriesPage extends Component {
       <Page>
         <Container>
           <Text style={styles.title}>What do you want to reflect on?</Text>
-          <View style={styles.buttons}>
+          <ScrollView style={styles.buttons}>
             <CategoryButton handleClick={this.handleToday} category={"Today's Prompt"} top text="Today's Prompt" purple />
             <CategoryButton handleClick={this.handleRandom} category='Everything' top text='Everything' />
             { categories.map(category => (<CategoryButton key={category} handleClick={this.handleRandomCategory} category={category} text={category} />)) }
-          </View>
+          </ScrollView>
         </Container>
       </Page>
     )
@@ -126,16 +126,16 @@ const styles = StyleSheet.create({
   title: {
     color: '#333',
     zIndex: 2,
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '700',
     textAlign: 'center',
-    paddingTop: 10,
-    paddingBottom: 0,
+    paddingTop: 6,
+    paddingBottom: 8,
   },
   buttons: {
     flex: 1,
-    paddingTop: 15,
-    paddingBottom: 10,
+    paddingTop: 0,
+    marginBottom: 8,
   },
 })
 
