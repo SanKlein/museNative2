@@ -35,6 +35,9 @@ const answersReducer = (state = initialState.answers, action) => {
     case ActionTypes.LOAD_USER_ANSWERS_SUCCESS:
       return action.answers
 
+    case ActionTypes.OFFLINE_SAVE_SUCCESS:
+      return action.answers
+
     default:
       return state
   }

@@ -32,6 +32,9 @@ const myPromptsReducer = (state = initialState.myPrompts, action) => {
     case ActionTypes.LOGOUT:
       return initialState.myPrompts
 
+    case ActionTypes.OFFLINE_SAVE_SUCCESS:
+      return action.myPrompts
+
     default:
       return state
   }

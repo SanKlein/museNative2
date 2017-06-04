@@ -96,6 +96,9 @@ const userReducer = (state = initialState.user, action) => {
     case ActionTypes.SAVE_EDIT_USER_SUCCESS:
       return { ...state, name: action.user.name, email: action.user.email }
 
+    case ActionTypes.OFFLINE_SAVE_SUCCESS:
+      return action.user
+
     default:
       return state
   }

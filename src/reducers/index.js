@@ -18,6 +18,7 @@ import myPrompts from './myPromptsReducer'
 import prompts from './promptsReducer'
 import answers from './answersReducer'
 import seen from './seenReducer'
+import offline from './offlineReducer'
 
 const rootReducer = combineReducers({
   state,
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   prompts,
   answers,
   seen,
+  offline,
 })
 
 export default rootReducer
