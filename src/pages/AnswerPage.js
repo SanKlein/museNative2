@@ -357,7 +357,7 @@ class AnswerPage extends Component {
         </Container>
         <Footer>
           { !answer.text ? <FooterButton handleClick={this.hideKeyboard} big text="Save" id="save"></FooterButton> : answerState === 'changed' ? <FooterButton handleClick={this.saveAnswer} big green text="Save" id="save" /> : <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} /> }
-          { category === "Today's Prompt" && !answer.text ? <FooterButton handleClick={this.handleBack} text="Done" /> : !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : !this.state.changed && category === "Today's Prompt" ? <FooterButton handleClick={this.handleDone} big green text="Done" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
+          { category === "Today's Prompt" && !answer.text ? <FooterButton handleClick={this.handleBack} text="Done" /> : !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : !this.state.changed && category === "Today's Prompt" && answerState !== 'changed'  ? <FooterButton handleClick={this.handleDone} big green text="Done" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
         </Footer>
         <KeyboardSpacer/>
       </Page>
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 12,
     marginTop: 2,
-    marginBottom: 3,
+    marginBottom: 5,
     flexDirection: 'row',
   },
   answerButton: {

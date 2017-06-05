@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Keyboard, StyleSheet, Text, AlertIOS, View } from 'react-native'
+import { Keyboard, StyleSheet, Text, AlertIOS, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 import { loadCategory } from '../actions/promptActions'
@@ -10,7 +10,7 @@ import Page from '../containers/Page'
 import Container from '../containers/Container'
 import ScrollContainer from '../containers/ScrollContainer'
 import Message from '../components/Message'
-import ListComponent from '../components/ListComponent'
+import ItemComponent from '../components/ItemComponent'
 import TextContainer from '../containers/TextContainer'
 import ComponentTitle from '../components/ComponentTitle'
 import ComponentSubtext from '../components/ComponentSubtext'
@@ -68,14 +68,14 @@ class PastPage extends Component {
         <Container>
           <ScrollContainer>
             { answers.length > 0 ? answers.map(answer => (
-                <View style={styles.item} key={answer._id}>
+                <ItemComponent key={answer._id}>
                   <TextContainer handleClick={() => this.handleLoadAnswer(answer)}>
                     <Text style={styles.pastAnswered}>{formattedDate(answer.answered)}</Text>
                     <ComponentTitle title={answer.prompt_title} />
                     <ComponentSubtext text={answer.text} />
                   </TextContainer>
-                  <ComponentButton handleClick={(e) => this.confirmDelete(e, answer)} remove right><Ionicons size={20} name="md-trash" color="#F08080" /></ComponentButton>
-                </View>
+                  <TouchableOpacity style={styles.removeButton} activeOpacity={.7} onPress={(e) => this.confirmDelete(e, answer)}><Ionicons size={20} name="md-trash" color="#F08080" /></TouchableOpacity>
+                </ItemComponent>
               )) : search ? <Message message='No matching answers' /> : <Message message='No answers' />
             }
           </ScrollContainer>
@@ -86,21 +86,19 @@ class PastPage extends Component {
 }
 
 const styles = StyleSheet.create({
-  item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 2,
-    paddingLeft: 12,
-    paddingRight: 12,
-    paddingBottom: 3,
-    flexShrink: 0,
-  },
   pastAnswered: {
     fontSize: 11,
     color: '#AAA',
     fontWeight: '600',
     paddingBottom: 4,
+  },
+  removeButton: {
+    paddingLeft: 12,
+    paddingRight: 12,
+    paddingBottom: 12,
+    paddingTop: 12,
+    alignSelf: 'center',
+    height: 46,
   },
 })
 

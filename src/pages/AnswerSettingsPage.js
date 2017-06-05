@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, AlertIOS } from 'react-native'
+import { StyleSheet, View, AlertIOS, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 import { deleteAnswer, createNewAnswer, loadAnswer } from '../actions/answerActions'
@@ -9,7 +9,7 @@ import Page from '../containers/Page'
 import Container from '../containers/Container'
 import PromptTitle from '../components/PromptTitle'
 import ScrollContainer from '../containers/ScrollContainer'
-import ListComponent from '../components/ListComponent'
+import ItemComponent from '../components/ItemComponent'
 import ComponentText from '../components/ComponentText'
 import ComponentButton from '../components/ComponentButton'
 import Message from '../components/Message'
@@ -83,10 +83,10 @@ class AnswerSettingsPage extends Component {
           </View>
           <ScrollContainer>
             { filteredAnswers.length > 0 ? filteredAnswers.map(a => (
-              <ListComponent key={a._id}>
+              <ItemComponent key={answer._id}>
                 <ComponentText handleClick={(e) => this.handleLoadAnswer(e, a)} text={a.text} />
-                <ComponentButton handleClick={(e) => this.confirmDelete(e, a)} remove right><Ionicons size={20} name="md-trash" color="#F08080" /></ComponentButton>
-              </ListComponent>
+                <TouchableOpacity style={styles.removeButton} activeOpacity={.7} onPress={(e) => this.confirmDelete(e, a)}><Ionicons size={20} name="md-trash" color="#F08080" /></TouchableOpacity>
+              </ItemComponent>
             )) : <Message message='No answers' /> }
           </ScrollContainer>
         </Container>
@@ -101,10 +101,18 @@ class AnswerSettingsPage extends Component {
 const styles = StyleSheet.create({
   prompt: {
     marginTop: 2,
+    marginBottom: 3,
     paddingLeft: 12,
     paddingRight: 12,
     flexShrink: 0,
     flexDirection: 'row',
+  },
+  removeButton: {
+    paddingLeft: 12,
+    paddingRight: 12,
+    paddingTop: 4,
+    alignSelf: 'center',
+    height: 30,
   },
   addButton: {
     flexDirection: 'row',

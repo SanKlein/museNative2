@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     paddingTop: 2,
-    paddingBottom: 18,
+    paddingBottom: 8,
   },
 })
 

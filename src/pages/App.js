@@ -250,6 +250,7 @@ class App extends Component {
                       case 'NewPrompt':
                       case 'UserSettings':
                       case 'List':
+                      case 'Past':
                         return null
                       case 'UserProfile':
                         return user.name ? (
@@ -257,12 +258,6 @@ class App extends Component {
                             <Octicons size={22} name="gear" color="#333" />
                           </TouchableOpacity>
                         ) : null
-                      case 'Past':
-                        return (
-                          <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
-                            <MaterialIcons name="person" size={22} color="#333" />
-                          </TouchableOpacity>
-                        )
                       default:
                         return (
                           <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleProfile(navigator)}>
@@ -305,7 +300,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 8,
-    margin: 4,
+    marginTop: 6,
+    marginBottom: 6,
+    marginLeft: 4,
+    marginRight: 4,
     borderRadius: 8,
   },
   rightButton: {
@@ -314,7 +312,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 8,
-    margin: 4,
+    marginTop: 6,
+    marginBottom: 6,
+    marginLeft: 4,
+    marginRight: 4,
     borderRadius: 8,
   },
   headerButtonText: {
@@ -324,11 +325,12 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     height: 44,
-    lineHeight: 44,
+    lineHeight: 42,
     fontSize: 17,
     color: '#333',
     paddingLeft: 50,
-    paddingRight: 40,
+    paddingRight: 12,
+    paddingTop: 2,
     fontWeight: '700',
   }
 })

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { AlertIOS } from 'react-native'
+import { StyleSheet, AlertIOS, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { createNewAnswer, removeDailyPrompt, removeFavoritePrompt, removeSavePrompt } from '../actions/answerActions'
@@ -9,7 +9,7 @@ import { isToday } from '../functions/dateFunctions'
 import Page from '../containers/Page'
 import Container from '../containers/Container'
 import ScrollContainer from '../containers/ScrollContainer'
-import ListComponent from '../components/ListComponent'
+import ItemComponent from '../components/ItemComponent'
 import ListTitle from '../components/ListTitle'
 import ComponentButton from '../components/ComponentButton'
 import Message from '../components/Message'
@@ -89,16 +89,16 @@ class ListPage extends Component {
           <ScrollContainer>
             { (unansweredListPrompts.length + answeredListPrompts.length) === 0 ? <Message message={`You have no ${listTitle} prompts`} /> : null }
             { unansweredListPrompts.map(prompt => (
-              <ListComponent key={prompt._id}>
+              <ItemComponent key={prompt._id}>
                 <ListTitle handleClick={() => this.handleLoadPrompt(prompt)} title={prompt.title} />
-                { listTitle !== 'created' && <ComponentButton handleClick={() => this.confirmRemove(prompt)} remove right><Entypo size={22} name="minus" color="#F08080" /></ComponentButton> }
-              </ListComponent>
+                { listTitle !== 'created' && <TouchableOpacity style={styles.removeButton} activeOpacity={.7} onPress={() => this.confirmRemove(prompt)}><Entypo size={22} name="minus" color="#F08080" /></TouchableOpacity> }
+              </ItemComponent>
             )) }
             { answeredListPrompts.map(prompt => (
-              <ListComponent key={prompt._id}>
+              <ItemComponent key={prompt._id}>
                 <ListTitle handleClick={() => this.handleLoadPrompt(prompt)} answered title={prompt.title} />
-                { listTitle !== 'created' && <ComponentButton handleClick={() => this.confirmRemove(prompt)} remove right><Entypo size={22} name="minus" color="#F08080" /></ComponentButton> }
-              </ListComponent>
+                { listTitle !== 'created' && <TouchableOpacity style={styles.removeButton} activeOpacity={.7} onPress={() => this.confirmRemove(prompt)}><Entypo size={22} name="minus" color="#F08080" /></TouchableOpacity> }
+              </ItemComponent>
             )) }
           </ScrollContainer>
         </Container>
@@ -109,6 +109,15 @@ class ListPage extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  removeButton: {
+    paddingLeft: 12,
+    paddingRight: 12,
+    alignSelf: 'center',
+    height: 30,
+  },
+})
 
 ListPage.propTypes = {
   user: PropTypes.object.isRequired,
