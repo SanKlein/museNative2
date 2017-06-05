@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Octicons from 'react-native-vector-icons/Octicons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import ObjectID from 'bson-objectid'
-import { loadApprovedPrompts, loadUserPrompts, loadTodayPrompt } from '../actions/promptActions'
+import { loadApprovedPrompts, loadUserPrompts, loadTodayPrompt, loadCategory } from '../actions/promptActions'
 import { loadUser, loadUserAnswers, loadCategories, createUser, startApp, editUser, resetSeen } from '../actions/userActions'
 import { cancelLogin } from '../actions/loginActions'
 import { changeSearch } from '../actions/searchActions'
@@ -32,14 +32,17 @@ class App extends Component {
     this.renderScene = this.renderScene.bind(this)
     this.changeSearchText = this.changeSearchText.bind(this)
     this.handleSettings = this.handleSettings.bind(this)
+    this.handleCategories = this.handleCategories.bind(this)
+    this.handleProfile = this.handleProfile.bind(this)
   }
 
   componentWillMount() {
-    let { user, loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, loadTodayPrompt, resetSeen, seen } = this.props
+    let { user, loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, loadTodayPrompt, resetSeen, seen, loadCategory } = this.props
 
     loadApprovedPrompts()
     loadCategories()
     loadTodayPrompt()
+    loadCategory('')
 
     if (!isToday(seen.today)) {
       resetSeen()
@@ -80,6 +83,15 @@ class App extends Component {
 
   handleProfile(navigator) {
     Keyboard.dismiss(0)
+
+    const { category, loadCategory } = this.props
+
+    if (category === 'Answers') {
+      loadCategory('')
+      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'UserProfile'))
+      return
+    }
+
     navigator.push({ name: 'UserProfile' })
   }
 
@@ -105,7 +117,16 @@ class App extends Component {
   }
 
   handleCategories(navigator) {
+    const { category, loadCategory } = this.props
+
     Keyboard.dismiss(0)
+
+    if (category === 'Answers') {
+      loadCategory('')
+      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'Past'))
+      return
+    }
+
     navigator.popToTop()
   }
 
@@ -236,7 +257,12 @@ class App extends Component {
                             <Octicons size={22} name="gear" color="#333" />
                           </TouchableOpacity>
                         ) : null
-
+                      case 'Past':
+                        return (
+                          <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
+                            <MaterialIcons name="person" size={22} color="#333" />
+                          </TouchableOpacity>
+                        )
                       default:
                         return (
                           <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleProfile(navigator)}>
@@ -327,7 +353,7 @@ const mapStateToProps = ({ user, state, answers, answer, list, category, seen, l
 
 App = connect(
   mapStateToProps,
-  { loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, startApp, cancelLogin, changeSearch, editUser, loadTodayPrompt, resetSeen }
+  { loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, startApp, cancelLogin, changeSearch, editUser, loadTodayPrompt, resetSeen, loadCategory }
 )(App)
 
 export default App

@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 
-const TextContainer = ({ children }) => (<View style={styles.textContainer}>{children}</View>)
+const TextContainer = ({ children, handleClick }) => (<TouchableOpacity style={styles.textContainer} onPress={handleClick} activeOpacity={.7}>{children}</TouchableOpacity>)
 
 const styles = StyleSheet.create({
   textContainer: {

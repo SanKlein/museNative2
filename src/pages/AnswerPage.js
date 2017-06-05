@@ -47,6 +47,12 @@ class AnswerPage extends Component {
     this.checkSave()
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (!nextProps.answer.prompt_title) {
+      this.loadRandom()
+    }
+  }
+
   checkSave() {
     let { answer, answerState } = this.props
     if (answerState === 'changed' && answer.text) {
@@ -169,9 +175,20 @@ class AnswerPage extends Component {
   }
 
   handleNext() {
-    let { user, updateStreak, resetStreak, category, navigator } = this.props
+    let { user, updateStreak, resetStreak, category, navigator, answers, answer, loadAnswer } = this.props
 
     Keyboard.dismiss(0)
+
+    if (category === 'Answers') {
+      let answerIndex = answers.findIndex(a => a._id === answer._id)
+      if (answerIndex <= 0) {
+        navigator.pop(0)
+      } else {
+        var a = answers[answerIndex - 1]
+        loadAnswer(a)
+      }
+      return
+    }
 
     if (!this.state.answered) {
       this.loadRandom()
@@ -225,7 +242,12 @@ class AnswerPage extends Component {
   }
 
   handleNewAnswer() {
-    const { user, answer, createNewAnswer } = this.props
+    const { user, answer, createNewAnswer, category, loadCategory } = this.props
+
+    if (category === 'Answers') {
+      loadCategory(answer.categories[0])
+    }
+
     createNewAnswer(new Answer(user._id, user.name, answer.prompt_id, answer.prompt_title, answer.type, answer.categories))
   }
 
@@ -318,7 +340,7 @@ class AnswerPage extends Component {
   }
 
   render() {
-    const { user, answer, answerState } = this.props
+    const { user, answer, answerState, category } = this.props
 
     return (
       <Page>
@@ -335,7 +357,7 @@ class AnswerPage extends Component {
         </Container>
         <Footer>
           { !answer.text ? <FooterButton handleClick={this.hideKeyboard} big text="Save" id="save"></FooterButton> : answerState === 'changed' ? <FooterButton handleClick={this.saveAnswer} big green text="Save" id="save" /> : <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} /> }
-          { !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
+          { category === "Today's Prompt" && !answer.text ? <FooterButton handleClick={this.handleBack} text="Done" /> : !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : !this.state.changed && category === "Today's Prompt" ? <FooterButton handleClick={this.handleDone} big green text="Done" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
         </Footer>
         <KeyboardSpacer/>
       </Page>
@@ -351,8 +373,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: 12,
-    marginTop: 3,
-    marginBottom: 5,
+    marginTop: 2,
+    marginBottom: 3,
     flexDirection: 'row',
   },
   answerButton: {
@@ -367,7 +389,7 @@ const styles = StyleSheet.create({
   answer: {
     fontSize: 16,
     color: '#333',
-    marginTop: 2,
+    marginTop: 0,
     paddingLeft: 12,
     paddingRight: 12,
     lineHeight: 1.3,

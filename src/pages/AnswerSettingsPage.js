@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, AlertIOS } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 import { deleteAnswer, createNewAnswer, loadAnswer } from '../actions/answerActions'
+import { loadCategory } from '../actions/promptActions'
 import Answer from '../objects/Answer'
 import Page from '../containers/Page'
 import Container from '../containers/Container'
@@ -61,7 +62,12 @@ class AnswerSettingsPage extends Component {
   }
 
   handleNewAnswer() {
-    const { user, answer, createNewAnswer, navigator } = this.props
+    const { user, answer, createNewAnswer, navigator, category, loadCategory } = this.props
+
+    if (category === 'Answers') {
+      loadCategory(answer.categories[0])
+    }
+
     createNewAnswer(new Answer(user._id, user.name, answer.prompt_id, answer.prompt_title, answer.type, answer.categories))
     navigator.pop(0)
   }
@@ -79,7 +85,7 @@ class AnswerSettingsPage extends Component {
             { filteredAnswers.length > 0 ? filteredAnswers.map(a => (
               <ListComponent key={a._id}>
                 <ComponentText handleClick={(e) => this.handleLoadAnswer(e, a)} text={a.text} />
-                <ComponentButton handleClick={(e) => this.confirmDelete(e, a)} remove right><FontAwesome size={20} name="trash-o" color="#F08080" /></ComponentButton>
+                <ComponentButton handleClick={(e) => this.confirmDelete(e, a)} remove right><Ionicons size={20} name="md-trash" color="#F08080" /></ComponentButton>
               </ListComponent>
             )) : <Message message='No answers' /> }
           </ScrollContainer>
@@ -119,15 +125,15 @@ AnswerSettingsPage.propTypes = {
   loadAnswer: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ user, answer, answers }) => {
+const mapStateToProps = ({ user, answer, answers, category }) => {
   const filteredAnswers = answers.filter(a => a.prompt_id === answer.prompt_id)
 
-  return { user, answer, filteredAnswers }
+  return { user, answer, filteredAnswers, category }
  }
 
 AnswerSettingsPage = connect(
   mapStateToProps,
-  { deleteAnswer, createNewAnswer, loadAnswer }
+  { deleteAnswer, createNewAnswer, loadAnswer, loadCategory }
 )(AnswerSettingsPage)
 
 export default AnswerSettingsPage
