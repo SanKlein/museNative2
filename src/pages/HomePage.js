@@ -41,10 +41,7 @@ class HomePage extends Component {
   }
 
   goBack() {
-    const { startApp, navigator } = this.props
-
-    startApp()
-    navigator.push({ name: 'Categories' })
+    this.props.navigator.pop(0)
   }
 
   handlePrivacy() {

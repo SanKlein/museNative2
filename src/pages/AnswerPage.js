@@ -32,6 +32,7 @@ class AnswerPage extends Component {
     this.handleSettings = this.handleSettings.bind(this)
     this.handleChangeAnswer = this.handleChangeAnswer.bind(this)
     this.handleNext = this.handleNext.bind(this)
+    this.handleDone = this.handleDone.bind(this)
     this.handleNewAnswer = this.handleNewAnswer.bind(this)
     this.checkPrompt = this.checkPrompt.bind(this)
     this.handleSavePrompt = this.handleSavePrompt.bind(this)
@@ -168,20 +169,14 @@ class AnswerPage extends Component {
   }
 
   handleNext() {
-    let { user, updateStreak, resetStreak, category, loadCategory, navigator } = this.props
+    let { user, updateStreak, resetStreak, category, navigator } = this.props
 
     Keyboard.dismiss(0)
-
-    if (category === "Today's Prompt") {
-      loadCategory('')
-    }
 
     if (!this.state.answered) {
       this.loadRandom()
       return
     }
-
-    this.saveAnswer()
 
     if (!user.last) {
       let newDate  = new Date()
@@ -192,6 +187,34 @@ class AnswerPage extends Component {
 
     if (isToday(user.last)) {
       this.loadRandom()
+      return
+    } else if (isYesterday(user.last)) {
+      updateStreak(user._id)
+    } else {
+      resetStreak(user._id)
+    }
+    navigator.push({ name: 'Streak' })
+  }
+
+  handleDone() {
+    let { user, updateStreak, resetStreak, category, navigator } = this.props
+
+    Keyboard.dismiss(0)
+
+    if (!this.state.answered) {
+      navigator.pop(0)
+      return
+    }
+
+    if (!user.last) {
+      let newDate  = new Date()
+      newDate.setDate(newDate.getDate() - 1)
+      user.last = newDate
+      user.streak = 0
+    }
+
+    if (isToday(user.last)) {
+      navigator.pop(0)
       return
     } else if (isYesterday(user.last)) {
       updateStreak(user._id)

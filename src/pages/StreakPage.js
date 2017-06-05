@@ -125,11 +125,13 @@ class StreakPage extends Component {
             <Text style={styles.text}>{user.streak === 1 ? ' day' : ' days'} {"in a row :)"}</Text>
           </View>
         </Container>
-        <Footer top>
-          <FooterButton handleClick={this.handleMain} big top text='Change Topic' />
-        </Footer>
+        { category !== "Today's Prompt" &&
+          <Footer top>
+            <FooterButton handleClick={this.handleMain} big top text='Change Topic' />
+          </Footer>
+        }
         <Footer>
-          <FooterButton handleClick={this.handleNext} big purple text={`Next - ${category ? category : list ? list : 'Everything'}`} />
+          { category === "Today's Prompt" ? <FooterButton handleClick={this.handleMain} big purple>Done</FooterButton> : <FooterButton handleClick={this.handleNext} big purple text={`Next - ${category ? category : list ? list : 'Everything'}`} /> }
         </Footer>
       </Page>
     )

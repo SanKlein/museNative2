@@ -155,6 +155,12 @@ class App extends Component {
   render() {
     const { user, state, category, list, answer, answerState, listTitle } = this.props
 
+    // return (
+    //   <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleHome(navigator)}>
+    //     <FontAwesome size={22} name="home" color="#333" />
+    //   </TouchableOpacity>
+    // )
+
     return (
       <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss(0)}>
         <View style={styles.app}>
@@ -170,11 +176,6 @@ class App extends Component {
                   LeftButton: (route, navigator, index, navState) => {
                     switch(route.name) {
                       case 'Categories':
-                        return (
-                          <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleHome(navigator)}>
-                            <FontAwesome size={22} name="home" color="#333" />
-                          </TouchableOpacity>
-                        )
                       case 'Home':
                       case 'Streak':
                         return null

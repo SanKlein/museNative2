@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text, Linking } from 'react-native'
+import { StyleSheet, View, Text, Linking, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { formattedDate } from '../functions/dateFunctions'
 import { loadListTitle } from '../actions/promptActions'
@@ -18,6 +18,7 @@ class UserProfilePage extends Component {
     this.handleSignup = this.handleSignup.bind(this)
     this.handleLoadList = this.handleLoadList.bind(this)
     this.handleNewPrompt = this.handleNewPrompt.bind(this)
+    this.handleAbout = this.handleAbout.bind(this)
   }
 
   handlePast() {
@@ -38,8 +39,8 @@ class UserProfilePage extends Component {
     navigator.push({ name: 'List' })
   }
 
-  handleEmail() {
-    Linking.openURL('mailto:parker@reflectwithmuse.com?subject=Hi Parker')
+  handleAbout() {
+    this.props.navigator.push({ name: 'Home' })
   }
 
   render() {
@@ -61,11 +62,10 @@ class UserProfilePage extends Component {
             <CategoryButton key='favorites' handleClick={this.handleLoadList} category='favorites' text='Favorites' />
             <CategoryButton key='daily' handleClick={this.handleLoadList} category='daily' text='Daily' />
             <CategoryButton key='created' handleClick={this.handleLoadList} category='created' text='Created' />
-            <View style={styles.space}></View>
             <View style={styles.contact}>
-              <Text style={styles.mainContactText}>Questions / Feedback?</Text>
-              <Text style={styles.contactText}>We love hearing from you</Text>
-              <CategoryButton handleClick={this.handleEmail} text='Contact' purple />
+              <TouchableOpacity style={styles.aboutButton} onPress={this.handleAbout} activeOpacity={.7}>
+                <Text style={styles.aboutText}>About Us</Text>
+              </TouchableOpacity>
             </View>
           </ScrollContainer>
         </Container>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     color: '#333',
     fontSize: 24,
     textAlign: 'center',
-    marginBottom: 5,
+    marginBottom: 0,
     fontWeight: '700',
   },
   date: {
@@ -97,31 +97,38 @@ const styles = StyleSheet.create({
     color: '#777',
     fontSize: 16,
     textAlign: 'center',
-    marginTop: 5,
-    marginBottom: 20,
+    marginTop: 2,
+    marginBottom: 12,
     fontWeight: '700',
   },
   space: {
-    marginTop: 20,
+    marginTop: 6,
   },
   contact: {
-    paddingTop: 20,
+    paddingTop: 10,
     paddingBottom: 20,
   },
-  mainContactText: {
-    color: '#777',
-    fontSize: 16,
+  aboutButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
     marginTop: 10,
-    marginBottom: 5,
-    textAlign: 'center',
-    fontWeight: '600',
+    marginBottom: 0,
+    marginLeft: 12,
+    marginRight: 12,
+    paddingLeft: 16,
+    paddingRight: 16,
+    borderRadius: 30,
+    height: 54,
   },
-  contactText: {
-    color: '#777',
+  aboutText: {
     fontSize: 16,
-    marginBottom: 15,
+    paddingTop: 12,
+    paddingBottom: 12,
+    color: '#777',
     textAlign: 'center',
-    fontWeight: '600',
+    fontWeight: '700',
   },
 })
 
