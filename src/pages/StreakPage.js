@@ -12,7 +12,7 @@ import SignupButton from '../components/SignupButton'
 import Footer from '../containers/Footer'
 import FooterButton from '../components/FooterButton'
 
-const messages = ['Good job!', 'Congratulations!', "Let's go!", 'Aye!', 'Here we go!', "You're doing it!"]
+const messages = ['Good job!', 'Congratulations!', "Let's go!", 'Aye!', 'Here we go!', "You did it!", 'Nice!', 'Nice Work!', 'Well Done!', 'You Rock!', 'Splendid!', 'Superb!', 'Awesome!', "That's the way!", 'Cheers!']
 
 class StreakPage extends Component {
   constructor(props) {
