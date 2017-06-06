@@ -154,6 +154,7 @@ class AnswerPage extends Component {
   }
 
   handleSettings() {
+    this.checkSave()
     this.props.navigator.push({ name: 'AnswerSettings' })
   }
 

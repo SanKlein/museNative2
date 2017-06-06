@@ -214,7 +214,7 @@ class App extends Component {
                       case 'Login':
                         return (
                           <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
-                            <MaterialIcons size={26} name="close" color="#333" />
+                            <Octicons size={24} name="x" color="#333" />
                           </TouchableOpacity>
                         )
                       case 'Answer':
