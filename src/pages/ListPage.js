@@ -53,16 +53,14 @@ class ListPage extends Component {
     const prompt = unansweredListPrompts[Math.floor(Math.random() * unansweredListPrompts.length)]
     loadList(listTitle)
     createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
-    const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
-    route ? navigator.popToRoute(route) : navigator.push({ name: 'Answer' })
+    navigator.push({ name: 'Answer' })
   }
 
   handleLoadPrompt(prompt) {
     const { user, listTitle, createNewAnswer, navigator, loadList } = this.props
     loadList(listTitle)
     createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
-    const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
-    route ? navigator.popToRoute(route) : navigator.push({ name: 'Answer' })
+    navigator.push({ name: 'Answer' })
   }
 
   handleRemovePrompt(prompt) {
@@ -89,13 +87,13 @@ class ListPage extends Component {
           <ScrollContainer>
             { (unansweredListPrompts.length + answeredListPrompts.length) === 0 ? <Message message={`You have no ${listTitle} prompts`} /> : null }
             { unansweredListPrompts.map(prompt => (
-              <ItemComponent key={prompt._id}>
+              <ItemComponent key={prompt._id} created={ listTitle === 'created' }>
                 <ListTitle handleClick={() => this.handleLoadPrompt(prompt)} title={prompt.title} />
                 { listTitle !== 'created' && <TouchableOpacity style={styles.removeButton} activeOpacity={.7} onPress={() => this.confirmRemove(prompt)}><Entypo size={22} name="minus" color="#F08080" /></TouchableOpacity> }
               </ItemComponent>
             )) }
             { answeredListPrompts.map(prompt => (
-              <ItemComponent key={prompt._id}>
+              <ItemComponent key={prompt._id} created={ listTitle === 'created' }>
                 <ListTitle handleClick={() => this.handleLoadPrompt(prompt)} answered title={prompt.title} />
                 { listTitle !== 'created' && <TouchableOpacity style={styles.removeButton} activeOpacity={.7} onPress={() => this.confirmRemove(prompt)}><Entypo size={22} name="minus" color="#F08080" /></TouchableOpacity> }
               </ItemComponent>

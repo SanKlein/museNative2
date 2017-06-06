@@ -57,8 +57,8 @@ class StreakPage extends Component {
       let roundPrompts = []
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          loadCategory('')
-          roundPrompts = prompts
+          navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'List'))
+          return
         } else {
           roundPrompts = listPrompts
         }

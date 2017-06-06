@@ -62,9 +62,9 @@ class AnswerSettingsPage extends Component {
   }
 
   handleNewAnswer() {
-    const { user, answer, createNewAnswer, navigator, category, loadCategory } = this.props
+    const { user, answer, createNewAnswer, navigator, category, loadCategory, list } = this.props
 
-    if (category === 'Answers') {
+    if (category === 'Answers' || list) {
       loadCategory(answer.categories[0])
     }
 
@@ -83,7 +83,7 @@ class AnswerSettingsPage extends Component {
           </View>
           <ScrollContainer>
             { filteredAnswers.length > 0 ? filteredAnswers.map(a => (
-              <ItemComponent key={answer._id}>
+              <ItemComponent key={a._id}>
                 <ComponentText handleClick={(e) => this.handleLoadAnswer(e, a)} text={a.text} />
                 <TouchableOpacity style={styles.removeButton} activeOpacity={.7} onPress={(e) => this.confirmDelete(e, a)}><Ionicons size={20} name="md-trash" color="#F08080" /></TouchableOpacity>
               </ItemComponent>
@@ -133,10 +133,10 @@ AnswerSettingsPage.propTypes = {
   loadAnswer: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ user, answer, answers, category }) => {
+const mapStateToProps = ({ user, answer, answers, category, list }) => {
   const filteredAnswers = answers.filter(a => a.prompt_id === answer.prompt_id)
 
-  return { user, answer, filteredAnswers, category }
+  return { user, answer, filteredAnswers, category, list }
  }
 
 AnswerSettingsPage = connect(

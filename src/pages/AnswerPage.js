@@ -81,8 +81,8 @@ class AnswerPage extends Component {
       let roundPrompts = []
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          loadCategory('')
-          roundPrompts = prompts
+          navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'List'))
+          return
         } else {
           roundPrompts = listPrompts
         }
@@ -133,11 +133,11 @@ class AnswerPage extends Component {
   }
 
   saveAnswer() {
-    let { answer, answers, saveAnswer, answerState } = this.props
+    let { answer, answers, saveAnswer, answerState, category } = this.props
 
     Keyboard.dismiss(0)
 
-    if (answerState === 'changed') {
+    if (answerState === 'changed' || (category === 'Answers' && answerState === 'none')) {
       const newAnswerScore = Math.round(answer.text.split(' ').length / 3)
       let score = 0
 
@@ -340,7 +340,7 @@ class AnswerPage extends Component {
   }
 
   render() {
-    const { user, answer, answerState, category } = this.props
+    const { user, answer, answerState, category, list } = this.props
 
     return (
       <Page>
@@ -356,8 +356,8 @@ class AnswerPage extends Component {
           </TouchableOpacity>
         </Container>
         <Footer>
-          { !answer.text ? <FooterButton handleClick={this.hideKeyboard} big text="Save" id="save"></FooterButton> : answerState === 'changed' ? <FooterButton handleClick={this.saveAnswer} big green text="Save" id="save" /> : <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} /> }
-          { category === "Today's Prompt" && !answer.text ? <FooterButton handleClick={this.handleBack} text="Done" /> : !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : !this.state.changed && category === "Today's Prompt" && answerState !== 'changed'  ? <FooterButton handleClick={this.handleDone} big green text="Done" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
+          { !answer.text && category === 'Answers' && answerState === 'none' && this.state.answered ? <FooterButton handleClick={this.saveAnswer} big text="Save" id="save" green /> : !answer.text ? <FooterButton handleClick={this.hideKeyboard} big text="Save" id="save"></FooterButton> : answerState === 'changed' ? <FooterButton handleClick={this.saveAnswer} big green text="Save" id="save" /> : <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} /> }
+          { !answer.text && category === 'Answers' && answerState === 'none' && this.state.answered ? <FooterButton hide text="" /> : category === "Today's Prompt" && !answer.text ? <FooterButton handleClick={this.handleBack} text="Done" /> : !answer.text && list ? <FooterButton handleClick={this.loadRandom} text="Next" /> : !answer.text && category === 'Answers' ? <FooterButton handleClick={this.handleNext} text="Next" /> : !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : !this.state.changed && category === "Today's Prompt" && answerState !== 'changed'  ? <FooterButton handleClick={this.handleDone} big green text="Done" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
         </Footer>
         <KeyboardSpacer/>
       </Page>

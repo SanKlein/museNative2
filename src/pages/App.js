@@ -84,9 +84,9 @@ class App extends Component {
   handleProfile(navigator) {
     Keyboard.dismiss(0)
 
-    const { category, loadCategory } = this.props
+    const { category, loadCategory, list } = this.props
 
-    if (category === 'Answers') {
+    if (category === 'Answers' || list) {
       loadCategory('')
       navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'UserProfile'))
       return
@@ -117,13 +117,19 @@ class App extends Component {
   }
 
   handleCategories(navigator) {
-    const { category, loadCategory } = this.props
+    const { category, loadCategory, list } = this.props
 
     Keyboard.dismiss(0)
 
     if (category === 'Answers') {
       loadCategory('')
       navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'Past'))
+      return
+    }
+
+    if (list) {
+      loadCategory('')
+      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'List'))
       return
     }
 
