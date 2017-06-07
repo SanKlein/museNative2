@@ -257,6 +257,7 @@ class App extends Component {
                       case 'UserSettings':
                       case 'List':
                       case 'Past':
+                      case 'AnswerSettings':
                         return null
                       case 'UserProfile':
                         return user.name ? (
