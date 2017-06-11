@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
   },
   contact: {
     paddingTop: 10,
-    paddingBottom: 20,
   },
   aboutButton: {
     flexDirection: 'row',
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
   aboutText: {
     fontSize: 16,
     paddingTop: 12,
-    paddingBottom: 12,
+    paddingBottom: 5,
     color: '#777',
     textAlign: 'center',
     fontWeight: '700',

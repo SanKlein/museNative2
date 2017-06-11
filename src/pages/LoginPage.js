@@ -159,7 +159,7 @@ class LoginPage extends Component {
             <TouchableOpacity style={loginClasses} onPress={this.handleSubmit} activeOpacity={.7}>
               <Text style={loginTextClasses}>{loginButton}</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing '"}{policyButton}{"', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity>
+            { !login.login && <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing '"}{policyButton}{"', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity> }
           </View>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.switchButton} onPress={this.handleChangeLogin} activeOpacity={.7}>
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   buttonContainer: {
-    paddingTop: 5,
+    paddingTop: 30,
     paddingBottom: 20,
   },
   switchButton: {
@@ -259,7 +259,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 25,
   },
   link: {
     fontSize: 12,

@@ -213,6 +213,7 @@ class App extends Component {
                       case 'Home':
                       case 'Streak':
                       case 'About':
+                      case 'Stop':
                         return null
                       case 'AnswerSettings':
                       case 'UserProfile':

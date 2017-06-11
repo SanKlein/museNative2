@@ -74,7 +74,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>To help you gain self-awareness through daily reflection so you can create a happier, more meaningful life doing what you love</Text>
+                  <Text style={styles.centerParagraph}>Help you gain self-awareness through reflection so you can create a happier, more meaningful life doing what you love</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -86,7 +86,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase self-awareness and self-regulation</Text>
+                  <Text style={styles.centerParagraph}>Increase self-awareness</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -96,17 +96,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase mindfulness</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
                   <Text style={styles.centerParagraph}>Clarify goals and core values</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>Increase confidence and self-esteem</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -116,12 +106,22 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
+                  <Text style={styles.centerParagraph}>Increase mindfulness</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View>
                   <Text style={styles.centerParagraph}>Make conscious-driven decisions</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Learn to confront and overcome fear</Text>
+                  <Text style={styles.centerParagraph}>Increase confidence and self-esteem</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View>
+                  <Text style={styles.centerParagraph}>Confront and overcome fear</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -158,7 +158,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>A space to slow down and self-reflect on 400+ prompts.</Text>
+                  <Text style={styles.centerParagraph}>A space to slow down and reflect on prompts.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -204,12 +204,12 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>On his own spiritual journey, Parker was collecting and answering deep questions to learn about himself and what he wanted to do.</Text>
+                  <Text style={styles.centerParagraph}>On his own spiritual journey, Parker was collecting and answering deep questions in order to learn about himself and what he wanted to do.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>He fell in love with the practice of self-reflection and the benefits he was experiencing, and decided to share it with the world.</Text>
+                  <Text style={styles.centerParagraph}>He fell in love with the practice and benefits of self-reflection, and decided it was his purpose to share it with the world.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>

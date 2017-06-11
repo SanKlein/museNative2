@@ -124,9 +124,9 @@ class StopPage extends Component {
             <Text style={styles.congrats}>{this.state.message}</Text>
             <Text style={styles.text}>{"You've answered"}</Text>
             <Text style={styles.number}>5</Text>
-            <Text style={styles.text}>{"prompts today :)"}</Text>
+            <Text style={styles.text}>{"prompts today"}</Text>
             <Text style={styles.bottomText}>{"It's time to take action"}</Text>
-            <Text style={styles.text}>{"See you tomorrow"}</Text>
+            <Text style={styles.text}>{"See you tomorrow :)"}</Text>
           </View>
         </Container>
         <Footer top>

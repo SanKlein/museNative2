@@ -18,6 +18,7 @@ class HomePage extends Component {
     this.handleLogin = this.handleLogin.bind(this)
     this.handleStart = this.handleStart.bind(this)
     this.goBack = this.goBack.bind(this)
+    this.handleAbout = this.handleAbout.bind(this)
   }
 
   componentWillMount() {
@@ -48,20 +49,8 @@ class HomePage extends Component {
     Linking.openURL('http://www.reflectwithmuse.com/privacy')
   }
 
-  handleEmail() {
-    Linking.openURL('mailto:parker@reflectwithmuse.com?subject=Hi Parker')
-  }
-
-  handleTwitter() {
-    Linking.openURL('https://twitter.com/reflectwithmuse')
-  }
-
-  handleInstagram() {
-    Linking.openURL('https://www.instagram.com/reflectwithmuse/')
-  }
-
-  handleFacebook() {
-    Linking.openURL('https://www.facebook.com/reflectwithmuse/')
+  handleAbout() {
+    this.props.navigator.push({ name: 'About' })
   }
 
   render() {
@@ -72,29 +61,18 @@ class HomePage extends Component {
         <Image style={styles.logo} source={require('../../muse.png')} />
         <View style={styles.content}>
           <Text style={styles.subheader}>Mission</Text>
-          <Text style={styles.mission}>{"Help you clarify your values through daily reflection, so you can create a happier, more meaningful life, doing what you love"}</Text>
+          <Text style={styles.mission}>{"Help you gain self-awareness through reflection so you can create a happier, more meaningful life doing what you love"}</Text>
         </View>
         <Footer margin top>
-          { !this.state.showAgree ? <FooterButton handleClick={this.goBack} big purple text='Back to müse' /> : <FooterButton handleClick={this.handleStart} big purple text='Start' /> }
+          <FooterButton handleClick={this.handleStart} big purple text='Start müsing' />
         </Footer>
         <Footer margin>
           { !user.name && <FooterButton handleClick={this.handleLogin} big text='Log in' /> }
         </Footer>
         { this.state.showAgree && <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing 'Start', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity> }
-        <TouchableOpacity onPress={this.handleEmail} style={styles.contactButton} activeOpacity={.7}>
-          <Text style={styles.contactText} onClick={this.handleEmail}>Contact</Text>
+        <TouchableOpacity onPress={this.handleAbout} style={styles.contactButton} activeOpacity={.7}>
+          <Text style={styles.contactText}>{"What's Müse and why should I use it?"}</Text>
         </TouchableOpacity>
-        <View style={styles.socialButtons}>
-          <TouchableOpacity onPress={this.handleTwitter} style={styles.socialButton} activeOpacity={.7}>
-            <FontAwesome size={20} name="twitter" color="#777" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.handleInstagram} style={styles.socialButton} activeOpacity={.7}>
-            <FontAwesome size={20} name="instagram" color="#777" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.handleFacebook} style={styles.socialButton} activeOpacity={.7}>
-            <FontAwesome size={20} name="facebook" color="#777" />
-          </TouchableOpacity>
-        </View>
       </View>
     )
   }
@@ -109,13 +87,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   logo: {
-    marginTop: 20,
     height: 83,
     minHeight: 83,
     width: 224,
     minWidth: 224,
     alignSelf: 'center',
-    marginTop: 40,
   },
   content: {
     marginTop: 30,
@@ -146,6 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     fontWeight: '600',
+    paddingBottom: 20,
   },
   agree: {
     marginLeft: 20,
@@ -157,16 +134,6 @@ const styles = StyleSheet.create({
     color: '#AAA',
     textAlign: 'center',
     fontWeight: '600',
-  },
-  socialButtons: {
-    marginTop: 20,
-    marginBottom: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  socialButton: {
-    marginLeft: 15,
-    marginRight: 15,
   },
 })
 
