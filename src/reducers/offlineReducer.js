@@ -113,7 +113,7 @@ const offlineReducer = (state = initialState.offline, action) => {
       signupAnswered.forEach(answer => {
         answer.user_name = action.user.name
       })
-      return { ...state, beenOffline: true, answered: signupAnswered }
+      return { ...state, answered: signupAnswered }
 
     case ActionTypes.LOGIN_USER_SUCCESS:
       let loginAnswered = state.answered.slice()
@@ -121,7 +121,7 @@ const offlineReducer = (state = initialState.offline, action) => {
         answer.user_id = action.user._id,
         answer.user_name = action.user.name
       })
-      return { ...state, beenOffline: true, answered: loginAnswered }
+      return { ...state, answered: loginAnswered }
 
     case ActionTypes.CREATE_NEW_PROMPT_OFFLINE:
       return { ...state, beenOffline: true, created: [ ...state.created, action.prompt ] }
