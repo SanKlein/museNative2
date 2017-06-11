@@ -14,7 +14,7 @@ import FooterButton from '../components/FooterButton'
 
 const messages = ['Good job!', 'Congratulations!', "Let's go!", 'Aye!', 'Here we go!', "You did it!", 'Nice!', 'Nice Work!', 'Well Done!', 'Splendid!', 'Superb!', 'Awesome!', "That's the way!", 'Cheers!']
 
-class StreakPage extends Component {
+class StopPage extends Component {
   constructor(props) {
     super(props)
 
@@ -114,7 +114,7 @@ class StreakPage extends Component {
   }
 
   render() {
-    const { user, category, list } = this.props
+    const { user } = this.props
 
     return (
       <Page>
@@ -122,18 +122,18 @@ class StreakPage extends Component {
           { !user.name ? <Footer><FooterButton handleClick={this.handleSignup} big text='Signup' /></Footer> : null }
           <View style={styles.message}>
             <Text style={styles.congrats}>{this.state.message}</Text>
-            <Text style={styles.text}>{"You've reflected"}</Text>
-            <Text style={styles.number}>{user.streak}</Text>
-            <Text style={styles.text}>{user.streak === 1 ? ' day' : ' days'} {"in a row :)"}</Text>
+            <Text style={styles.text}>{"You've answered"}</Text>
+            <Text style={styles.number}>5</Text>
+            <Text style={styles.text}>{"prompts today :)"}</Text>
+            <Text style={styles.bottomText}>{"It's time to take action"}</Text>
+            <Text style={styles.text}>{"See you tomorrow"}</Text>
           </View>
         </Container>
-        { category !== "Today's Prompt" &&
-          <Footer top>
-            <FooterButton handleClick={this.handleMain} big top text='Change Topic' />
-          </Footer>
-        }
+        <Footer top>
+          <FooterButton handleClick={this.handleNext} big top text='Continue Müsing' />
+        </Footer>
         <Footer>
-          { category === "Today's Prompt" ? <FooterButton handleClick={this.handleMain} big purple text='Done' /> : <FooterButton handleClick={this.handleNext} big purple text={`Next - ${category ? category : list ? list : 'Everything'}`} /> }
+          <FooterButton handleClick={this.handleMain} big purple text='Done' />
         </Footer>
       </Page>
     )
@@ -161,6 +161,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
   },
+  bottomText: {
+    color: '#424242',
+    fontSize: 20,
+    fontWeight: '600',
+    paddingTop: 50,
+    paddingBottom: 5,
+  },
   number: {
     color: '#333',
     fontSize: 84,
@@ -168,7 +175,7 @@ const styles = StyleSheet.create({
   },
 })
 
-StreakPage.propTypes = {
+StopPage.propTypes = {
   user: PropTypes.object.isRequired,
   answer: PropTypes.object.isRequired,
   answers: PropTypes.array.isRequired,
@@ -191,9 +198,9 @@ const mapStateToProps = ({ user, answer, answers, prompt, prompts, myPrompts, ca
   return { user, answer, answers, prompts, category, list }
 }
 
-StreakPage = connect(
+StopPage = connect(
   mapStateToProps,
   { createNewAnswer, loadAnswer, loadCategory }
-)(StreakPage)
+)(StopPage)
 
-export default StreakPage
+export default StopPage

@@ -40,7 +40,7 @@ class UserProfilePage extends Component {
   }
 
   handleAbout() {
-    this.props.navigator.push({ name: 'Home' })
+    this.props.navigator.push({ name: 'About' })
   }
 
   render() {
@@ -64,7 +64,7 @@ class UserProfilePage extends Component {
             <CategoryButton key='created' handleClick={this.handleLoadList} category='created' text='Created' />
             <View style={styles.contact}>
               <TouchableOpacity style={styles.aboutButton} onPress={this.handleAbout} activeOpacity={.7}>
-                <Text style={styles.aboutText}>About Us</Text>
+                <Text style={styles.aboutText}>About Müse</Text>
               </TouchableOpacity>
             </View>
           </ScrollContainer>

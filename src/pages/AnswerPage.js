@@ -203,6 +203,12 @@ class AnswerPage extends Component {
       user.streak = 0
     }
 
+    const todayAnswers = answers.filter(a => isToday(a.answered))
+    if (todayAnswers.length === 5) {
+      navigator.push({ name: 'Stop' })
+      return
+    }
+
     if (isToday(user.last)) {
       this.loadRandom()
       return

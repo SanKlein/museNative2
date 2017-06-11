@@ -23,6 +23,8 @@ import UserSettingsPage from './UserSettingsPage'
 import ListPage from './ListPage'
 import NewPromptPage from './NewPromptPage'
 import StreakPage from './StreakPage'
+import AboutPage from './AboutPage'
+import StopPage from './StopPage'
 
 class App extends Component {
   constructor(props) {
@@ -158,6 +160,10 @@ class App extends Component {
         return <ListPage navigator={navigator} />
       case 'NewPrompt':
         return <NewPromptPage navigator={navigator} />
+      case 'About':
+        return <AboutPage navigator={navigator} />
+      case 'Stop':
+        return <StopPage navigator={navigator} />
       default:
         return <CategoriesPage navigator={navigator} />
     }
@@ -173,6 +179,7 @@ class App extends Component {
       case 'AnswerSettings':
         return Navigator.SceneConfigs.FloatFromBottom
       case 'Home':
+      case 'About':
         return Navigator.SceneConfigs.PushFromLeft
       default:
         return Navigator.SceneConfigs.PushFromRight
@@ -205,6 +212,7 @@ class App extends Component {
                       case 'Categories':
                       case 'Home':
                       case 'Streak':
+                      case 'About':
                         return null
                       case 'AnswerSettings':
                       case 'UserProfile':
@@ -259,6 +267,12 @@ class App extends Component {
                       case 'Past':
                       case 'AnswerSettings':
                         return null
+                      case 'About':
+                        return (
+                          <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
+                            <Ionicons name="md-arrow-round-forward" size={22} color="#333" />
+                          </TouchableOpacity>
+                        )
                       case 'UserProfile':
                         return user.name ? (
                           <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleSettings(navigator)}>
