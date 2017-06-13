@@ -1,7 +1,7 @@
 import initialState from './initialState'
 import ActionTypes from '../actions/actionTypes'
 
-const startedReducer = (state = initialState.state, action) => {
+const stateReducer = (state = initialState.state, action) => {
   switch(action.type) {
 
     case ActionTypes.LOAD_LOGIN:
@@ -30,4 +30,4 @@ const startedReducer = (state = initialState.state, action) => {
   }
 }
 
-export default startedReducer
+export default stateReducer

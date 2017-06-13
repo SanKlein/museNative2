@@ -17,7 +17,6 @@ class HomePage extends Component {
 
     this.handleLogin = this.handleLogin.bind(this)
     this.handleStart = this.handleStart.bind(this)
-    this.goBack = this.goBack.bind(this)
     this.handleAbout = this.handleAbout.bind(this)
   }
 
@@ -38,11 +37,7 @@ class HomePage extends Component {
     const { startApp, navigator } = this.props
 
     startApp()
-    navigator.push({ name: 'Categories' })
-  }
-
-  goBack() {
-    this.props.navigator.pop(0)
+    navigator.replace({ name: 'Categories' })
   }
 
   handlePrivacy() {

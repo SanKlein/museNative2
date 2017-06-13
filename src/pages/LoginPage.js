@@ -43,9 +43,9 @@ class LoginPage extends Component {
   }
 
   handleChangeLogin() {
-    Keyboard.dismiss(0)
     const { login, changeLoginState } = this.props
     changeLoginState(!login.login)
+    this.refs.Name.focus()
   }
 
   handleSubmit(e) {
@@ -147,12 +147,12 @@ class LoginPage extends Component {
           <View style={styles.content}>
             { !login.login ? <View>
               <Text style={styles.label}>Name</Text>
-              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Email.focus()} placeholder="Name" autoCapitalize='words' autoFocus={true} autoCorrect={false} autoFocus returnKeyType='next' />
+              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} ref="Name" value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Email.focus()} placeholder="Name" autoCapitalize='words' autoFocus={true} autoCorrect={false} autoFocus returnKeyType='next' />
               <Text style={styles.label}>Email</Text>
               <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.email} ref="Email" keyboardType="email-address" value={login.email} onChangeText={this.handleChangeEmail} onSubmitEditing={() => this.refs.Password.focus()} placeholder="Email" autoCorrect={false} returnKeyType='next' />
             </View> : <View>
               <Text style={styles.label}>Email</Text>
-              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Password.focus()} placeholder="Or name" autoCapitalize='words' autoFocus={true} autoCorrect={false} returnKeyType='next' />
+              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} ref="Name" value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Password.focus()} placeholder="Or name" autoCapitalize='words' autoFocus={true} autoCorrect={false} returnKeyType='next' />
             </View> }
             <Text style={styles.label}>Password</Text>
             <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' ref="Password" style={styles.password} secureTextEntry={true} value={login.password} onChangeText={this.handleChangePassword} placeholder="Password" autoCorrect={false} onSubmitEditing={this.handleSubmit} returnKeyType='go' />
@@ -236,12 +236,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   buttonContainer: {
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
   },
   switchButton: {
-    marginTop: 5,
-    marginBottom: 100,
+    paddingTop: 15,
+    paddingBottom: 10,
+    marginBottom: 80,
   },
   headerButtonText: {
     fontSize: 16,

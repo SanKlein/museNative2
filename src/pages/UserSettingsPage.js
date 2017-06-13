@@ -81,8 +81,8 @@ class UserSettingsPage extends Component {
   handleLogout() {
     const { logout, navigator } = this.props
 
-    navigator.resetTo({ name: 'Home' })
     logout()
+    navigator.resetTo({ name: 'Home' })
   }
 
   confirmLogout() {
