@@ -57,12 +57,12 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>A space to slow down and reflect on prompts.</Text>
+                  <Text style={styles.centerParagraph}>A private space to slow down and reflect on deep questions.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>Promotes self-awareness, mindfulness, positivity, self-love, and personal growth</Text>
+                <View style={styles.last}>
+                  <Text style={styles.centerParagraph}>Promotes self-awareness, mindfulness, positivity, self-love, and personal growth.</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -73,8 +73,8 @@ class AboutPage extends Component {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>Help you gain self-awareness through reflection so you can create a happier, more meaningful life doing what you love</Text>
+                <View style={styles.last}>
+                  <Text style={styles.centerParagraph}>Help you gain awareness to be your best self through daily reflection</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -145,8 +145,25 @@ class AboutPage extends Component {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.last}>
                   <Text style={styles.centerParagraph}>Strengthen your relationships</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </AboutSection>
+            <AboutSection>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View>
+                  <Text style={styles.header}>How do you Reflect?</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View>
+                  <Text style={styles.centerParagraph}>{"That's up to you."}</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View style={styles.last}>
+                  <Text style={styles.centerParagraph}>What you put in, you will get out.</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -174,7 +191,7 @@ class AboutPage extends Component {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.last}>
                   <Text style={styles.centerParagraph}>Designer at ZipRecruiter</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -201,7 +218,7 @@ class AboutPage extends Component {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.last}>
                   <Text style={styles.centerParagraph}>They are now on a mission to help you become more self-aware and and inspire you to do what you love</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -218,7 +235,7 @@ class AboutPage extends Component {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><Text style={styles.emailName}>Parker</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.email} onPress={this.emailOlivier} activeOpacity={.7}><Text style={styles.emailName}>Olivier</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.email} onPress={this.emailOlivier} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Olivier</Text></View></TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -226,12 +243,12 @@ class AboutPage extends Component {
                   <Text style={styles.header}>Follow Us</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
+              <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
                 <View>
                   <Text style={styles.centerParagraph}>Everyday, you will see our daily prompt along with other positive and inspiring content</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <View style={styles.socialButtons}>
+              <View style={[styles.socialButtons, styles.last]}>
                 <TouchableOpacity onPress={this.handleTwitter} style={styles.socialButton} activeOpacity={.7}>
                   <FontAwesome size={20} name="twitter" color="#777" />
                 </TouchableOpacity>
@@ -245,7 +262,7 @@ class AboutPage extends Component {
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.last}>
                   <Text style={styles.thankYou}>Thank You For Using Müse :)</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -259,7 +276,7 @@ class AboutPage extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 28,
+    fontSize: 24,
     color: '#967ADC',
     fontWeight: '700',
     marginBottom: 5,
@@ -274,7 +291,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#777',
     fontWeight: '600',
     marginTop: 2,
@@ -289,7 +306,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   centerParagraph: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#333',
     fontWeight: '600',
     textAlign: 'center',
@@ -312,7 +329,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   emailName: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#777',
     paddingTop: 5,
     paddingBottom: 2,
@@ -320,10 +337,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   teamName: {
-    fontSize: 20,
+    fontSize: 15,
     color: '#424242',
     fontWeight: '600',
     textAlign: 'center',
+  },
+  last: {
+    paddingBottom: 30,
   },
 })
 

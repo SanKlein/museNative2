@@ -8,8 +8,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 8,
-    paddingBottom: 30,
     paddingLeft: 12,
     paddingRight: 12,
     flexShrink: 0,
