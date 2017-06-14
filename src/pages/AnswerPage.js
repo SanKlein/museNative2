@@ -81,7 +81,8 @@ class AnswerPage extends Component {
       let roundPrompts = []
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'List'))
+          const route = navigator.getCurrentRoutes().find(route => route.name === 'List')
+          route ? navigator.popToRoute(route) : navigator.pop(0)
           return
         } else {
           roundPrompts = listPrompts
@@ -272,9 +273,9 @@ class AnswerPage extends Component {
     answer.text && buttons.push('New Answer')
     filteredAnswers.length > 0 && buttons.push('Show Prompt Answers')
 
-    const saveLabel = this.checkPrompt('saved') ? 'Remove from Saved List' : 'Add to Saved List'
-    const favoriteLabel = this.checkPrompt('favorites') ? 'Remove from Favorites List' : 'Add to Favorites List'
-    const dailyLabel = this.checkPrompt('daily') ? 'Remove from Daily List' : 'Add to Daily List'
+    const saveLabel = this.checkPrompt('saved') ? 'Remove Prompt from Saved List' : 'Add Prompt to Saved List'
+    const favoriteLabel = this.checkPrompt('favorites') ? 'Remove Prompt from Favorites List' : 'Add Prompt to Favorites List'
+    const dailyLabel = this.checkPrompt('daily') ? 'Remove Prompt from Daily List' : 'Add Prompt to Daily List'
 
     const lists = [ saveLabel, favoriteLabel, dailyLabel ]
     buttons.push(...lists)

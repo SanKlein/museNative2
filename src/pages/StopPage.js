@@ -30,7 +30,7 @@ class StopPage extends Component {
   componentWillReceiveProps(nextProps) {
     const { navigator } = this.props
     if (!isToday(nextProps.user.last)) {
-      navigator.popToRoute(navigator.getCurrentRoutes()[0])
+      navigator.popToTop()
     }
   }
 
@@ -40,7 +40,7 @@ class StopPage extends Component {
 
   handleMain() {
     const { navigator } = this.props
-    navigator.popToRoute(navigator.getCurrentRoutes()[0])
+    navigator.popToTop()
   }
 
   handleNext() {
@@ -61,7 +61,8 @@ class StopPage extends Component {
       let roundPrompts = []
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'List'))
+          const listRoute = navigator.getCurrentRoutes().find(route => route.name === 'List')
+          listRoute ? navigator.popToRoute(listRoute) : navigator.popToTop()
           return
         } else {
           roundPrompts = listPrompts
@@ -107,9 +108,11 @@ class StopPage extends Component {
 
     if (prompt) {
       createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
-      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'Answer'))
+      const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
+      route ? navigator.popToRoute(route) : navigator.popToTop()
     } else {
-      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'Categories'))
+      const answerRoute = navigator.getCurrentRoutes().find(route => route.name === 'Categories')
+      answerRoute ? navigator.popToRoute(answerRoute) : navigator.popToTop()
     }
   }
 

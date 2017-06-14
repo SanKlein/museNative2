@@ -5,6 +5,7 @@ import ObjectID from 'bson-objectid'
 import { createNewAnswer, loadAnswer } from '../actions/answerActions'
 import { loadCategory } from '../actions/promptActions'
 import { isToday } from '../functions/dateFunctions'
+import { capitalizeFirstLetter } from '../functions/stringFunctions'
 import Answer from '../objects/Answer'
 import Page from '../containers/Page'
 import Container from '../containers/Container'
@@ -30,7 +31,7 @@ class StreakPage extends Component {
   componentWillReceiveProps(nextProps) {
     const { navigator } = this.props
     if (!isToday(nextProps.user.last)) {
-      navigator.popToRoute(navigator.getCurrentRoutes()[0])
+      navigator.popToTop()
     }
   }
 
@@ -40,7 +41,7 @@ class StreakPage extends Component {
 
   handleMain() {
     const { navigator } = this.props
-    navigator.popToRoute(navigator.getCurrentRoutes()[0])
+    navigator.popToTop()
   }
 
   handleNext() {
@@ -61,7 +62,8 @@ class StreakPage extends Component {
       let roundPrompts = []
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'List'))
+          const listRoute = navigator.getCurrentRoutes().find(route => route.name === 'List')
+          listRoute ? navigator.popToRoute(listRoute) : navigator.popToTop()
           return
         } else {
           roundPrompts = listPrompts
@@ -107,9 +109,11 @@ class StreakPage extends Component {
 
     if (prompt) {
       createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
-      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'Answer'))
+      const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
+      route ? navigator.popToRoute(route) : navigator.popToTop()
     } else {
-      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'Categories'))
+      const answerRoute = navigator.getCurrentRoutes().find(route => route.name === 'Categories')
+      answerRoute ? navigator.popToRoute(answerRoute) : navigator.popToTop()
     }
   }
 
@@ -133,7 +137,7 @@ class StreakPage extends Component {
           </Footer>
         }
         <Footer>
-          { category === "Today's Prompt" ? <FooterButton handleClick={this.handleMain} big purple text='Done' /> : <FooterButton handleClick={this.handleNext} big purple text={`Next - ${category ? category : list ? list : 'Everything'}`} /> }
+          { category === "Today's Prompt" ? <FooterButton handleClick={this.handleMain} big purple text='Done' /> : <FooterButton handleClick={this.handleNext} big purple text={`Next - ${category ? category : list ? capitalizeFirstLetter(list) : 'Everything'}`} /> }
         </Footer>
       </Page>
     )

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Keyboard } from 'react-native'
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import { connect } from 'react-redux'
-import { changeNewPromptTitle, pickNewPromptCategory, createNewPrompt, clearNewPrompt } from '../actions/promptActions'
+import { changeNewPromptTitle, pickNewPromptCategory, createNewPrompt, clearNewPrompt, loadCategory } from '../actions/promptActions'
 import { createNewAnswer } from '../actions/answerActions'
 import { setError } from '../actions/errorActions'
 import { capitalizeFirstLetter } from '../functions/stringFunctions'
@@ -53,12 +53,13 @@ class NewPromptPage extends Component {
 
   handleSave() {
     Keyboard.dismiss(0)
-    const { user, newPrompt, createNewPrompt, createNewAnswer, setError, navigator } = this.props
+    const { user, newPrompt, createNewPrompt, createNewAnswer, setError, navigator, loadCategory } = this.props
     if (!newPrompt.title || newPrompt.categories.length === 0) {
       setError('Please fill all fields')
       return
     }
     const prompt = new Prompt(user._id, user.name, newPrompt.title, newPrompt.type, newPrompt.categories)
+    loadCategory(newPrompt.categories[0])
     createNewPrompt(prompt)
     createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
     navigator.push({ name: 'Answer' })
@@ -160,7 +161,7 @@ const mapStateToProps = ({ user, newPrompt, categories, error }) => ({ user, new
 
 NewPromptPage = connect(
   mapStateToProps,
-  { changeNewPromptTitle, pickNewPromptCategory, createNewPrompt, createNewAnswer, clearNewPrompt, setError }
+  { changeNewPromptTitle, pickNewPromptCategory, createNewPrompt, createNewAnswer, clearNewPrompt, setError, loadCategory }
 )(NewPromptPage)
 
 export default NewPromptPage

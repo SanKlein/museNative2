@@ -52,17 +52,17 @@ class AboutPage extends Component {
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>Müse</Text>
+                  <Text style={styles.header}>What is Müse?</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.subHeader}>(myüz) verb</Text>
+                  <Text style={styles.centerParagraph}>A space to slow down and reflect on prompts.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>To think about something carefully and thoroughly; to become absorbed in thought</Text>
+                  <Text style={styles.centerParagraph}>Promotes self-awareness, mindfulness, positivity, self-love, and personal growth</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -86,27 +86,27 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase self-awareness</Text>
+                  <Text style={styles.centerParagraph}>Increase your self-awareness</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Strengthen emotional intelligence</Text>
+                  <Text style={styles.centerParagraph}>Strengthen your emotional intelligence</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Clarify goals and core values</Text>
+                  <Text style={styles.centerParagraph}>Clarify your goals and core values</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Focus time and effort on meaningful actions</Text>
+                  <Text style={styles.centerParagraph}>Focus your time on meaningful actions</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase mindfulness</Text>
+                  <Text style={styles.centerParagraph}>Become more mindful</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -116,54 +116,37 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase confidence and self-esteem</Text>
+                  <Text style={styles.centerParagraph}>Increase your confidence and self-esteem</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Confront and overcome fear</Text>
+                  <Text style={styles.centerParagraph}>Confront and overcome your fears</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Reduce guilt and regret</Text>
+                  <Text style={styles.centerParagraph}>Reduce your guilt and regret</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Improve communication skills</Text>
+                  <Text style={styles.centerParagraph}>Improve your communication skills</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase creativity</Text>
+                  <Text style={styles.centerParagraph}>Enhance your creativity</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Improve writing and memory</Text>
+                  <Text style={styles.centerParagraph}>Improve your writing and memory</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Build healthier relationships</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </AboutSection>
-            <AboutSection>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.header}>What is Müse?</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>A space to slow down and reflect on prompts.</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>We promote self-awareness, mindfulness, positivity, self-love, and personal growth</Text>
+                  <Text style={styles.centerParagraph}>Strengthen your relationships</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -204,7 +187,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>On his own spiritual journey, Parker was collecting and answering deep questions in order to learn about himself and what he wanted to do.</Text>
+                  <Text style={styles.centerParagraph}>On his own spiritual journey, Parker was collecting and answering deep questions to learn about himself and what he wanted to do.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -277,14 +260,14 @@ class AboutPage extends Component {
 const styles = StyleSheet.create({
   header: {
     fontSize: 28,
-    color: '#777',
+    color: '#967ADC',
     fontWeight: '700',
     marginBottom: 5,
     textAlign: 'center',
   },
   thankYou: {
     fontSize: 24,
-    color: '#777',
+    color: '#967ADC',
     fontWeight: '700',
     marginTop: 20,
     marginBottom: 20,
@@ -294,8 +277,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#777',
     fontWeight: '600',
-    marginTop: 3,
-    marginBottom: 3,
+    marginTop: 2,
+    marginBottom: 2,
     textAlign: 'center',
   },
   subHeader: {

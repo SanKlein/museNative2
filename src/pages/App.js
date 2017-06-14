@@ -90,7 +90,8 @@ class App extends Component {
 
     if (category === 'Answers' || list) {
       loadCategory('')
-      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'UserProfile'))
+      const route = navigator.getCurrentRoutes().find(route => route.name === 'UserProfile')
+      route ? navigator.popToRoute(route) : navigator.push({ name: 'UserProfile' })
       return
     }
 
@@ -125,13 +126,15 @@ class App extends Component {
 
     if (category === 'Answers') {
       loadCategory('')
-      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'Past'))
+      const route = navigator.getCurrentRoutes().find(route => route.name === 'Past')
+      route ? navigator.popToRoute(route) : navigator.popToTop()
       return
     }
 
     if (list) {
       loadCategory('')
-      navigator.popToRoute(navigator.getCurrentRoutes().find(route => route.name === 'List'))
+      const listRoute = navigator.getCurrentRoutes().find(route => route.name === 'List')
+      listRoute ? navigator.popToRoute(listRoute) : navigator.popToTop()
       return
     }
 
