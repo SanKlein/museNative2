@@ -51,12 +51,12 @@ class AboutPage extends Component {
           <ScrollContainer>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>{"What's Müse?"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>A private space to reflect.</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -68,7 +68,7 @@ class AboutPage extends Component {
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>Mission</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -80,67 +80,67 @@ class AboutPage extends Component {
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>Why Reflect?</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Increase awareness</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Strengthen EQ</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Define goals</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Focus time</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Increase mindfulness</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Conscious decisions</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Increase confidence</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Overcome fears</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Reduce regret</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Improve communication</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Enhance creativity</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Improve writing</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -152,12 +152,12 @@ class AboutPage extends Component {
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>How?</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>{"Choose. Read. Reflect."}</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -169,68 +169,58 @@ class AboutPage extends Component {
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>Team</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><Text style={styles.teamName}>Parker Klein</Text></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.title}>Creator</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>Engineer at Qualcomm</Text>
+                <View style={styles.regView}>
+                  <Text style={styles.centerParagraph}>Qualcomm Engineer</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><Text style={styles.teamName}>Olivier Ifrah</Text></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.title}>Designer</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>Designer at ZipRecruiter</Text>
+                  <Text style={styles.centerParagraph}>ZipRecruiter Designer</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>Story</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>Parker collects questions.</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>Parker loves reflecting.</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
-                  <Text style={styles.centerParagraph}>Tells Olivier.</Text>
+                <View style={styles.regView}>
+                  <Text style={styles.centerParagraph}>{"Parker collects questions.\nLoves reflecting."}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>Olivier loves design.</Text>
+                  <Text style={styles.centerParagraph}>{"Tells Olivier.\nLoves design."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>Contact</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>{"We love stories,\nopinions, and questions"}</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -239,12 +229,12 @@ class AboutPage extends Component {
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.header}>Join Us</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
-                <View>
+                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>{"See daily prompt. Leave other app.\nUse Müse :)"}</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -281,6 +271,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 8,
     textAlign: 'center',
+    alignSelf: 'stretch',
   },
   thankYou: {
     fontSize: 24,
@@ -289,6 +280,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     textAlign: 'center',
+    alignSelf: 'stretch',
   },
   title: {
     fontSize: 16,
@@ -297,6 +289,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginBottom: 2,
     textAlign: 'center',
+    alignSelf: 'stretch',
   },
   subHeader: {
     fontSize: 16,
@@ -304,6 +297,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 5,
     textAlign: 'center',
+    alignSelf: 'stretch',
   },
   centerParagraph: {
     fontSize: 16,
@@ -312,6 +306,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: 8,
     flexShrink: 0,
+    alignSelf: 'stretch',
   },
   spacer: {
     paddingTop: 40,
@@ -341,8 +336,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
+  regView: {
+    alignSelf: 'stretch',
+  },
   last: {
     paddingBottom: 30,
+    alignSelf: 'stretch',
   },
   def: {
     color: '#AAA',
@@ -351,6 +350,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: 8,
   },
+  touchable: {
+    paddingLeft: 12,
+    paddingRight: 12,
+    alignSelf: 'stretch',
+  }
 })
 
 export default AboutPage

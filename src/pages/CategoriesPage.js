@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, ScrollView, Text } from 'react-native'
+import { StyleSheet, ScrollView, Text, PushNotificationIOS, View } from 'react-native'
 import { connect } from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createNewAnswer, loadAnswer } from '../actions/answerActions'
@@ -8,9 +8,11 @@ import { loadCategory, loadTodayPrompt } from '../actions/promptActions'
 import Page from '../containers/Page'
 import Container from '../containers/Container'
 import ScrollContainer from '../containers/ScrollContainer'
-import CategoryButton from '../components/CategoryButton'
+import FlexButton from '../components/FlexButton'
 import Answer from '../objects/Answer'
 import { isToday } from '../functions/dateFunctions'
+
+const messages = ["Have you reflected on today's prompt? :)", "Want to reflect today? :)", "Beautiful day to reflect :)", "Have you seen today's prompt? :)", "How's your day going? :)", "Hope you're having a great day :)"]
 
 class CategoriesPage extends Component {
   constructor(props) {
@@ -19,16 +21,51 @@ class CategoriesPage extends Component {
     this.handleRandomCategory = this.handleRandomCategory.bind(this)
     this.handleRandom = this.handleRandom.bind(this)
     this.handleToday = this.handleToday.bind(this)
+    this.checkNotification = this.checkNotification.bind(this)
   }
 
   componentWillMount() {
-    const { state, navigator } = this.props
+    const { state, navigator, loadTodayPrompt } = this.props
 
     if (state === 'home') {
-      navigator.push({ name: 'Home' })
+      navigator.replace({ name: 'Home' })
+      return
     } else {
-      this.props.loadTodayPrompt()
+      loadTodayPrompt()
     }
+
+    this.checkNotification()
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.state === 'home') {
+      return
+    }
+
+    this.checkNotification()
+  }
+
+  checkNotification() {
+    const { loadTodayPrompt } = this.props
+
+    // PushNotificationIOS.checkPermissions(function(permissions) {
+    //   if (permissions.alert || permissions.badge || permissions.sound) {
+    //     PushNotificationIOS.setApplicationIconBadgeNumber(0)
+    //     PushNotificationIOS.cancelAllLocalNotifications(0)
+    //
+    //     var tomorrow = new Date()
+    //     // tomorrow.setDate(tomorrow.getDate()+1)
+    //     tomorrow.setHours(16,3,0,0)
+    //
+    //     PushNotificationIOS.scheduleLocalNotification({
+    //       fireDate: tomorrow.getTime(),
+    //       alertBody: messages[Math.floor(Math.random() * messages.length)],
+    //       applicationIconBadgeNumber: 1,
+    //     })
+    //   } else {
+    //     setTimeout(PushNotificationIOS.requestPermissions, 2000)
+    //   }
+    // })
   }
 
   handleRandomCategory(category) {
@@ -111,11 +148,11 @@ class CategoriesPage extends Component {
       <Page>
         <Container>
           <Text style={styles.title}>What do you want to reflect on?</Text>
-          <ScrollView style={styles.buttons}>
-            <CategoryButton handleClick={this.handleToday} category={"Today's Prompt"} top text="Today's Prompt" purple />
-            <CategoryButton handleClick={this.handleRandom} category='Everything' top text='Everything' />
-            { categories.map(category => (<CategoryButton key={category} handleClick={this.handleRandomCategory} category={category} text={category} />)) }
-          </ScrollView>
+          <View style={styles.buttons}>
+            <FlexButton handleClick={this.handleToday} category={"Today's Prompt"} top text="Today's Prompt" purple />
+            <FlexButton handleClick={this.handleRandom} category='Everything' top text='Everything' />
+            { categories.map(category => (<FlexButton key={category} handleClick={this.handleRandomCategory} category={category} text={category} />)) }
+          </View>
         </Container>
       </Page>
     )
@@ -135,9 +172,7 @@ const styles = StyleSheet.create({
   buttons: {
     flex: 1,
     paddingTop: 0,
-    marginBottom: 8,
-    // justifyContent: 'space-between',
-    // alignItems: 'space-between',
+    marginBottom: 20,
   },
 })
 
@@ -150,7 +185,7 @@ CategoriesPage.propTypes = {
   loadCategory: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ user, answer, categories, prompts, myPrompts, answers, state, todayPrompt, seen }) => {
+const mapStateToProps = ({ user, answer, categories, prompts, myPrompts, answers, state, todayPrompt, seen, error }) => {
   prompts = prompts.slice()
   myPrompts.forEach(prompt => {
     if (!prompts.some(p => p._id === prompt._id)) {
@@ -158,7 +193,7 @@ const mapStateToProps = ({ user, answer, categories, prompts, myPrompts, answers
     }
   })
 
-  return { user, answer, categories, prompts, answers, state, todayPrompt, seen }
+  return { user, answer, categories, prompts, answers, state, todayPrompt, seen, error }
 }
 
 CategoriesPage = connect(

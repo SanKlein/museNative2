@@ -10,6 +10,7 @@ import { loadApprovedPrompts, loadUserPrompts, loadTodayPrompt, loadCategory } f
 import { loadUser, loadUserAnswers, loadCategories, createUser, startApp, editUser, resetSeen } from '../actions/userActions'
 import { cancelLogin } from '../actions/loginActions'
 import { changeSearch } from '../actions/searchActions'
+import { clearError } from '../actions/errorActions'
 import { capitalizeFirstLetter } from '../functions/stringFunctions'
 import { isToday } from '../functions/dateFunctions'
 import HomePage from './HomePage'
@@ -380,7 +381,7 @@ const mapStateToProps = ({ user, state, answers, answer, list, category, seen, l
 
 App = connect(
   mapStateToProps,
-  { loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, startApp, cancelLogin, changeSearch, editUser, loadTodayPrompt, resetSeen, loadCategory }
+  { loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, startApp, cancelLogin, changeSearch, editUser, loadTodayPrompt, resetSeen, loadCategory, clearError }
 )(App)
 
 export default App

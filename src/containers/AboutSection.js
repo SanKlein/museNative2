@@ -6,11 +6,9 @@ const AboutSection = ({ children, handleClick }) => (<View style={styles.contain
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: 12,
-    paddingRight: 12,
     flexShrink: 0,
+    flex: 1,
   },
 })
 
