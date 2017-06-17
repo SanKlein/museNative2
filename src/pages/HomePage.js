@@ -56,7 +56,7 @@ class HomePage extends Component {
         <Image style={styles.logo} source={require('../../muse.png')} />
         <View style={styles.content}>
           <Text style={styles.subheader}>Mission</Text>
-          <Text style={styles.mission}>{"Help you gain awareness to be your best self through daily reflection"}</Text>
+          <Text style={styles.mission}>{"Help raise awareness\nand influence happy lives"}</Text>
         </View>
         <Footer margin top>
           <FooterButton handleClick={this.handleStart} big purple text='Start müsing' />
@@ -66,7 +66,7 @@ class HomePage extends Component {
         </Footer>
         { this.state.showAgree && <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing 'Start', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity> }
         <TouchableOpacity onPress={this.handleAbout} style={styles.contactButton} activeOpacity={.7}>
-          <Text style={styles.contactText}>{"What's Müse and why should I use it?"}</Text>
+          <Text style={styles.contactText}>{"What's Müse and why should we use it?"}</Text>
         </TouchableOpacity>
       </View>
     )
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   subheader: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 8,
     paddingLeft: 50,
     paddingRight: 50,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     paddingLeft: 23,
     paddingRight: 23,
     color: '#333',
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '600',
   },
   contactButton: {
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   contactText: {
     color: '#777',
-    fontSize: 14,
+    fontSize: 15,
     textAlign: 'center',
     fontWeight: '600',
     paddingBottom: 20,

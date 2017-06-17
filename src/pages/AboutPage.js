@@ -52,125 +52,125 @@ class AboutPage extends Component {
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>What is Müse?</Text>
+                  <Text style={styles.header}>{"What's Müse?"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>A private space to slow down and reflect on deep questions.</Text>
+                  <Text style={styles.centerParagraph}>A private space to reflect.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>Promotes self-awareness, mindfulness, positivity, self-love, and personal growth.</Text>
+                  <Text style={styles.def}>{"\\myüz\\ v. to think about something\ncarefully and thoroughly"}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>Our Mission</Text>
+                  <Text style={styles.header}>Mission</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>Help you gain awareness to be your best self through daily reflection</Text>
+                  <Text style={styles.centerParagraph}>{"Help raise awareness\nand influence happy lives."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>Why Should You Reflect?</Text>
+                  <Text style={styles.header}>Why Reflect?</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase your self-awareness</Text>
+                  <Text style={styles.centerParagraph}>Increase awareness</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Strengthen your emotional intelligence</Text>
+                  <Text style={styles.centerParagraph}>Strengthen EQ</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Clarify your goals and core values</Text>
+                  <Text style={styles.centerParagraph}>Define goals</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Focus your time on meaningful actions</Text>
+                  <Text style={styles.centerParagraph}>Focus time</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Become more mindful</Text>
+                  <Text style={styles.centerParagraph}>Increase mindfulness</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Make conscious-driven decisions</Text>
+                  <Text style={styles.centerParagraph}>Conscious decisions</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Increase your confidence and self-esteem</Text>
+                  <Text style={styles.centerParagraph}>Increase confidence</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Confront and overcome your fears</Text>
+                  <Text style={styles.centerParagraph}>Overcome fears</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Reduce your guilt and regret</Text>
+                  <Text style={styles.centerParagraph}>Reduce regret</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Improve your communication skills</Text>
+                  <Text style={styles.centerParagraph}>Improve communication</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Enhance your creativity</Text>
+                  <Text style={styles.centerParagraph}>Enhance creativity</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>Improve your writing and memory</Text>
+                  <Text style={styles.centerParagraph}>Improve writing</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>Strengthen your relationships</Text>
+                  <Text style={styles.centerParagraph}>Strengthen relationships</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>How do you Reflect?</Text>
+                  <Text style={styles.header}>How?</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>{"That's up to you."}</Text>
+                  <Text style={styles.centerParagraph}>{"Choose. Read. Reflect."}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>What you put in, you will get out.</Text>
+                  <Text style={styles.centerParagraph}>{"You'll get out what you put in."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>Our Team</Text>
+                  <Text style={styles.header}>Team</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><Text style={styles.teamName}>Parker Klein</Text></TouchableOpacity>
@@ -199,39 +199,39 @@ class AboutPage extends Component {
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>Our Story</Text>
+                  <Text style={styles.header}>Story</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>On his own spiritual journey, Parker was collecting and answering deep questions to learn about himself and what he wanted to do.</Text>
+                  <Text style={styles.centerParagraph}>Parker collects questions.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>He fell in love with the practice and benefits of self-reflection, and decided it was his purpose to share it with the world.</Text>
+                  <Text style={styles.centerParagraph}>Parker loves reflecting.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>He shared his vision with a classmate from Vanderbilt, Olivier, and was met with excitement and a shared belief.</Text>
+                  <Text style={styles.centerParagraph}>Tells Olivier.</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>They are now on a mission to help you become more self-aware and and inspire you to do what you love</Text>
+                  <Text style={styles.centerParagraph}>Olivier loves design.</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>Connect With Us</Text>
+                  <Text style={styles.header}>Contact</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.centerParagraph}>We would love to hear your story, listen to your opinions, and answer your questions</Text>
+                  <Text style={styles.centerParagraph}>{"We love stories,\nopinions, and questions"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><Text style={styles.emailName}>Parker</Text></TouchableOpacity>
@@ -240,12 +240,12 @@ class AboutPage extends Component {
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View>
-                  <Text style={styles.header}>Follow Us</Text>
+                  <Text style={styles.header}>Join Us</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
                 <View>
-                  <Text style={styles.centerParagraph}>Everyday, you will see our daily prompt along with other positive and inspiring content</Text>
+                  <Text style={styles.centerParagraph}>{"See daily prompt. Leave other app.\nUse Müse :)"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <View style={[styles.socialButtons, styles.last]}>
@@ -263,7 +263,7 @@ class AboutPage extends Component {
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.thankYou}>Thank You For Using Müse :)</Text>
+                  <Text style={styles.thankYou}>Thanks For Using Müse :)</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -276,10 +276,10 @@ class AboutPage extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 24,
+    fontSize: 28,
     color: '#967ADC',
     fontWeight: '700',
-    marginBottom: 5,
+    marginBottom: 8,
     textAlign: 'center',
   },
   thankYou: {
@@ -291,24 +291,24 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#777',
-    fontWeight: '600',
+    fontWeight: '700',
     marginTop: 2,
     marginBottom: 2,
     textAlign: 'center',
   },
   subHeader: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#AAA',
-    fontWeight: '600',
+    fontWeight: '700',
     marginBottom: 5,
     textAlign: 'center',
   },
   centerParagraph: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#333',
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
     paddingBottom: 8,
     flexShrink: 0,
@@ -316,7 +316,6 @@ const styles = StyleSheet.create({
   spacer: {
     paddingTop: 40,
     paddingBottom: 40,
-
   },
   socialButtons: {
     justifyContent: 'center',
@@ -329,21 +328,28 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   emailName: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#777',
     paddingTop: 5,
     paddingBottom: 2,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
   },
   teamName: {
-    fontSize: 15,
+    fontSize: 17,
     color: '#424242',
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
   },
   last: {
     paddingBottom: 30,
+  },
+  def: {
+    color: '#AAA',
+    fontSize: 14,
+    fontWeight: '700',
+    textAlign: 'center',
+    paddingBottom: 8,
   },
 })
 

@@ -136,6 +136,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 0,
     marginBottom: 8,
+    // justifyContent: 'space-between',
+    // alignItems: 'space-between',
   },
 })
 

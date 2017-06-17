@@ -62,7 +62,7 @@ class NewPromptPage extends Component {
     loadCategory(newPrompt.categories[0])
     createNewPrompt(prompt)
     createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
-    navigator.push({ name: 'Answer' })
+    navigator.replace({ name: 'Answer' })
   }
 
   loadAnswer() {

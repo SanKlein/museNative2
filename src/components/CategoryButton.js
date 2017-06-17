@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     borderRadius: 30,
     height: 54,
+    flex: 1,
   },
   purpleButton: {
     backgroundColor: '#967ADC',

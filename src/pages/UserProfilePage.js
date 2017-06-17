@@ -64,7 +64,7 @@ class UserProfilePage extends Component {
             <CategoryButton key='created' handleClick={this.handleLoadList} category='created' text='Created' />
             <View style={styles.contact}>
               <TouchableOpacity style={styles.aboutButton} onPress={this.handleAbout} activeOpacity={.7}>
-                <Text style={styles.aboutText}>About Müse</Text>
+                <Text style={styles.aboutText}>{"What's Müse and why should we use it?"}</Text>
               </TouchableOpacity>
             </View>
           </ScrollContainer>
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     height: 54,
   },
   aboutText: {
-    fontSize: 16,
+    fontSize: 15,
     paddingTop: 12,
     paddingBottom: 5,
     color: '#777',
