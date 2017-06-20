@@ -245,7 +245,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"See our daily prompt. Leave other meaningless app.\nUse Müse :)"}</Text>
+                  <Text style={styles.centerParagraph}>{"See our daily prompt.\nLeave other meaningless app.\nUse Müse :)"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <View style={[styles.socialButtons, styles.last]}>
