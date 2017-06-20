@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, ActionSheetIOS, Keyboard } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard } from 'react-native'
+import ActionSheet from 'react-native-actionsheet'
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import { connect } from 'react-redux'
@@ -264,47 +265,7 @@ class AnswerPage extends Component {
 
     Keyboard.dismiss(0)
 
-    const { answers, answer } = this.props
-
-    let buttons = []
-
-    const filteredAnswers = answers.filter(a => a.prompt_id === answer.prompt_id)
-
-    answer.text && buttons.push('New Answer')
-    filteredAnswers.length > 0 && buttons.push('Show Prompt Answers')
-
-    const saveLabel = this.checkPrompt('saved') ? 'Remove Prompt from Saved List' : 'Add Prompt to Saved List'
-    const favoriteLabel = this.checkPrompt('favorites') ? 'Remove Prompt from Favorites List' : 'Add Prompt to Favorites List'
-    const dailyLabel = this.checkPrompt('daily') ? 'Remove Prompt from Daily List' : 'Add Prompt to Daily List'
-
-    const lists = [ saveLabel, favoriteLabel, dailyLabel ]
-    buttons.push(...lists)
-
-    buttons.push('Cancel')
-
-    const CANCEL_INDEX = buttons.length - 1
-
-    ActionSheetIOS.showActionSheetWithOptions({
-      options: buttons,
-      cancelButtonIndex: CANCEL_INDEX,
-      tintColor: '#333',
-    },
-    (buttonIndex) => {
-      switch(buttons[buttonIndex]) {
-        case saveLabel:
-          return this.handleSavePrompt()
-        case favoriteLabel:
-          return this.handleFavoritePrompt()
-        case dailyLabel:
-          return this.handleDailyPrompt()
-        case 'Show Prompt Answers':
-          return this.handleSettings()
-        case 'New Answer':
-          return this.handleNewAnswer()
-        default:
-          null
-      }
-    })
+    this.ActionSheet.show()
   }
 
   checkPrompt(list) {
@@ -348,7 +309,25 @@ class AnswerPage extends Component {
   }
 
   render() {
-    const { user, answer, answerState, category, list } = this.props
+    const { user, answer, answerState, category, list, answers, answer } = this.props
+
+    let buttons = []
+
+    const filteredAnswers = answers.filter(a => a.prompt_id === answer.prompt_id)
+
+    answer.text && buttons.push('New Answer')
+    filteredAnswers.length > 0 && buttons.push('Show Prompt Answers')
+
+    const saveLabel = this.checkPrompt('saved') ? 'Remove Prompt from Saved List' : 'Add Prompt to Saved List'
+    const favoriteLabel = this.checkPrompt('favorites') ? 'Remove Prompt from Favorites List' : 'Add Prompt to Favorites List'
+    const dailyLabel = this.checkPrompt('daily') ? 'Remove Prompt from Daily List' : 'Add Prompt to Daily List'
+
+    const lists = [ saveLabel, favoriteLabel, dailyLabel ]
+    buttons.push(...lists)
+
+    buttons.push('Cancel')
+
+    const CANCEL_INDEX = buttons.length - 1
 
     return (
       <Page>
@@ -367,6 +346,22 @@ class AnswerPage extends Component {
           { !answer.text && category === 'Answers' && answerState === 'none' && this.state.answered ? <FooterButton handleClick={this.saveAnswer} big text="Save" id="save" green /> : !answer.text ? <FooterButton handleClick={this.hideKeyboard} big text="Save" id="save"></FooterButton> : answerState === 'changed' ? <FooterButton handleClick={this.saveAnswer} big green text="Save" id="save" /> : <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} /> }
           { !answer.text && category === 'Answers' && answerState === 'none' && this.state.answered ? <FooterButton hide text="" /> : category === "Today's Prompt" && !answer.text ? <FooterButton handleClick={this.handleBack} text="Done" /> : !answer.text && list ? <FooterButton handleClick={this.loadRandom} text="Next" /> : !answer.text && category === 'Answers' ? <FooterButton handleClick={this.handleNext} text="Next" /> : !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : !this.state.changed && category === "Today's Prompt" && answerState !== 'changed'  ? <FooterButton handleClick={this.handleDone} big green text="Done" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
         </Footer>
+        <ActionSheet ref={o => this.ActionSheet = o} options={buttons} cancelButtonIndex={CANCEL_INDEX} onPress={(buttonIndex) => {
+          switch(buttons[buttonIndex]) {
+            case saveLabel:
+              return this.handleSavePrompt()
+            case favoriteLabel:
+              return this.handleFavoritePrompt()
+            case dailyLabel:
+              return this.handleDailyPrompt()
+            case 'Show Prompt Answers':
+              return this.handleSettings()
+            case 'New Answer':
+              return this.handleNewAnswer()
+            default:
+              null
+          }
+        } />
         <KeyboardSpacer/>
       </Page>
     )

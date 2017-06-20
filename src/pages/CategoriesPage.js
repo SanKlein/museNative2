@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, ScrollView, Text, PushNotificationIOS, View } from 'react-native'
+import { StyleSheet, ScrollView, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createNewAnswer, loadAnswer } from '../actions/answerActions'

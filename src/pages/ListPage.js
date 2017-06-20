@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, AlertIOS, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { createNewAnswer, removeDailyPrompt, removeFavoritePrompt, removeSavePrompt } from '../actions/answerActions'
@@ -35,7 +35,7 @@ class ListPage extends Component {
   }
 
   confirmRemove(prompt) {
-    AlertIOS.alert(
+    Alert.alert(
      'Are you sure?',
      null,
      [

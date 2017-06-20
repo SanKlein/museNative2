@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, AlertIOS, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 import { deleteAnswer, createNewAnswer, loadAnswer } from '../actions/answerActions'
@@ -43,7 +43,7 @@ class AnswerSettingsPage extends Component {
   confirmDelete(e, a) {
     e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true
 
-    AlertIOS.alert(
+    Alert.alert(
      'Are you sure?',
      null,
      [

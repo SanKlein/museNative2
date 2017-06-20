@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Keyboard, StyleSheet, Text, AlertIOS, TouchableOpacity } from 'react-native'
+import { Keyboard, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 import { loadCategory } from '../actions/promptActions'
@@ -45,7 +45,7 @@ class PastPage extends Component {
   confirmDelete(e, a) {
     e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true
 
-    AlertIOS.alert(
+    Alert.alert(
      'Are you sure?',
      null,
      [

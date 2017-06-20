@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, AlertIOS, Keyboard } from 'react-native'
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Keyboard, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { logout, changeEditName, changeEditEmail, saveEditUser } from '../actions/userActions'
 import { capitalizeFirstLetter, checkEmail } from '../functions/stringFunctions'
@@ -86,7 +86,7 @@ class UserSettingsPage extends Component {
   }
 
   confirmLogout() {
-    AlertIOS.alert(
+    Alert.alert(
      "Are you sure?",
      null,
      [
