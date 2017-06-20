@@ -8,7 +8,7 @@ import Page from '../containers/Page'
 import SignupButton from '../components/SignupButton'
 import Container from '../containers/Container'
 import ScrollContainer from '../containers/ScrollContainer'
-import CategoryButton from '../components/CategoryButton'
+import FlexButton from '../components/FlexButton'
 
 class UserProfilePage extends Component {
   constructor(props) {
@@ -49,25 +49,25 @@ class UserProfilePage extends Component {
     return (
       <Page>
         <Container>
-          <ScrollContainer>
-            { !user.name && <CategoryButton handleClick={this.handleSignup} text='Signup / Login' /> }
-            { user.name ? <Text style={styles.name}>{user.name}</Text> : null }
+          { !user.name && <FlexButton handleClick={this.handleSignup} text='Signup / Login' /> }
+          { user.name ? <View style={styles.nameSection}><Text style={styles.name}>{user.name}</Text></View> : null }
+          <View style={styles.scoreSection}>
             <Text style={styles.date}>Score - {user.score}</Text>
             <Text style={styles.score}>Streak - {user.streak} <Text style={styles.long}>({user.longestStreak})</Text></Text>
-            <CategoryButton key='answers' handleClick={this.handlePast} text='Your Answers' />
-            <View style={styles.space}></View>
-            <CategoryButton key='create' handleClick={this.handleNewPrompt} text='Create New Prompt' purple />
-            <View style={styles.space}></View>
-            <CategoryButton key='saved' handleClick={this.handleLoadList} category='saved' top text='Saved' />
-            <CategoryButton key='favorites' handleClick={this.handleLoadList} category='favorites' text='Favorites' />
-            <CategoryButton key='daily' handleClick={this.handleLoadList} category='daily' text='Daily' />
-            <CategoryButton key='created' handleClick={this.handleLoadList} category='created' text='Created' />
-            <View style={styles.contact}>
-              <TouchableOpacity style={styles.aboutButton} onPress={this.handleAbout} activeOpacity={.7}>
-                <Text style={styles.aboutText}>{"What's Müse and why should we use it?"}</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollContainer>
+          </View>
+          <FlexButton key='answers' handleClick={this.handlePast} text='Your Answers' />
+          <View style={styles.space}></View>
+          <FlexButton key='create' handleClick={this.handleNewPrompt} text='Create New Prompt' purple />
+          <View style={styles.space}></View>
+          <FlexButton key='saved' handleClick={this.handleLoadList} category='saved' top text='Saved' />
+          <FlexButton key='favorites' handleClick={this.handleLoadList} category='favorites' text='Favorites' />
+          <FlexButton key='daily' handleClick={this.handleLoadList} category='daily' text='Daily' />
+          <FlexButton key='created' handleClick={this.handleLoadList} category='created' text='Created' />
+          <View style={styles.contact}>
+            <TouchableOpacity style={styles.aboutButton} onPress={this.handleAbout} activeOpacity={.7}>
+              <Text style={styles.aboutText}>{"What's Müse and why should we use it?"}</Text>
+            </TouchableOpacity>
+          </View>
         </Container>
       </Page>
     )
@@ -75,6 +75,11 @@ class UserProfilePage extends Component {
 }
 
 const styles = StyleSheet.create({
+  nameSection: {
+    flex: .5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   name: {
     color: '#333',
     fontSize: 24,
@@ -86,8 +91,11 @@ const styles = StyleSheet.create({
     color: '#777',
     fontSize: 16,
     textAlign: 'center',
-    marginTop: 15,
     fontWeight: '700',
+  },
+  scoreSection: {
+    flex: 1,
+    justifyContent: 'center',
   },
   long: {
     color: '#AAA',
@@ -98,33 +106,30 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginTop: 2,
-    marginBottom: 12,
     fontWeight: '700',
   },
   space: {
     marginTop: 6,
   },
   contact: {
-    paddingTop: 10,
+    flex: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   aboutButton: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    marginTop: 10,
-    marginBottom: 0,
     marginLeft: 12,
     marginRight: 12,
     paddingLeft: 16,
     paddingRight: 16,
     borderRadius: 30,
-    height: 54,
+    paddingBottom: 4,
   },
   aboutText: {
     fontSize: 15,
-    paddingTop: 12,
-    paddingBottom: 5,
     color: '#777',
     textAlign: 'center',
     fontWeight: '700',

@@ -57,7 +57,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>A private space to reflect.</Text>
+                  <Text style={styles.centerParagraph}>{"An app to help people gain awareness\nby reflecting on deep questions."}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -74,7 +74,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"Help raise awareness\nand influence happy lives."}</Text>
+                  <Text style={styles.centerParagraph}>{"Help people gain self-awareness\nto live successful and fulfilling lives."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -106,12 +106,12 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>Increase mindfulness</Text>
+                  <Text style={styles.centerParagraph}>Practice mindfulness</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>Conscious decisions</Text>
+                  <Text style={styles.centerParagraph}>Make conscious decisions</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -158,7 +158,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"Choose. Read. Reflect."}</Text>
+                  <Text style={styles.centerParagraph}>{"Choose a category. Read the prompt.\nReflect."}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -204,12 +204,22 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"Parker collects questions.\nLoves reflecting."}</Text>
+                  <Text style={styles.centerParagraph}>{"Parker collected questions to learn about\nhimself and what he wanted to do."}</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View style={styles.regView}>
+                  <Text style={styles.centerParagraph}>{"He loved introspection and\nwanted to share it with others."}</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View style={styles.regView}>
+                  <Text style={styles.centerParagraph}>{"He told Olivier about his vision\nand was met with a shared belief."}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"Tells Olivier.\nLoves design."}</Text>
+                  <Text style={styles.centerParagraph}>{"They want to help people gain awareness\nand live happy lives doing what they love."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -235,7 +245,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"See daily prompt. Leave other app.\nUse Müse :)"}</Text>
+                  <Text style={styles.centerParagraph}>{"See our daily prompt. Leave other meaningless app.\nUse Müse :)"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <View style={[styles.socialButtons, styles.last]}>

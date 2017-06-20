@@ -66,7 +66,10 @@ export const updateStreak = (user_id) => (dispatch, getState) => {
 
   return fetch(ActionTypes.URL + '/api/user/streak', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify({ user_id }) })
     .then(handleErrors)
-    .then(responseJson => checkOffline(dispatch, getState))
+    .then(responseJson => {
+      dispatch({ type: ActionTypes.UPDATE_STREAK_SUCCESS, user: responseJson })
+      checkOffline(dispatch, getState)
+    })
     .catch(error => dispatch({ type: ActionTypes.UPDATE_STREAK_OFFLINE, user }))
 }
 
@@ -76,7 +79,10 @@ export const resetStreak = (user_id) => (dispatch, getState) => {
 
   return fetch(ActionTypes.URL + '/api/user/streak', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify({ user_id }) })
     .then(handleErrors)
-    .then(responseJson => checkOffline(dispatch, getState))
+    .then(responseJson => {
+      dispatch({ type: ActionTypes.RESET_STREAK_SUCCESS, user: responseJson })
+      checkOffline(dispatch, getState)
+    })
     .catch(error => dispatch({ type: ActionTypes.RESET_STREAK_OFFLINE }))
 }
 

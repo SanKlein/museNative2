@@ -12,7 +12,7 @@ import FlexButton from '../components/FlexButton'
 import Answer from '../objects/Answer'
 import { isToday } from '../functions/dateFunctions'
 
-const messages = ["Have you reflected on today's prompt? :)", "Want to reflect today? :)", "Beautiful day to reflect :)", "Have you seen today's prompt? :)", "How's your day going? :)", "Hope you're having a great day :)"]
+const messages = ["Have you reflected on today's prompt? :)", "Want to reflect today? :)", "Beautiful day to reflect :)", "Have you seen today's prompt? :)", "How's your day going? :)", "Hope you're having a great day :)", "What a time to be alive :)"]
 
 class CategoriesPage extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class CategoriesPage extends Component {
     //     PushNotificationIOS.cancelAllLocalNotifications(0)
     //
     //     var tomorrow = new Date()
-    //     // tomorrow.setDate(tomorrow.getDate()+1)
+    //     tomorrow.setDate(tomorrow.getDate()+1)
     //     tomorrow.setHours(16,3,0,0)
     //
     //     PushNotificationIOS.scheduleLocalNotification({
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   buttons: {
     flex: 1,
     paddingTop: 0,
-    marginBottom: 20,
+    marginBottom: 30,
   },
 })
 
