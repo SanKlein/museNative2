@@ -56,7 +56,7 @@ class HomePage extends Component {
         <Image style={styles.logo} source={require('../../muse.png')} />
         <View style={styles.content}>
           <Text style={styles.subheader}>Mission</Text>
-          <Text style={styles.mission}>{"Help people gain self-awareness\nto live successful and fulfilling lives"}</Text>
+          <Text style={styles.mission}>{"Help people become self-aware\nand live a meaningful life"}</Text>
         </View>
         <Footer margin top>
           <FooterButton handleClick={this.handleStart} big purple text='Start müsing' />

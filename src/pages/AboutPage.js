@@ -74,7 +74,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"Help people gain self-awareness\nto live successful and fulfilling lives."}</Text>
+                  <Text style={styles.centerParagraph}>{"Help people become self-aware\nand live a meaningful life."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -101,7 +101,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>Focus time</Text>
+                  <Text style={styles.centerParagraph}>Focus energy</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -219,7 +219,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"They want to help people gain awareness\nand live happy lives doing what they love."}</Text>
+                  <Text style={styles.centerParagraph}>{"They're helping people become\nself-aware and live a meaningful life."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -245,7 +245,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"See our daily prompt.\nLeave other meaningless app.\nUse Müse :)"}</Text>
+                  <Text style={styles.centerParagraph}>{"See our daily prompt.\nLeave other app.\nUse Müse :)"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <View style={[styles.socialButtons, styles.last]}>

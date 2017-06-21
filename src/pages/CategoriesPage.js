@@ -48,24 +48,24 @@ class CategoriesPage extends Component {
   checkNotification() {
     const { loadTodayPrompt } = this.props
 
-    // PushNotificationIOS.checkPermissions(function(permissions) {
-    //   if (permissions.alert || permissions.badge || permissions.sound) {
-    //     PushNotificationIOS.setApplicationIconBadgeNumber(0)
-    //     PushNotificationIOS.cancelAllLocalNotifications(0)
-    //
-    //     var tomorrow = new Date()
-    //     tomorrow.setDate(tomorrow.getDate()+1)
-    //     tomorrow.setHours(16,3,0,0)
-    //
-    //     PushNotificationIOS.scheduleLocalNotification({
-    //       fireDate: tomorrow.getTime(),
-    //       alertBody: messages[Math.floor(Math.random() * messages.length)],
-    //       applicationIconBadgeNumber: 1,
-    //     })
-    //   } else {
-    //     setTimeout(PushNotificationIOS.requestPermissions, 2000)
-    //   }
-    // })
+    PushNotificationIOS.checkPermissions(function(permissions) {
+      if (permissions.alert || permissions.badge || permissions.sound) {
+        PushNotificationIOS.setApplicationIconBadgeNumber(0)
+        PushNotificationIOS.cancelAllLocalNotifications(0)
+
+        var tomorrow = new Date()
+        tomorrow.setDate(tomorrow.getDate()+1)
+        tomorrow.setHours(16,3,0,0)
+
+        PushNotificationIOS.scheduleLocalNotification({
+          fireDate: tomorrow.getTime(),
+          alertBody: messages[Math.floor(Math.random() * messages.length)],
+          applicationIconBadgeNumber: 1,
+        })
+      } else {
+        setTimeout(PushNotificationIOS.requestPermissions, 1500)
+      }
+    })
   }
 
   handleRandomCategory(category) {
