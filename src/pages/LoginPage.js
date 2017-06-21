@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Keyboard, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { changeLoginName, changeLoginEmail, changeLoginPassword, changeLoginState, signupUser, loginUser, clearLogin, cancelLogin } from '../actions/loginActions'
+import { changeLoginName, changeLoginEmail, changeLoginPassword, signupUser, loginUser, clearLogin, cancelLogin } from '../actions/loginActions'
 import { setError } from '../actions/errorActions'
 import { capitalizeFirstLetter, checkEmail } from '../functions/stringFunctions'
 import Page from '../containers/Page'
@@ -16,7 +16,6 @@ class LoginPage extends Component {
     this.handleChangeName = this.handleChangeName.bind(this)
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.handleChangeLogin = this.handleChangeLogin.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -40,12 +39,6 @@ class LoginPage extends Component {
 
   handleChangePassword(text) {
     this.props.changeLoginPassword(text)
-  }
-
-  handleChangeLogin() {
-    const { login, changeLoginState } = this.props
-    changeLoginState(!login.login)
-    this.refs.Name.focus()
   }
 
   handleSubmit(e) {
@@ -109,7 +102,6 @@ class LoginPage extends Component {
     const { login, loading, error, navigator } = this.props
     const loginButton = loading && login.name ? 'Loading...' : login.login ? 'Log in' : 'Sign up'
     const policyButton = login.login ? 'Log in' : 'Sign up'
-    const switchButton = login.login ? "Sign up" : 'Log in'
 
     let loginState
     if (error) {
@@ -147,24 +139,19 @@ class LoginPage extends Component {
           <View style={styles.content}>
             { !login.login ? <View>
               <Text style={styles.label}>Name</Text>
-              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} ref="Name" value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Email.focus()} placeholder="Name" autoCapitalize='words' autoFocus={true} autoCorrect={false} autoFocus returnKeyType='next' />
+              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} ref="Name" value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Email.focus()} placeholder="Name" autoCapitalize='words' autoFocus={true} autoCorrect={false} autoFocus returnKeyType='next' underlineColorAndroid='#FFF' />
               <Text style={styles.label}>Email</Text>
-              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.email} ref="Email" keyboardType="email-address" value={login.email} onChangeText={this.handleChangeEmail} onSubmitEditing={() => this.refs.Password.focus()} placeholder="Email" autoCorrect={false} returnKeyType='next' />
+              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.email} ref="Email" keyboardType="email-address" value={login.email} onChangeText={this.handleChangeEmail} onSubmitEditing={() => this.refs.Password.focus()} placeholder="Email" autoCorrect={false} returnKeyType='next' underlineColorAndroid='#FFF' />
             </View> : <View>
               <Text style={styles.label}>Email</Text>
-              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} ref="Name" value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Password.focus()} placeholder="Or name" autoCapitalize='words' autoFocus={true} autoCorrect={false} returnKeyType='next' />
+              <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} ref="Name" value={login.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Password.focus()} placeholder="Or name" autoCapitalize='words' autoFocus={true} autoCorrect={false} returnKeyType='next' underlineColorAndroid='#FFF' />
             </View> }
             <Text style={styles.label}>Password</Text>
-            <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' ref="Password" style={styles.password} secureTextEntry={true} value={login.password} onChangeText={this.handleChangePassword} placeholder="Password" autoCorrect={false} onSubmitEditing={this.handleSubmit} returnKeyType='go' />
+            <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' ref="Password" style={styles.password} secureTextEntry={true} value={login.password} onChangeText={this.handleChangePassword} placeholder="Password" autoCorrect={false} onSubmitEditing={this.handleSubmit} returnKeyType='go' underlineColorAndroid='#FFF' />
             <TouchableOpacity style={loginClasses} onPress={this.handleSubmit} activeOpacity={.7}>
               <Text style={loginTextClasses}>{loginButton}</Text>
             </TouchableOpacity>
             { !login.login && <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing '"}{policyButton}{"', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity> }
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.switchButton} onPress={this.handleChangeLogin} activeOpacity={.7}>
-              <Text style={styles.headerButtonText}>{switchButton}</Text>
-            </TouchableOpacity>
           </View>
         </Container>
       </Page>
@@ -179,7 +166,6 @@ const styles = StyleSheet.create({
   },
   label: {
     marginTop: 10,
-    marginBottom: 3,
     fontSize: 15,
     color: '#777',
     fontWeight: '700',
@@ -187,26 +173,24 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 15,
     color: '#333',
-    lineHeight: 24,
-    height: 32,
-    marginBottom: 5,
+    height: 40,
     fontWeight: '700',
+    marginLeft: -4,
   },
   email: {
     fontSize: 15,
     color: '#333',
-    lineHeight: 24,
-    height: 32,
-    marginBottom: 5,
+    height: 40,
     fontWeight: '700',
+    marginLeft: -4,
   },
   password: {
     fontSize: 15,
     color: '#333',
-    lineHeight: 32,
-    height: 32,
+    height: 40,
     marginBottom: 25,
     fontWeight: '700',
+    marginLeft: -4,
   },
   loginButton: {
     backgroundColor: '#F0F0F0',
@@ -235,21 +219,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700',
   },
-  buttonContainer: {
-    paddingTop: 20,
-    paddingBottom: 10,
-  },
-  switchButton: {
-    paddingTop: 15,
-    paddingBottom: 10,
-    marginBottom: 80,
-  },
-  headerButtonText: {
-    fontSize: 16,
-    color: '#777',
-    textAlign: 'center',
-    fontWeight: '600',
-  },
   purpleButton: {
     backgroundColor: '#967ADC',
   },
@@ -274,7 +243,6 @@ LoginPage.propTypes = {
   changeLoginName: PropTypes.func.isRequired,
   changeLoginEmail: PropTypes.func.isRequired,
   changeLoginPassword: PropTypes.func.isRequired,
-  changeLoginState: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,
@@ -289,7 +257,7 @@ const mapStateToProps = ({ user, login, loading, error, state }) => ({ user, log
 
 LoginPage = connect(
   mapStateToProps,
-  { changeLoginName, changeLoginEmail, changeLoginPassword, changeLoginState, signupUser, loginUser, clearLogin, setError, cancelLogin }
+  { changeLoginName, changeLoginEmail, changeLoginPassword, signupUser, loginUser, clearLogin, setError, cancelLogin }
 )(LoginPage)
 
 export default LoginPage

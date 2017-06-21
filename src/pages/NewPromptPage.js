@@ -86,7 +86,7 @@ class NewPromptPage extends Component {
           { error ? <Error>{error}</Error> : null }
           <TouchableOpacity style={styles.promptTitle} onPress={this.loadAnswer} activeOpacity={1}>
             <View style={styles.answer} onLayout={(event) => { this.getHeight(event.nativeEvent.layout) }}>
-              <AutoGrowingTextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.title} ref='Answer' value={newPrompt.title} onChangeText={this.handleChangeText} autoFocus={true} placeholder='Type prompt here...' maxHeight={this.state.height} />
+              <AutoGrowingTextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.title} ref='Answer' value={newPrompt.title} onChangeText={this.handleChangeText} placeholder='Type prompt here...' maxHeight={this.state.height} underlineColorAndroid='#FFF' />
             </View>
           </TouchableOpacity>
           <View style={styles.categories}>
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: '#333',
-    marginTop: 8,
     paddingLeft: 12,
     paddingRight: 12,
     fontWeight: '700',

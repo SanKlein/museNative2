@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard } from 'react-native'
 import ActionSheet from 'react-native-actionsheet'
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
-import KeyboardSpacer from 'react-native-keyboard-spacer'
 import { connect } from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import ObjectID from 'bson-objectid'
@@ -25,7 +24,7 @@ class AnswerPage extends Component {
 
     this.state = {
       answered: false,
-      height: 0,
+      height: 44,
     }
 
     this.loadRandom = this.loadRandom.bind(this)
@@ -301,7 +300,8 @@ class AnswerPage extends Component {
   }
 
   getHeight(layout) {
-    this.setState({ height: layout.height })
+    const height = layout.height < 44 ? 44 : layout.height
+    this.setState({ height: height })
   }
 
   hideKeyboard() {
@@ -338,7 +338,7 @@ class AnswerPage extends Component {
               <View style={styles.answerButton}><Ionicons size={22} name="md-more" color="#333" /></View>
             </TouchableOpacity>
             <View style={styles.answerContainer} onLayout={(event) => { this.getHeight(event.nativeEvent.layout) }}>
-              <AutoGrowingTextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.answer} ref='Answer' value={answer.text} onChangeText={this.handleChangeAnswer} placeholder='Type here...' autoCapitalize="sentences" multiline={true} maxHeight={this.state.height} />
+              <AutoGrowingTextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.answer} ref='Answer' value={answer.text} onChangeText={this.handleChangeAnswer} placeholder='Type here...' autoCapitalize="sentences" multiline={true} maxHeight={this.state.height} underlineColorAndroid='#FFF' />
             </View>
           </TouchableOpacity>
         </Container>
@@ -346,7 +346,7 @@ class AnswerPage extends Component {
           { !answer.text && category === 'Answers' && answerState === 'none' && this.state.answered ? <FooterButton handleClick={this.saveAnswer} big text="Save" id="save" green /> : !answer.text ? <FooterButton handleClick={this.hideKeyboard} big text="Save" id="save"></FooterButton> : answerState === 'changed' ? <FooterButton handleClick={this.saveAnswer} big green text="Save" id="save" /> : <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} /> }
           { !answer.text && category === 'Answers' && answerState === 'none' && this.state.answered ? <FooterButton hide text="" /> : category === "Today's Prompt" && !answer.text ? <FooterButton handleClick={this.handleBack} text="Done" /> : !answer.text && list ? <FooterButton handleClick={this.loadRandom} text="Next" /> : !answer.text && category === 'Answers' ? <FooterButton handleClick={this.handleNext} text="Next" /> : !answer.text ? <FooterButton handleClick={this.loadRandom} text="Skip" /> : !this.state.changed && category === "Today's Prompt" && answerState !== 'changed'  ? <FooterButton handleClick={this.handleDone} big green text="Done" /> : answerState !== 'changed' ? <FooterButton handleClick={this.handleNext} big green text="Next" /> : <FooterButton hide text="" /> }
         </Footer>
-        <ActionSheet ref={o => this.ActionSheet = o} options={buttons} cancelButtonIndex={CANCEL_INDEX} onPress={(buttonIndex) => {
+        <ActionSheet ref={o => this.ActionSheet = o} options={buttons} cancelButtonIndex={CANCEL_INDEX} tintColor='#333' onPress={(buttonIndex) => {
           switch(buttons[buttonIndex]) {
             case saveLabel:
               return this.handleSavePrompt()
@@ -362,7 +362,6 @@ class AnswerPage extends Component {
               null
           }
         }} />
-        <KeyboardSpacer/>
       </Page>
     )
   }
@@ -395,7 +394,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     paddingLeft: 12,
     paddingRight: 12,
-    lineHeight: 1.3,
     fontWeight: '600',
   },
 })

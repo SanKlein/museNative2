@@ -116,9 +116,9 @@ class UserSettingsPage extends Component {
           { error ? <Error>{error}</Error> : null }
           <View style={styles.content}>
             <Text style={styles.label}>Name</Text>
-            <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} value={editUser.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Email.focus()} placeholder="Name" returnKeyType='next' />
+            <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.name} value={editUser.name} onChangeText={this.handleChangeName} onSubmitEditing={() => this.refs.Email.focus()} placeholder="Name" returnKeyType='next' underlineColorAndroid='#FFF' />
             <Text style={styles.label}>Email</Text>
-            <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.email} ref="Email" keyboardType="email-address" value={editUser.email} onChangeText={this.handleChangeEmail} onSubmitEditing={this.handleSave} placeholder="Email" returnKeyType='done' />
+            <TextInput placeholderTextColor='#AAA' selectionColor='#967ADC' style={styles.email} ref="Email" keyboardType="email-address" value={editUser.email} onChangeText={this.handleChangeEmail} onSubmitEditing={this.handleSave} placeholder="Email" returnKeyType='done' underlineColorAndroid='#FFF' />
             <TouchableOpacity style={loginClasses} onPress={this.handleSave} activeOpacity={.7}>
               <Text style={loginTextClasses}>{(loading && edit === 'changed') ? 'Loading...' : edit === 'no' ? 'Save' : edit === 'changed' ? 'Save' : 'Saved'}</Text>
             </TouchableOpacity>
@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
   },
   label: {
     marginTop: 10,
-    marginBottom: 3,
     fontSize: 15,
     color: '#777',
     fontWeight: '700',
@@ -147,17 +146,17 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 15,
     color: '#333',
-    lineHeight: 24,
-    height: 32,
+    height: 40,
     marginBottom: 5,
+    marginLeft: -4,
     fontWeight: '700',
   },
   email: {
     fontSize: 15,
     color: '#333',
-    lineHeight: 24,
-    height: 32,
+    height: 40,
     marginBottom: 25,
+    marginLeft: -4,
     fontWeight: '700',
   },
   logoutButton: {

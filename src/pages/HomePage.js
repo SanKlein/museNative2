@@ -56,7 +56,7 @@ class HomePage extends Component {
         <Image style={styles.logo} source={require('../../muse.png')} />
         <View style={styles.content}>
           <Text style={styles.subheader}>Mission</Text>
-          <Text style={styles.mission}>{"Help people gain self-awareness\nto live successful and fulfilling lives"}</Text>
+          <Text style={styles.mission}>{"Help people reflect to become\nself-aware and live a meaningful life"}</Text>
         </View>
         <Footer margin top>
           <FooterButton handleClick={this.handleStart} big purple text='Start müsing' />
@@ -76,8 +76,8 @@ class HomePage extends Component {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 12,
+    paddingRight: 12,
     justifyContent: 'center',
     backgroundColor: '#FFF',
   },
@@ -96,15 +96,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     marginBottom: 8,
-    paddingLeft: 50,
-    paddingRight: 50,
     color: '#777',
     fontWeight: '700',
   },
   mission: {
     textAlign: 'center',
-    paddingLeft: 23,
-    paddingRight: 23,
     color: '#333',
     fontSize: 16,
     fontWeight: '600',

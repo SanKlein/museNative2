@@ -87,7 +87,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.myproject"
+        applicationId "com.musereflect"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -105,6 +105,12 @@ android {
                 keyPassword MYAPP_RELEASE_KEY_PASSWORD
             }
         }
+        config {
+            keyAlias 'my-key-alias'
+            keyPassword 'MuseReflect'
+            storeFile file('/Users/ParkerKlein/Documents/Program/myProject/android/app/my-release-key.keystore')
+            storePassword 'MuseReflect'
+        }
     }
     splits {
         abi {
@@ -118,6 +124,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.config
         }
     }
     // applicationVariants are e.g. debug, release
@@ -137,9 +144,10 @@ android {
 
 dependencies {
     compile project(':react-native-vector-icons')
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
-    compile "com.facebook.react:react-native:+"  // From node_modules
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.facebook.react:react-native:+'
+    // From node_modules
 }
 
 
