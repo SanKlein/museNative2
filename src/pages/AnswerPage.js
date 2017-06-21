@@ -309,7 +309,7 @@ class AnswerPage extends Component {
   }
 
   render() {
-    const { user, answer, answerState, category, list, answers, answer } = this.props
+    const { user, answer, answerState, category, list, answers } = this.props
 
     let buttons = []
 
@@ -361,7 +361,7 @@ class AnswerPage extends Component {
             default:
               null
           }
-        } />
+        }} />
         <KeyboardSpacer/>
       </Page>
     )
