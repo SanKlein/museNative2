@@ -333,7 +333,6 @@ const styles = StyleSheet.create({
   title: {
     height: 44,
     lineHeight: 44,
-    marginTop: 2,
     fontSize: 18,
     color: '#333',
     fontWeight: '700',
