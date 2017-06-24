@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Keyboard, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { changeLoginName, changeLoginEmail, changeLoginPassword, changeLoginState, signupUser, loginUser, clearLogin, cancelLogin } from '../actions/loginActions'
+import { changeLoginName, changeLoginEmail, changeLoginPassword, signupUser, loginUser, clearLogin, cancelLogin } from '../actions/loginActions'
 import { setError } from '../actions/errorActions'
 import { capitalizeFirstLetter, checkEmail } from '../functions/stringFunctions'
 import Page from '../containers/Page'
@@ -16,7 +16,6 @@ class LoginPage extends Component {
     this.handleChangeName = this.handleChangeName.bind(this)
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.handleChangeLogin = this.handleChangeLogin.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -40,12 +39,6 @@ class LoginPage extends Component {
 
   handleChangePassword(text) {
     this.props.changeLoginPassword(text)
-  }
-
-  handleChangeLogin() {
-    const { login, changeLoginState } = this.props
-    changeLoginState(!login.login)
-    this.refs.Name.focus()
   }
 
   handleSubmit(e) {
@@ -109,7 +102,6 @@ class LoginPage extends Component {
     const { login, loading, error, navigator } = this.props
     const loginButton = loading && login.name ? 'Loading...' : login.login ? 'Log in' : 'Sign up'
     const policyButton = login.login ? 'Log in' : 'Sign up'
-    const switchButton = login.login ? "Sign up" : 'Log in'
 
     let loginState
     if (error) {
@@ -160,11 +152,6 @@ class LoginPage extends Component {
               <Text style={loginTextClasses}>{loginButton}</Text>
             </TouchableOpacity>
             { !login.login && <TouchableOpacity onPress={this.handlePrivacy} style={styles.agree} activeOpacity={.7}><Text style={styles.link}>{"By pressing '"}{policyButton}{"', you agree with our Privacy Policy and Terms of Service"}</Text></TouchableOpacity> }
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.switchButton} onPress={this.handleChangeLogin} activeOpacity={.7}>
-              <Text style={styles.headerButtonText}>{switchButton}</Text>
-            </TouchableOpacity>
           </View>
         </Container>
       </Page>
@@ -274,7 +261,6 @@ LoginPage.propTypes = {
   changeLoginName: PropTypes.func.isRequired,
   changeLoginEmail: PropTypes.func.isRequired,
   changeLoginPassword: PropTypes.func.isRequired,
-  changeLoginState: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,
@@ -289,7 +275,7 @@ const mapStateToProps = ({ user, login, loading, error, state }) => ({ user, log
 
 LoginPage = connect(
   mapStateToProps,
-  { changeLoginName, changeLoginEmail, changeLoginPassword, changeLoginState, signupUser, loginUser, clearLogin, setError, cancelLogin }
+  { changeLoginName, changeLoginEmail, changeLoginPassword, signupUser, loginUser, clearLogin, setError, cancelLogin }
 )(LoginPage)
 
 export default LoginPage

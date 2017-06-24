@@ -8,7 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import ObjectID from 'bson-objectid'
 import { loadApprovedPrompts, loadUserPrompts, loadTodayPrompt, loadCategory } from '../actions/promptActions'
 import { loadUser, loadUserAnswers, loadCategories, createUser, startApp, editUser, resetSeen } from '../actions/userActions'
-import { cancelLogin } from '../actions/loginActions'
+import { cancelLogin, changeLoginState } from '../actions/loginActions'
 import { changeSearch } from '../actions/searchActions'
 import { clearError } from '../actions/errorActions'
 import { capitalizeFirstLetter } from '../functions/stringFunctions'
@@ -37,6 +37,7 @@ class App extends Component {
     this.handleSettings = this.handleSettings.bind(this)
     this.handleCategories = this.handleCategories.bind(this)
     this.handleProfile = this.handleProfile.bind(this)
+    this.handleChangeLogin = this.handleChangeLogin.bind(this)
   }
 
   componentWillMount() {
@@ -142,6 +143,14 @@ class App extends Component {
     navigator.popToTop()
   }
 
+  handleChangeLogin() {
+    const { login, changeLoginState } = this.props
+
+    Keyboard.dismiss(0)
+
+    changeLoginState(!login.login)
+  }
+
   renderScene(route, navigator) {
     switch(route.name) {
       case 'Answer':
@@ -191,7 +200,9 @@ class App extends Component {
   }
 
   render() {
-    const { user, state, category, list, answer, answerState, listTitle } = this.props
+    const { user, state, category, list, answer, answerState, listTitle, login } = this.props
+
+    const switchButton = login.login ? 'Sign up' : 'Log in'
 
     // return (
     //   <TouchableOpacity style={styles.leftButton} activeOpacity={.7} onPress={() => this.handleHome(navigator)}>
@@ -265,13 +276,18 @@ class App extends Component {
                   RightButton: (route, navigator, index, navState) => {
                     switch(route.name) {
                       case 'Home':
-                      case 'Login':
                       case 'NewPrompt':
                       case 'UserSettings':
                       case 'List':
                       case 'Past':
                       case 'AnswerSettings':
                         return null
+                      case 'Login':
+                        return (
+                          <TouchableOpacity style={styles.rightTitleButton} activeOpacity={.7} onPress={this.handleChangeLogin}>
+                            <Text style={styles.rightTitle}>{switchButton}</Text>
+                          </TouchableOpacity>
+                        )
                       case 'About':
                         return (
                           <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
@@ -344,6 +360,22 @@ const styles = StyleSheet.create({
     marginRight: 4,
     borderRadius: 8,
   },
+  rightTitleButton: {
+    height: 32,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    marginTop: 12,
+    marginBottom: 6,
+    marginLeft: 4,
+    marginRight: 12,
+  },
+  rightTitle: {
+    height: 32,
+    fontSize: 16,
+    alignSelf: 'flex-end',
+    color: '#474747',
+    fontWeight: '700',
+  },
   headerButtonText: {
     fontSize: 17,
     textAlign: 'center',
@@ -377,11 +409,11 @@ App.propTypes = {
   editUser: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ user, state, answers, answer, list, category, seen, listTitle }) => ({ user, state, answers, answer, list, category, seen, listTitle })
+const mapStateToProps = ({ user, state, answers, answer, list, category, seen, listTitle, login }) => ({ user, state, answers, answer, list, category, seen, listTitle, login })
 
 App = connect(
   mapStateToProps,
-  { loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, startApp, cancelLogin, changeSearch, editUser, loadTodayPrompt, resetSeen, loadCategory, clearError }
+  { loadApprovedPrompts, loadUserPrompts, loadUser, loadUserAnswers, loadCategories, createUser, startApp, cancelLogin, changeSearch, editUser, loadTodayPrompt, resetSeen, loadCategory, clearError, changeLoginState }
 )(App)
 
 export default App
