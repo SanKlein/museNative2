@@ -25,12 +25,20 @@ export const formattedShort = () => {
 export const isToday = (date) => {
   date = new Date(date)
   const today = new Date()
-  return today.toLocaleDateString() == date.toLocaleDateString()
+
+  const dateDate = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
+  const todayDate = months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear()
+
+  return todayDate === dateDate
 }
 
 export const isYesterday = (date) => {
   date = new Date(date)
   let yesterday = new Date()
   yesterday.setDate(yesterday.getDate() - 1)
-  return yesterday.toLocaleDateString() == date.toLocaleDateString()
+
+  const dateDate = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
+  const yesterdayDate = months[yesterday.getMonth()] + ' ' + yesterday.getDate() + ', ' + yesterday.getFullYear()
+
+  return yesterdayDate === dateDate
 }
