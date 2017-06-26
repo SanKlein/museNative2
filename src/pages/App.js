@@ -331,11 +331,12 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   title: {
-    // height: 44,
-    // lineHeight: 44,
+    height: 44,
+    lineHeight: 40,
     fontSize: 18,
     color: '#333',
     fontWeight: '700',
+    zIndex: 50,
   },
   rightTitleButton: {
     height: 32,
