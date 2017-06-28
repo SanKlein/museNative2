@@ -214,7 +214,7 @@ class AnswerPage extends Component {
       this.loadRandom()
       return
     } else if (isYesterday(user.last)) {
-      updateStreak(user._id)
+      updateStreak(user)
     } else {
       resetStreak(user._id)
     }
@@ -242,7 +242,7 @@ class AnswerPage extends Component {
       navigator.pop(0)
       return
     } else if (isYesterday(user.last)) {
-      updateStreak(user._id)
+      updateStreak(user)
     } else {
       resetStreak(user._id)
     }

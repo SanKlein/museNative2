@@ -24,21 +24,21 @@ export const formattedShort = () => {
 
 export const isToday = (date) => {
   date = new Date(date)
-  const today = new Date()
+  const today = getToday()
 
-  const dateDate = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
-  const todayDate = months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear()
+  const dateDate = formattedDate(date)
+  const todayDate = formattedDate(today)
 
   return todayDate === dateDate
 }
 
 export const isYesterday = (date) => {
   date = new Date(date)
-  let yesterday = new Date()
+  let yesterday = getToday()
   yesterday.setDate(yesterday.getDate() - 1)
 
-  const dateDate = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
-  const yesterdayDate = months[yesterday.getMonth()] + ' ' + yesterday.getDate() + ', ' + yesterday.getFullYear()
+  const dateDate = formattedDate(date)
+  const yesterdayDate = formattedDate(yesterday)
 
   return yesterdayDate === dateDate
 }
