@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   buttons: {
     flex: 1,
     paddingTop: 0,
-    marginBottom: 30,
+    marginBottom: 20,
   },
 })
 

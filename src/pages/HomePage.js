@@ -55,8 +55,7 @@ class HomePage extends Component {
       <View style={styles.page}>
         <Image style={styles.logo} source={require('../../muse.png')} />
         <View style={styles.content}>
-          <Text style={styles.subheader}>Mission</Text>
-          <Text style={styles.mission}>{"Help people become self-aware\nand live a meaningful life"}</Text>
+          <Text style={styles.mission}>{"Learn about yourself"}</Text>
         </View>
         <Footer margin top>
           <FooterButton handleClick={this.handleStart} big purple text='Start müsing' />
@@ -86,11 +85,12 @@ const styles = StyleSheet.create({
     minHeight: 83,
     width: 224,
     minWidth: 224,
+    marginTop: 20,
     alignSelf: 'center',
   },
   content: {
-    marginTop: 30,
-    marginBottom: 25,
+    marginTop: 20,
+    marginBottom: 70,
   },
   subheader: {
     textAlign: 'center',
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   contactButton: {
-    marginTop: 40,
+    marginTop: 70,
   },
   contactText: {
     color: '#777',

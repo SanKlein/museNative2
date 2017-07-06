@@ -57,7 +57,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"An app to help people gain awareness\nby reflecting on deep questions."}</Text>
+                  <Text style={styles.centerParagraph}>{"An app for people to reflect\non deep questions and big ideas."}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -74,7 +74,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"Help people become self-aware\nand live a meaningful life."}</Text>
+                  <Text style={styles.centerParagraph}>{"Help people do what they love,\nreach their full potential,\nand create a better world."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -126,11 +126,6 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>Reduce regret</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Improve communication</Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -173,23 +168,23 @@ class AboutPage extends Component {
                   <Text style={styles.header}>Team</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><Text style={styles.teamName}>Parker Klein</Text></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
                   <Text style={styles.title}>Creator</Text>
                 </View>
               </TouchableWithoutFeedback>
+              <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><Text style={styles.teamName}>Parker Klein</Text></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
                   <Text style={styles.centerParagraph}>Qualcomm Engineer</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><Text style={styles.teamName}>Olivier Ifrah</Text></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
                   <Text style={styles.title}>Designer</Text>
                 </View>
               </TouchableWithoutFeedback>
+              <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><Text style={styles.teamName}>Olivier Ifrah</Text></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
                   <Text style={styles.centerParagraph}>ZipRecruiter Designer</Text>
@@ -219,7 +214,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"They're helping people become\nself-aware and live a meaningful life."}</Text>
+                  <Text style={styles.centerParagraph}>{"They're helping people learn about\nthemselves and do what they love."}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -294,7 +289,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    color: '#777',
+    color: '#424242',
     fontWeight: '700',
     marginTop: 2,
     marginBottom: 2,
@@ -341,10 +336,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   teamName: {
-    fontSize: 17,
-    color: '#424242',
+    fontSize: 20,
+    color: '#777',
     fontWeight: '700',
     textAlign: 'center',
+    marginBottom: 2,
   },
   regView: {
     alignSelf: 'stretch',
