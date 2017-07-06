@@ -330,15 +330,20 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
   },
+  titleView: {
+    height: 32,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    paddingTop: 12,
+    paddingBottom: 6,
+  },
   title: {
     height: 32,
     fontSize: 18,
     color: '#333',
     fontWeight: '700',
     zIndex: 50,
-    marginTop: 12,
-    marginBottom: 6,
-    padding: 0,
+    marginTop: 20,
   },
   rightTitleButton: {
     height: 32,
