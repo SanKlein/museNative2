@@ -20,6 +20,10 @@ class AboutPage extends Component {
     Linking.openURL("mailto:parker@reflectwithmuse.com?subject=Hi Parker")
   }
 
+  emailJob() {
+    Linking.openURL("mailto:parker@reflectwithmuse.com?subject=Job")
+  }
+
   emailOlivier() {
     Linking.openURL("mailto:hello@olivierifrah.com?subject=Hello Olivier")
   }
@@ -181,7 +185,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.title}>Designer</Text>
+                  <Text style={styles.title}>Branding</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><Text style={styles.teamName}>Olivier Ifrah</Text></TouchableOpacity>
@@ -217,6 +221,19 @@ class AboutPage extends Component {
                   <Text style={styles.centerParagraph}>{"They're helping people learn about\nthemselves and do what they love."}</Text>
                 </View>
               </TouchableWithoutFeedback>
+            </AboutSection>
+            <AboutSection>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View style={styles.regView}>
+                  <Text style={styles.header}>Jobs</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View style={styles.regView}>
+                  <Text style={styles.centerParagraph}>{"Interested in developing skills\nwhile helping build Müse?"}</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableOpacity style={styles.email} onPress={this.emailJob} activeOpacity={.7}><Text style={styles.emailName}>Email Us</Text></TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
