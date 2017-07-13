@@ -190,9 +190,9 @@ class App extends Component {
       case 'UserSettings':
       case 'Login':
       case 'AnswerSettings':
+      case 'About':
         return Navigator.SceneConfigs.FloatFromBottom
       case 'Home':
-      case 'About':
         return Navigator.SceneConfigs.PushFromLeft
       default:
         return Navigator.SceneConfigs.PushFromRight
@@ -227,13 +227,13 @@ class App extends Component {
                       case 'Categories':
                       case 'Home':
                       case 'Streak':
-                      case 'About':
                       case 'Stop':
                         return null
                       case 'AnswerSettings':
                       case 'UserProfile':
                       case 'Past':
                       case 'NewPrompt':
+                      case 'About':
                       case 'UserSettings':
                       case 'Login':
                         return (
@@ -280,18 +280,13 @@ class App extends Component {
                       case 'UserSettings':
                       case 'List':
                       case 'Past':
+                      case 'About':
                       case 'AnswerSettings':
                         return null
                       case 'Login':
                         return (
                           <TouchableOpacity style={styles.rightTitleButton} activeOpacity={.7} onPress={this.handleChangeLogin}>
                             <Text style={styles.rightTitle}>{switchButton}</Text>
-                          </TouchableOpacity>
-                        )
-                      case 'About':
-                        return (
-                          <TouchableOpacity style={styles.rightButton} activeOpacity={.7} onPress={() => this.handleBack(navigator)}>
-                            <Ionicons name="md-arrow-round-forward" size={22} color="#333" />
                           </TouchableOpacity>
                         )
                       case 'UserProfile':
