@@ -48,6 +48,30 @@ class AboutPage extends Component {
     Linking.openURL('https://www.facebook.com/reflectwithmuse/')
   }
 
+  // <AboutSection>
+  //   <TouchableWithoutFeedback style={styles.touchable}>
+  //     <View style={styles.regView}>
+  //       <Text style={styles.header}>Join Us</Text>
+  //     </View>
+  //   </TouchableWithoutFeedback>
+  //   <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
+  //     <View style={styles.regView}>
+  //       <Text style={styles.centerParagraph}>{"See our daily prompt.\nLeave other app.\nUse Müse :)"}</Text>
+  //     </View>
+  //   </TouchableWithoutFeedback>
+  //   <View style={[styles.socialButtons, styles.last]}>
+  //     <TouchableOpacity onPress={this.handleTwitter} style={styles.socialButton} activeOpacity={.7}>
+  //       <FontAwesome size={20} name="twitter" color="#777" />
+  //     </TouchableOpacity>
+  //     <TouchableOpacity onPress={this.handleInstagram} style={styles.socialButton} activeOpacity={.7}>
+  //       <FontAwesome size={20} name="instagram" color="#777" />
+  //     </TouchableOpacity>
+  //     <TouchableOpacity onPress={this.handleFacebook} style={styles.socialButton} activeOpacity={.7}>
+  //       <FontAwesome size={20} name="facebook" color="#777" />
+  //     </TouchableOpacity>
+  //   </View>
+  // </AboutSection>
+
   render() {
     return (
       <Page>
@@ -230,7 +254,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"Interested in developing skills\nwhile helping build Müse?"}</Text>
+                  <Text style={styles.centerParagraph}>{"Interested in developing skills while\nhelping build and grow Müse?"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.email} onPress={this.emailJob} activeOpacity={.7}><Text style={styles.emailName}>Email Us</Text></TouchableOpacity>
@@ -246,31 +270,7 @@ class AboutPage extends Component {
                   <Text style={styles.centerParagraph}>{"We love stories,\nopinions, and questions"}</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><Text style={styles.emailName}>Parker</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.email} onPress={this.emailOlivier} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Olivier</Text></View></TouchableOpacity>
-            </AboutSection>
-            <AboutSection>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View style={styles.regView}>
-                  <Text style={styles.header}>Join Us</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
-                <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"See our daily prompt.\nLeave other app.\nUse Müse :)"}</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <View style={[styles.socialButtons, styles.last]}>
-                <TouchableOpacity onPress={this.handleTwitter} style={styles.socialButton} activeOpacity={.7}>
-                  <FontAwesome size={20} name="twitter" color="#777" />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleInstagram} style={styles.socialButton} activeOpacity={.7}>
-                  <FontAwesome size={20} name="instagram" color="#777" />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleFacebook} style={styles.socialButton} activeOpacity={.7}>
-                  <FontAwesome size={20} name="facebook" color="#777" />
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><Text style={styles.emailName}>Email Us</Text></TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
