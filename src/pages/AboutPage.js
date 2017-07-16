@@ -78,7 +78,7 @@ class AboutPage extends Component {
         <Container>
           <ScrollContainer>
             <AboutSection>
-              <TouchableWithoutFeedback style={styles.touchable}>
+              <TouchableWithoutFeedback style={styles.touchableTop}>
                 <View style={styles.regView}>
                   <Text style={styles.header}>{"What's Müse?"}</Text>
                 </View>
@@ -257,7 +257,7 @@ class AboutPage extends Component {
                   <Text style={styles.centerParagraph}>{"Interested in developing skills while\nhelping build and grow Müse?"}</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.email} onPress={this.emailJob} activeOpacity={.7}><Text style={styles.emailName}>Email Us</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.email} onPress={this.emailJob} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Email Us</Text></View></TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -270,7 +270,7 @@ class AboutPage extends Component {
                   <Text style={styles.centerParagraph}>{"We love stories,\nopinions, and questions"}</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><Text style={styles.emailName}>Email Us</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Email Us</Text></View></TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -377,7 +377,13 @@ const styles = StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 12,
     alignSelf: 'stretch',
-  }
+  },
+  touchableTop: {
+    paddingTop: 40,
+    paddingLeft: 12,
+    paddingRight: 12,
+    alignSelf: 'stretch',
+  },
 })
 
 export default AboutPage
