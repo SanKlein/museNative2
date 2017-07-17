@@ -48,30 +48,6 @@ class AboutPage extends Component {
     Linking.openURL('https://www.facebook.com/reflectwithmuse/')
   }
 
-  // <AboutSection>
-  //   <TouchableWithoutFeedback style={styles.touchable}>
-  //     <View style={styles.regView}>
-  //       <Text style={styles.header}>Join Us</Text>
-  //     </View>
-  //   </TouchableWithoutFeedback>
-  //   <TouchableWithoutFeedback style={[styles.touchable, styles.last]}>
-  //     <View style={styles.regView}>
-  //       <Text style={styles.centerParagraph}>{"See our daily prompt.\nLeave other app.\nUse Müse :)"}</Text>
-  //     </View>
-  //   </TouchableWithoutFeedback>
-  //   <View style={[styles.socialButtons, styles.last]}>
-  //     <TouchableOpacity onPress={this.handleTwitter} style={styles.socialButton} activeOpacity={.7}>
-  //       <FontAwesome size={20} name="twitter" color="#777" />
-  //     </TouchableOpacity>
-  //     <TouchableOpacity onPress={this.handleInstagram} style={styles.socialButton} activeOpacity={.7}>
-  //       <FontAwesome size={20} name="instagram" color="#777" />
-  //     </TouchableOpacity>
-  //     <TouchableOpacity onPress={this.handleFacebook} style={styles.socialButton} activeOpacity={.7}>
-  //       <FontAwesome size={20} name="facebook" color="#777" />
-  //     </TouchableOpacity>
-  //   </View>
-  // </AboutSection>
-
   render() {
     return (
       <Page>
@@ -204,20 +180,10 @@ class AboutPage extends Component {
               <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><Text style={styles.teamName}>Parker Klein</Text></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>Qualcomm Engineer</Text>
-                </View>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View style={styles.regView}>
                   <Text style={styles.title}>Branding</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><Text style={styles.teamName}>Olivier Ifrah</Text></TouchableOpacity>
-              <TouchableWithoutFeedback style={styles.touchable}>
-                <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>ZipRecruiter Designer</Text>
-                </View>
-              </TouchableWithoutFeedback>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -254,7 +220,7 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"Interested in developing skills while\nhelping build and grow Müse?"}</Text>
+                  <Text style={styles.centerParagraph}>{"Interested in learning while\nhelping build and grow Müse?"}</Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.email} onPress={this.emailJob} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Email Us</Text></View></TouchableOpacity>
@@ -271,6 +237,24 @@ class AboutPage extends Component {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Email Us</Text></View></TouchableOpacity>
+            </AboutSection>
+            <AboutSection>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View style={styles.regView}>
+                  <Text style={styles.header}>Join Us</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <View style={[styles.socialButtons, styles.last]}>
+                <TouchableOpacity onPress={this.handleTwitter} style={styles.socialButton} activeOpacity={.7}>
+                  <FontAwesome size={20} name="twitter" color="#777" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.handleInstagram} style={styles.socialButton} activeOpacity={.7}>
+                  <FontAwesome size={20} name="instagram" color="#777" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.handleFacebook} style={styles.socialButton} activeOpacity={.7}>
+                  <FontAwesome size={20} name="facebook" color="#777" />
+                </TouchableOpacity>
+              </View>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>

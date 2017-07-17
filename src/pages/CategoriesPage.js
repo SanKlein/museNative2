@@ -30,10 +30,9 @@ class CategoriesPage extends Component {
     if (state === 'home') {
       navigator.replace({ name: 'Home' })
       return
+    } else {
+      loadTodayPrompt()
     }
-    // else {
-    //   loadTodayPrompt()
-    // }
 
     this.checkNotification()
   }
@@ -145,13 +144,12 @@ class CategoriesPage extends Component {
   render() {
     const { user, categories } = this.props
 
-    // <FlexButton handleClick={this.handleToday} category={"Today's Prompt"} top text="Today's Prompt" purple />
-
     return (
       <Page>
         <Container>
           <Text style={styles.title}>What do you want to reflect on?</Text>
           <View style={styles.buttons}>
+            <FlexButton handleClick={this.handleToday} category={"Today's Prompt"} top text="Today's Prompt" purple />
             <FlexButton handleClick={this.handleRandom} category='Everything' top text='Everything' />
             { categories.map(category => (<FlexButton key={category} handleClick={this.handleRandomCategory} category={category} text={category} />)) }
           </View>
