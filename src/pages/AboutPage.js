@@ -177,13 +177,13 @@ class AboutPage extends Component {
                   <Text style={styles.title}>Creator</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><Text style={styles.teamName}>Parker Klein</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><View style={styles.regView}><Text style={styles.teamNameTop}>Parker Klein</Text></View></TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
                   <Text style={styles.title}>Branding</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><Text style={styles.teamName}>Olivier Ifrah</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><View style={styles.last}><Text style={styles.teamName}>Olivier Ifrah</Text></View></TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -241,7 +241,7 @@ class AboutPage extends Component {
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.header}>Join Us</Text>
+                  <Text style={styles.header}>Follow Us</Text>
                 </View>
               </TouchableWithoutFeedback>
               <View style={[styles.socialButtons, styles.last]}>
@@ -343,6 +343,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 2,
   },
+  teamNameTop: {
+    fontSize: 20,
+    color: '#777',
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 7,
+  },
   regView: {
     alignSelf: 'stretch',
   },
@@ -363,7 +370,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   touchableTop: {
-    paddingTop: 40,
+    paddingTop: 80,
     paddingLeft: 12,
     paddingRight: 12,
     alignSelf: 'stretch',
