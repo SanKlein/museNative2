@@ -1,15 +1,14 @@
-let newDate = new Date()
-newDate.setDate(newDate.getDate() - 1)
+let newDate = new Date();
+newDate.setDate(newDate.getDate() - 1);
 
 export default {
-  state: 'home',
   loading: false,
   error: '',
   login: {
     login: false,
     name: '',
     email: '',
-    password: '',
+    password: ''
   },
   user: {
     _id: '',
@@ -24,11 +23,11 @@ export default {
     answered: [],
     favorites: [],
     saved: [],
-    daily: [],
+    daily: []
   },
   editUser: {
     name: '',
-    email: '',
+    email: ''
   },
   answerState: 'none', // 'changed', 'saved', ''
   answer: {
@@ -41,7 +40,7 @@ export default {
     modified: new Date(),
     text: '',
     type: 'paragraph',
-    categories: [],
+    categories: []
   },
   category: '',
   list: '',
@@ -50,7 +49,7 @@ export default {
   newPrompt: {
     title: '',
     type: 'paragraph',
-    categories: [],
+    categories: []
   },
   todayPrompt: '',
   prompts: [],
@@ -58,7 +57,7 @@ export default {
   answers: [],
   seen: {
     today: new Date(),
-    prompts: [],
+    prompts: []
   },
   categories: ['Self', 'Life', 'Today', 'Gratitude', 'Growth', 'Work'],
   offline: {
@@ -75,6 +74,6 @@ export default {
     favorites: [],
     removeFavorites: [],
     daily: [],
-    removeDaily: [],
-  },
-}
+    removeDaily: []
+  }
+};

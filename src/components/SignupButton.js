@@ -1,15 +1,16 @@
-import React, { PropTypes } from 'react'
-import { StyleSheet, TouchableHighlight, Text } from 'react-native'
+import PropTypes from 'prop-types';
+import React from 'react';
+import { StyleSheet, TouchableHighlight, Text } from 'react-native';
 
 const SignupButton = ({ children, handleClick }) => (
-  <TouchableHighlight style={styles.signupButton} onPress={handleClick} underlayColor='#ffb280'>
+  <TouchableHighlight style={styles.signupButton} onPress={handleClick} underlayColor="#ffb280">
     <Text style={styles.signupButtonText}>{name}</Text>
   </TouchableHighlight>
-)
+);
 
 SignupButton.propTypes = {
-  handleClick: PropTypes.func,
-}
+  handleClick: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   signupButton: {
@@ -18,8 +19,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 8,
     borderRadius: 50,
-    marginTop: 10,
-  },
-})
+    marginTop: 10
+  }
+});
 
-export default SignupButton
+export default SignupButton;

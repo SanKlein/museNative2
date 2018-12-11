@@ -1,51 +1,58 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, Linking, TouchableOpacity, ScrollView, TouchableWithoutFeedback } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Page from '../containers/Page'
-import Container from '../containers/Container'
-import ScrollContainer from '../containers/ScrollContainer'
-import AboutSection from '../containers/AboutSection'
-
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Linking,
+  TouchableOpacity,
+  ScrollView,
+  TouchableWithoutFeedback
+} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Page from '../containers/Page';
+import Container from '../containers/Container';
+import ScrollContainer from '../containers/ScrollContainer';
+import AboutSection from '../containers/AboutSection';
 
 class AboutPage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   handleBack() {
-    this.props.navigator.pop()
+    this.props.navigator.pop();
   }
 
   emailParker() {
-    Linking.openURL("mailto:parker@reflectwithmuse.com?subject=Hi Parker")
+    Linking.openURL('mailto:parker@reflectwithmuse.com?subject=Hi Parker');
   }
 
   emailJob() {
-    Linking.openURL("mailto:parker@reflectwithmuse.com?subject=Job")
+    Linking.openURL('mailto:parker@reflectwithmuse.com?subject=Job');
   }
 
   emailOlivier() {
-    Linking.openURL("mailto:hello@olivierifrah.com?subject=Hello Olivier")
+    Linking.openURL('mailto:hello@olivierifrah.com?subject=Hello Olivier');
   }
 
   loadParker() {
-    Linking.openURL("http://www.parkerklein.me")
+    Linking.openURL('http://www.parkerklein.me');
   }
 
   loadOlivier() {
-    Linking.openURL("https://www.olivierifrah.com")
+    Linking.openURL('https://www.olivierifrah.com');
   }
 
   handleInstagram() {
-    Linking.openURL('https://www.instagram.com/reflectwithmuse/')
+    Linking.openURL('https://www.instagram.com/reflectwithmuse/');
   }
 
   handleTwitter() {
-    Linking.openURL('https://twitter.com/reflectwithmuse')
+    Linking.openURL('https://twitter.com/reflectwithmuse');
   }
 
   handleFacebook() {
-    Linking.openURL('https://www.facebook.com/reflectwithmuse/')
+    Linking.openURL('https://www.facebook.com/reflectwithmuse/');
   }
 
   render() {
@@ -61,12 +68,16 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"An app for people to reflect\non deep questions and big ideas."}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {'An app for people to reflect\non deep questions and big ideas.'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.def}>{"\\myüz\\ v. to think about something\ncarefully and thoroughly"}</Text>
+                  <Text style={styles.def}>
+                    {'\\myüz\\ v. to think about something\ncarefully and thoroughly'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -78,7 +89,11 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"Help people do what they love,\nreach their full potential,\nand create a better world."}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {
+                      'Help people do what they love,\nreach their full potential,\nand create a better world.'
+                    }
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -157,7 +172,9 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"Choose a category. Read the prompt.\nReflect."}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {'Choose a category. Read the prompt.\nReflect.'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -177,13 +194,31 @@ class AboutPage extends Component {
                   <Text style={styles.title}>Creator</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={.7}><View style={styles.regView}><Text style={styles.teamNameTop}>Parker Klein</Text></View></TouchableOpacity>
+              <TouchableOpacity style={styles.names} onPress={this.loadParker} activeOpacity={0.7}>
+                <View style={styles.regView}>
+                  <Text style={styles.teamNameTop}>Parker Klein</Text>
+                </View>
+              </TouchableOpacity>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
                   <Text style={styles.title}>Branding</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={.7}><View style={styles.last}><Text style={styles.teamName}>Olivier Ifrah</Text></View></TouchableOpacity>
+              <TouchableOpacity style={styles.names} onPress={this.loadOlivier} activeOpacity={0.7}>
+                <View style={styles.last}>
+                  <Text style={styles.teamName}>Olivier Ifrah</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableWithoutFeedback style={styles.touchable}>
+                <View style={styles.regView}>
+                  <Text style={styles.title}>Social Media Manager</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableOpacity style={styles.names} activeOpacity={0.7}>
+                <View style={styles.last}>
+                  <Text style={styles.teamName}>Makayla Robidoux</Text>
+                </View>
+              </TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -193,22 +228,30 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"Parker collected questions to learn about\nhimself and what he wanted to do."}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {'Parker collected questions to learn about\nhimself and what he wanted to do.'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"He loved introspection and\nwanted to share it with others."}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {'He loved introspection and\nwanted to share it with others.'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"He told Olivier about his vision\nand was met with a shared belief."}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {'He told Olivier about his vision\nand was met with a shared belief.'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.last}>
-                  <Text style={styles.centerParagraph}>{"They're helping people learn about\nthemselves and do what they love."}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {"They're helping people learn about\nthemselves and do what they love."}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
             </AboutSection>
@@ -220,10 +263,16 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"Interested in learning while\nhelping build and grow Müse?"}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {'Interested in learning while\nhelping build and grow Müse?'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.email} onPress={this.emailJob} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Email Us</Text></View></TouchableOpacity>
+              <TouchableOpacity style={styles.email} onPress={this.emailJob} activeOpacity={0.7}>
+                <View style={styles.last}>
+                  <Text style={styles.emailName}>Email Us</Text>
+                </View>
+              </TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -233,10 +282,16 @@ class AboutPage extends Component {
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback style={styles.touchable}>
                 <View style={styles.regView}>
-                  <Text style={styles.centerParagraph}>{"We love stories,\nopinions, and questions"}</Text>
+                  <Text style={styles.centerParagraph}>
+                    {'We love stories,\nopinions, and questions'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={.7}><View style={styles.last}><Text style={styles.emailName}>Email Us</Text></View></TouchableOpacity>
+              <TouchableOpacity style={styles.email} onPress={this.emailParker} activeOpacity={0.7}>
+                <View style={styles.last}>
+                  <Text style={styles.emailName}>Email Us</Text>
+                </View>
+              </TouchableOpacity>
             </AboutSection>
             <AboutSection>
               <TouchableWithoutFeedback style={styles.touchable}>
@@ -245,13 +300,25 @@ class AboutPage extends Component {
                 </View>
               </TouchableWithoutFeedback>
               <View style={[styles.socialButtons, styles.last]}>
-                <TouchableOpacity onPress={this.handleTwitter} style={styles.socialButton} activeOpacity={.7}>
+                <TouchableOpacity
+                  onPress={this.handleTwitter}
+                  style={styles.socialButton}
+                  activeOpacity={0.7}
+                >
                   <FontAwesome size={20} name="twitter" color="#777" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleInstagram} style={styles.socialButton} activeOpacity={.7}>
+                <TouchableOpacity
+                  onPress={this.handleInstagram}
+                  style={styles.socialButton}
+                  activeOpacity={0.7}
+                >
                   <FontAwesome size={20} name="instagram" color="#777" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.handleFacebook} style={styles.socialButton} activeOpacity={.7}>
+                <TouchableOpacity
+                  onPress={this.handleFacebook}
+                  style={styles.socialButton}
+                  activeOpacity={0.7}
+                >
                   <FontAwesome size={20} name="facebook" color="#777" />
                 </TouchableOpacity>
               </View>
@@ -266,7 +333,7 @@ class AboutPage extends Component {
           </ScrollContainer>
         </Container>
       </Page>
-    )
+    );
   }
 }
 
@@ -277,7 +344,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 8,
     textAlign: 'center',
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   thankYou: {
     fontSize: 24,
@@ -286,7 +353,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     textAlign: 'center',
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   title: {
     fontSize: 16,
@@ -295,7 +362,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginBottom: 2,
     textAlign: 'center',
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   subHeader: {
     fontSize: 16,
@@ -303,7 +370,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 5,
     textAlign: 'center',
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   centerParagraph: {
     fontSize: 16,
@@ -312,21 +379,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: 8,
     flexShrink: 0,
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   spacer: {
     paddingTop: 40,
-    paddingBottom: 40,
+    paddingBottom: 40
   },
   socialButtons: {
     justifyContent: 'center',
     flexDirection: 'row',
     paddingTop: 10,
-    flexShrink: 0,
+    flexShrink: 0
   },
   socialButton: {
     marginLeft: 15,
-    marginRight: 15,
+    marginRight: 15
   },
   emailName: {
     fontSize: 16,
@@ -334,47 +401,47 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 2,
     fontWeight: '700',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   teamName: {
     fontSize: 20,
     color: '#777',
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: 2,
+    marginBottom: 2
   },
   teamNameTop: {
     fontSize: 20,
     color: '#777',
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: 7,
+    marginBottom: 7
   },
   regView: {
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   last: {
     paddingBottom: 30,
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   def: {
     color: '#AAA',
     fontSize: 14,
     fontWeight: '700',
     textAlign: 'center',
-    paddingBottom: 8,
+    paddingBottom: 8
   },
   touchable: {
     paddingLeft: 12,
     paddingRight: 12,
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   touchableTop: {
     paddingTop: 80,
     paddingLeft: 12,
     paddingRight: 12,
-    alignSelf: 'stretch',
-  },
-})
+    alignSelf: 'stretch'
+  }
+});
 
-export default AboutPage
+export default AboutPage;

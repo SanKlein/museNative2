@@ -1,15 +1,13 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
-const Page = ({ children }) => (<View style={styles.page}>{children}</View>)
+const Page = ({ children }) => <View style={styles.page}>{children}</View>;
 
 const styles = StyleSheet.create({
   page: {
-    marginTop: 64,
     flex: 1,
-    backgroundColor: '#FFF',
-    flexDirection: 'column',
-  },
-})
+    backgroundColor: '#FFF'
+  }
+});
 
-export default Page
+export default Page;

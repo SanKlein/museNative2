@@ -1,145 +1,187 @@
-import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
-import { connect } from 'react-redux'
-import ObjectID from 'bson-objectid'
-import { createNewAnswer, loadAnswer } from '../actions/answerActions'
-import { loadCategory } from '../actions/promptActions'
-import { isToday } from '../functions/dateFunctions'
-import Answer from '../objects/Answer'
-import Page from '../containers/Page'
-import Container from '../containers/Container'
-import SignupButton from '../components/SignupButton'
-import Footer from '../containers/Footer'
-import FooterButton from '../components/FooterButton'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import ObjectID from 'bson-objectid';
+import { createNewAnswer, loadAnswer } from '../actions/answerActions';
+import { loadCategory } from '../actions/promptActions';
+import { isToday } from '../functions/dateFunctions';
+import Answer from '../objects/Answer';
+import Page from '../containers/Page';
+import Container from '../containers/Container';
+import SignupButton from '../components/SignupButton';
+import Footer from '../containers/Footer';
+import FooterButton from '../components/FooterButton';
 
-const messages = ['Good job!', 'Congratulations!', "Let's go!", 'Aye!', 'Here we go!', "You did it!", 'Nice!', 'Nice Work!', 'Well Done!', 'Splendid!', 'Superb!', 'Awesome!', "That's the way!", 'Cheers!']
+const messages = [
+  'Good job!',
+  'Congratulations!',
+  "Let's go!",
+  'Aye!',
+  'Here we go!',
+  'You did it!',
+  'Nice!',
+  'Nice Work!',
+  'Well Done!',
+  'Splendid!',
+  'Superb!',
+  'Awesome!',
+  "That's the way!",
+  'Cheers!'
+];
 
 class StopPage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       message: messages[Math.floor(Math.random() * messages.length)]
-    }
+    };
 
-    this.handleNext = this.handleNext.bind(this)
-    this.handleMain = this.handleMain.bind(this)
-    this.handleSignup = this.handleSignup.bind(this)
+    this.handleNext = this.handleNext.bind(this);
+    this.handleMain = this.handleMain.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { navigator } = this.props
+    const { navigator } = this.props;
     if (!isToday(nextProps.user.last)) {
-      navigator.popToTop()
+      navigator.popToTop();
     }
   }
 
   handleSignup() {
-    this.props.navigator.push({ name: 'Login'})
+    this.props.navigator.push({ name: 'Login' });
   }
 
   handleMain() {
-    const { navigator } = this.props
-    navigator.popToTop()
+    const { navigator } = this.props;
+    navigator.popToTop();
   }
 
   handleNext() {
-    let { user, answers, prompts, createNewAnswer, answer, category, list, loadCategory, navigator } = this.props
+    let {
+      user,
+      answers,
+      prompts,
+      createNewAnswer,
+      answer,
+      category,
+      list,
+      loadCategory,
+      navigator
+    } = this.props;
 
     if (category === 'Everything') {
-      category = ''
+      category = '';
     }
 
-    let prompt = {}
+    let prompt = {};
     if (list) {
-      let listIds = user[list]
-      let listPrompts = prompts.filter(p => listIds.find(id => id === p._id) && answer.prompt_id !== p._id)
+      let listIds = user[list];
+      let listPrompts = prompts.filter(
+        p => listIds.find(id => id === p._id) && answer.prompt_id !== p._id
+      );
 
-      if (list === 'daily') answers = answers.filter(a => isToday(a.answered))
+      if (list === 'daily') answers = answers.filter(a => isToday(a.answered));
 
-      let unansweredListPrompts = listPrompts.filter(p => !answers.some(a => a.prompt_id === p._id))
-      let roundPrompts = []
+      let unansweredListPrompts = listPrompts.filter(
+        p => !answers.some(a => a.prompt_id === p._id)
+      );
+      let roundPrompts = [];
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          const listRoute = navigator.getCurrentRoutes().find(route => route.name === 'List')
-          listRoute ? navigator.popToRoute(listRoute) : navigator.popToTop()
-          return
+          const listRoute = navigator.getCurrentRoutes().find(route => route.name === 'List');
+          listRoute ? navigator.popToRoute(listRoute) : navigator.popToTop();
+          return;
         } else {
-          roundPrompts = listPrompts
+          roundPrompts = listPrompts;
         }
       } else {
-        roundPrompts = unansweredListPrompts
+        roundPrompts = unansweredListPrompts;
       }
 
-      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)]
+      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)];
     } else if (category) {
-      let categoryPrompts = prompts.filter(p => p.categories.some(c => c === category) && answer.prompt_id !== p._id) //&& !user.hide.includes(prompt._id))
+      let categoryPrompts = prompts.filter(
+        p => p.categories.some(c => c === category) && answer.prompt_id !== p._id
+      ); //&& !user.hide.includes(prompt._id))
 
-      let unansweredPrompts = categoryPrompts.filter(p => !answers.some(a => a.prompt_id === p._id))
-      let roundPrompts = []
+      let unansweredPrompts = categoryPrompts.filter(
+        p => !answers.some(a => a.prompt_id === p._id)
+      );
+      let roundPrompts = [];
       if (unansweredPrompts.length < 10) {
-        roundPrompts = categoryPrompts
+        roundPrompts = categoryPrompts;
       } else if (user.answered.length > 10) {
-        roundPrompts = unansweredPrompts
+        roundPrompts = unansweredPrompts;
       } else {
-        roundPrompts = unansweredPrompts.filter(p => p.round === '1')
+        roundPrompts = unansweredPrompts.filter(p => p.round === '1');
         if (roundPrompts.length < 5) {
-          roundPrompts = unansweredPrompts
+          roundPrompts = unansweredPrompts;
         }
       }
 
-      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)]
+      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)];
     } else {
-      let unansweredPrompts = prompts.filter(p => !answers.some(a => a.prompt_id === p._id) && answer.prompt_id !== p._id)
-      let roundPrompts = []
+      let unansweredPrompts = prompts.filter(
+        p => !answers.some(a => a.prompt_id === p._id) && answer.prompt_id !== p._id
+      );
+      let roundPrompts = [];
       if (unansweredPrompts.length < 10) {
-        roundPrompts = prompts
+        roundPrompts = prompts;
       } else if (user.answered.length > 10) {
-        roundPrompts = unansweredPrompts
+        roundPrompts = unansweredPrompts;
       } else {
-        roundPrompts = unansweredPrompts.filter(p => p.round === '1')
+        roundPrompts = unansweredPrompts.filter(p => p.round === '1');
         if (roundPrompts.length < 5) {
-          roundPrompts = unansweredPrompts
+          roundPrompts = unansweredPrompts;
         }
       }
 
-      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)]
+      prompt = roundPrompts[Math.floor(Math.random() * roundPrompts.length)];
     }
 
     if (prompt) {
-      createNewAnswer(new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories))
-      const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
-      route ? navigator.popToRoute(route) : navigator.popToTop()
+      createNewAnswer(
+        new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
+      );
+      const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer');
+      route ? navigator.popToRoute(route) : navigator.popToTop();
     } else {
-      const answerRoute = navigator.getCurrentRoutes().find(route => route.name === 'Categories')
-      answerRoute ? navigator.popToRoute(answerRoute) : navigator.popToTop()
+      const answerRoute = navigator.getCurrentRoutes().find(route => route.name === 'Categories');
+      answerRoute ? navigator.popToRoute(answerRoute) : navigator.popToTop();
     }
   }
 
   render() {
-    const { user } = this.props
+    const { user } = this.props;
 
     return (
       <Page>
         <Container>
-          { !user.name ? <Footer><FooterButton handleClick={this.handleSignup} big text='Signup' /></Footer> : null }
+          {!user.name ? (
+            <Footer>
+              <FooterButton handleClick={this.handleSignup} big text="Signup" />
+            </Footer>
+          ) : null}
           <View style={styles.message}>
             <Text style={styles.congrats}>{this.state.message}</Text>
             <Text style={styles.text}>{"You've answered"}</Text>
             <Text style={styles.number}>5</Text>
-            <Text style={styles.text}>{"prompts today"}</Text>
+            <Text style={styles.text}>{'prompts today'}</Text>
             <Text style={styles.bottomText}>{"It's time to take action"}</Text>
-            <Text style={styles.text}>{"See you tomorrow :)"}</Text>
+            <Text style={styles.text}>{'See you tomorrow :)'}</Text>
           </View>
         </Container>
         <Footer top>
-          <FooterButton handleClick={this.handleNext} big top text='Continue Müsing' />
+          <FooterButton handleClick={this.handleNext} big top text="Continue Müsing" />
         </Footer>
         <Footer>
-          <FooterButton handleClick={this.handleMain} big purple text='Done' />
+          <FooterButton handleClick={this.handleMain} big purple text="Done" />
         </Footer>
       </Page>
-    )
+    );
   }
 }
 
@@ -151,32 +193,32 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginLeft: 30,
     marginRight: 30,
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   congrats: {
     color: '#333',
     fontSize: 28,
     marginBottom: 15,
-    fontWeight: '700',
+    fontWeight: '700'
   },
   text: {
     color: '#777',
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '600'
   },
   bottomText: {
     color: '#424242',
     fontSize: 20,
     fontWeight: '600',
     paddingTop: 50,
-    paddingBottom: 5,
+    paddingBottom: 5
   },
   number: {
     color: '#333',
     fontSize: 84,
-    fontWeight: '700',
-  },
-})
+    fontWeight: '700'
+  }
+});
 
 StopPage.propTypes = {
   user: PropTypes.object.isRequired,
@@ -187,23 +229,20 @@ StopPage.propTypes = {
   list: PropTypes.string,
   createNewAnswer: PropTypes.func.isRequired,
   loadAnswer: PropTypes.func.isRequired,
-  loadCategory: PropTypes.func.isRequired,
-}
+  loadCategory: PropTypes.func.isRequired
+};
 
 const mapStateToProps = ({ user, answer, answers, prompt, prompts, myPrompts, category, list }) => {
-  prompts = prompts.slice()
+  prompts = prompts.slice();
   myPrompts.forEach(prompt => {
     if (!prompts.some(p => p._id === prompt._id)) {
-      prompts.push(prompt)
+      prompts.push(prompt);
     }
-  })
+  });
 
-  return { user, answer, answers, prompts, category, list }
-}
+  return { user, answer, answers, prompts, category, list };
+};
 
-StopPage = connect(
-  mapStateToProps,
-  { createNewAnswer, loadAnswer, loadCategory }
-)(StopPage)
+StopPage = connect(mapStateToProps, { createNewAnswer, loadAnswer, loadCategory })(StopPage);
 
-export default StopPage
+export default StopPage;

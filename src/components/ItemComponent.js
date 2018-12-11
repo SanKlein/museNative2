@@ -1,9 +1,14 @@
-import React, { PropTypes } from 'react'
-import { StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 const ItemComponent = ({ children, created }) => {
-  return created ? (<View style={[styles.item, styles.created]}>{children}</View>) : (<View style={styles.item}>{children}</View>)
-}
+  return created ? (
+    <View style={[styles.item, styles.created]}>{children}</View>
+  ) : (
+    <View style={styles.item}>{children}</View>
+  );
+};
 
 const styles = StyleSheet.create({
   item: {
@@ -13,11 +18,11 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingLeft: 12,
     paddingBottom: 8,
-    flexShrink: 0,
+    flexShrink: 0
   },
   created: {
-    paddingRight: 12,
+    paddingRight: 12
   }
-})
+});
 
-export default ItemComponent
+export default ItemComponent;

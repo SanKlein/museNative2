@@ -1,7 +1,12 @@
-import React, { PropTypes } from 'react'
-import { StyleSheet, Text } from 'react-native'
+import PropTypes from 'prop-types';
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
 
-const ComponentSubtext = ({ children, text }) => (<Text style={styles.componentSubtext} numberOfLines={2}>{text}</Text>)
+const ComponentSubtext = ({ children, text }) => (
+  <Text style={styles.componentSubtext} numberOfLines={2}>
+    {text}
+  </Text>
+);
 
 const styles = StyleSheet.create({
   componentSubtext: {
@@ -9,8 +14,8 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     color: '#777',
     overflow: 'hidden',
-    fontWeight: '600',
-  },
-})
+    fontWeight: '600'
+  }
+});
 
-export default ComponentSubtext
+export default ComponentSubtext;

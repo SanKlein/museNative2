@@ -1,18 +1,30 @@
-import React, { PropTypes } from 'react'
-import { StyleSheet, TouchableHighlight, Text } from 'react-native'
+import PropTypes from 'prop-types';
+import React from 'react';
+import { StyleSheet, TouchableHighlight, Text } from 'react-native';
 
 const SettingButton = ({ children, handleClick, fade }) => {
   if (fade) {
-    return (<TouchableHighlight style={{...styles.settingButton, ...styles.fadeButton}} onClick={handleClick}><Text>{children}</Text></TouchableHighlight>)
+    return (
+      <TouchableHighlight
+        style={{ ...styles.settingButton, ...styles.fadeButton }}
+        onClick={handleClick}
+      >
+        <Text>{children}</Text>
+      </TouchableHighlight>
+    );
   } else {
-    return (<TouchableHighlight style={styles.settingButton} onClick={handleClick}><Text>{children}</Text></TouchableHighlight>)
+    return (
+      <TouchableHighlight style={styles.settingButton} onClick={handleClick}>
+        <Text>{children}</Text>
+      </TouchableHighlight>
+    );
   }
-}
+};
 
 SettingButton.propTypes = {
   handleClick: PropTypes.func,
-  fade: PropTypes.bool,
-}
+  fade: PropTypes.bool
+};
 
 const styles = StyleSheet.create({
   settingButton: {
@@ -20,11 +32,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     padding: 20,
     color: '#333',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   fadeButton: {
-    opacity: 0.5,
-  },
-})
+    opacity: 0.5
+  }
+});
 
-export default SettingButton
+export default SettingButton;
