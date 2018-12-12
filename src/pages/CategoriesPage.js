@@ -58,7 +58,7 @@ class CategoriesPage extends Component {
   }
 
   componentWillMount() {
-    const { navigator, loadTodayPrompt } = this.props;
+    const { navigation, loadTodayPrompt } = this.props;
 
     loadTodayPrompt();
 
@@ -97,11 +97,11 @@ class CategoriesPage extends Component {
 
     const { navigation } = this.props;
 
-    navigation.push('UserProfile');
+    navigation.navigate('UserProfile');
   }
 
   handleRandomCategory(category) {
-    let { user, prompts, answers, loadCategory, createNewAnswer, navigator, seen } = this.props;
+    let { user, prompts, answers, loadCategory, createNewAnswer, navigation, seen } = this.props;
 
     let categoryPrompts = prompts.filter(p => p.categories.some(c => c === category));
 
@@ -125,11 +125,11 @@ class CategoriesPage extends Component {
       new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
     );
     loadCategory(category);
-    navigator.push({ name: 'Answer' });
+    navigation.navigate('Answer');
   }
 
   handleRandom() {
-    let { user, prompts, answers, loadCategory, createNewAnswer, navigator, seen } = this.props;
+    let { user, prompts, answers, loadCategory, createNewAnswer, navigation, seen } = this.props;
 
     let unansweredPrompts = prompts.filter(
       p => !answers.some(a => a.prompt_id === p._id) && !seen.prompts.some(s => s === p._id)
@@ -151,7 +151,7 @@ class CategoriesPage extends Component {
       new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
     );
     loadCategory('Everything');
-    navigator.push({ name: 'Answer' });
+    navigation.navigate('Answer');
   }
 
   handleToday() {
@@ -164,20 +164,20 @@ class CategoriesPage extends Component {
       loadAnswer,
       loadCategory,
       createNewAnswer,
-      navigator
+      navigation
     } = this.props;
 
     loadCategory("Today's Prompt");
 
     if (answer.prompt_id === todayPrompt) {
-      navigator.push({ name: 'Answer' });
+      navigation.navigate('Answer');
       return;
     }
     if (answers.length) {
       const answerFound = answers.find(a => a.prompt_id === todayPrompt && isToday(a.answered));
       if (answerFound) {
         loadAnswer(answerFound);
-        navigator.push({ name: 'Answer' });
+        navigation.navigate('Answer');
         return;
       }
     }
@@ -187,7 +187,7 @@ class CategoriesPage extends Component {
         createNewAnswer(
           new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
         );
-        navigator.push({ name: 'Answer' });
+        navigation.navigate('Answer');
         return;
       }
     }

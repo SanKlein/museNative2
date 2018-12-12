@@ -33,10 +33,10 @@ class ListPage extends Component {
   }
 
   componentWillMount() {
-    const { listTitle, navigator } = this.props;
+    const { listTitle, navigation } = this.props;
 
     if (!listTitle) {
-      navigator.pop(0);
+      navigation.goBack(0);
     }
   }
 
@@ -54,7 +54,7 @@ class ListPage extends Component {
       unansweredListPrompts,
       answeredListPrompts,
       createNewAnswer,
-      navigator,
+      navigation,
       loadList
     } = this.props;
     if (unansweredListPrompts.length === 0) {
@@ -65,16 +65,16 @@ class ListPage extends Component {
     createNewAnswer(
       new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
     );
-    navigator.push({ name: 'Answer' });
+    navigation.navigate('Answer');
   }
 
   handleLoadPrompt(prompt) {
-    const { user, listTitle, createNewAnswer, navigator, loadList } = this.props;
+    const { user, listTitle, createNewAnswer, navigation, loadList } = this.props;
     loadList(listTitle);
     createNewAnswer(
       new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
     );
-    navigator.push({ name: 'Answer' });
+    navigation.navigate('Answer');
   }
 
   handleRemovePrompt(prompt) {

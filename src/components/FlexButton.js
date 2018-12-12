@@ -8,12 +8,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
-const FlexButton = ({ children, handleClick, category, text, purple, ...props }) => {
-  const buttonStyle = purple ? [styles.flexButton, styles.purpleButton] : styles.flexButton;
-  const textStyle = purple ? [styles.text, styles.purpleText] : styles.text;
+const FlexButton = ({ children, handleClick, category, text, purple, style, ...props }) => {
+  const buttonStyle = purple ? { ...styles.flexButton, ...styles.purpleButton } : styles.flexButton;
+  const textStyle = purple ? { ...styles.text, ...styles.purpleText } : styles.text;
   return (
     <TouchableOpacity
-      style={buttonStyle}
+      style={{ ...buttonStyle, ...style }}
       onPress={() => handleClick(category)}
       activeOpacity={0.7}
       {...props}

@@ -19,6 +19,10 @@ import Container from '../containers/Container';
 import ScrollContainer from '../containers/ScrollContainer';
 
 class UserSettingsPage extends Component {
+  static navigationOptions = {
+    headerRight: null
+  };
+
   constructor(props) {
     super(props);
 
@@ -34,7 +38,7 @@ class UserSettingsPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { loading, user, editUser, navigator } = this.props;
+    const { loading, user, editUser, navigation } = this.props;
     if (
       this.state.edit === 'changed' &&
       loading &&
@@ -43,7 +47,7 @@ class UserSettingsPage extends Component {
       editUser.email === nextProps.user.email
     ) {
       this.setState({ edit: 'saved' });
-      navigator.pop(0);
+      navigation.goBack(0);
     }
     if (
       this.state.edit === 'changed' &&
@@ -100,10 +104,10 @@ class UserSettingsPage extends Component {
   }
 
   handleLogout() {
-    const { logout, navigator } = this.props;
+    const { logout, navigation } = this.props;
 
     logout();
-    navigator.resetTo({ name: '' });
+    navigation.popToTop('');
   }
 
   confirmLogout() {

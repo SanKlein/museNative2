@@ -66,7 +66,7 @@ class NewPromptPage extends Component {
       createNewPrompt,
       createNewAnswer,
       setError,
-      navigator,
+      navigation,
       loadCategory
     } = this.props;
     if (!newPrompt.title || newPrompt.categories.length === 0) {
@@ -85,7 +85,7 @@ class NewPromptPage extends Component {
     createNewAnswer(
       new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
     );
-    navigator.replace({ name: 'Answer' });
+    navigation.goBack.navigate('Answer');
   }
 
   loadAnswer() {

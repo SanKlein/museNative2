@@ -118,54 +118,54 @@ class App extends Component {
     this.props.changeSearch(text);
   }
 
-  handleProfile(navigator) {
+  handleProfile(navigation) {
     Keyboard.dismiss(0);
 
     const { category, loadCategory, list } = this.props;
 
     if (category === 'Answers' || list) {
       loadCategory('');
-      const route = navigator.getCurrentRoutes().find(route => route.name === 'UserProfile');
-      route ? navigator.popToRoute(route) : navigator.push({ name: 'UserProfile' });
+      const route = navigation.getCurrentRoutes().find(route => route.name === 'UserProfile');
+      route ? navigation.goBackToRoute(route) : navigation.navigate('UserProfile');
       return;
     }
 
-    navigator.push({ name: 'UserProfile' });
+    navigation.navigate('UserProfile');
   }
 
-  handleSettings(navigator) {
+  handleSettings(navigation) {
     Keyboard.dismiss(0);
     const { user, editUser } = this.props;
-    editUser({ name: user.name, email: user.email });
-    navigator.push({ name: 'UserSettings' });
+    editUser(user.name, (email: user.email));
+    navigation.navigate('UserSettings');
   }
 
-  handleBack(navigator) {
+  handleBack(navigation) {
     Keyboard.dismiss(0);
 
-    navigator.pop(0);
+    navigation.goBack(0);
   }
 
-  handleCategories(navigator) {
+  handleCategories(navigation) {
     const { category, loadCategory, list } = this.props;
 
     Keyboard.dismiss(0);
 
     if (category === 'Answers') {
       loadCategory('');
-      const route = navigator.getCurrentRoutes().find(route => route.name === 'Past');
-      route ? navigator.popToRoute(route) : navigator.popToTop();
+      const route = navigation.getCurrentRoutes().find(route => route.name === 'Past');
+      route ? navigation.goBackToRoute(route) : navigation.popToTop();
       return;
     }
 
     if (list) {
       loadCategory('');
-      const listRoute = navigator.getCurrentRoutes().find(route => route.name === 'List');
-      listRoute ? navigator.popToRoute(listRoute) : navigator.popToTop();
+      const listRoute = navigation.getCurrentRoutes().find(route => route.name === 'List');
+      listRoute ? navigation.goBackToRoute(listRoute) : navigation.popToTop();
       return;
     }
 
-    navigator.popToTop();
+    navigation.popToTop();
   }
 
   handleChangeLogin() {
@@ -176,32 +176,32 @@ class App extends Component {
     changeLoginState(!login.login);
   }
 
-  renderScene(route, navigator) {
+  renderScene(route, navigation) {
     switch (route.name) {
       case 'Answer':
-        return <AnswerPage navigator={navigator} />;
+        return <AnswerPage navigation={navigation} />;
       case 'Streak':
-        return <StreakPage navigator={navigator} />;
+        return <StreakPage navigation={navigation} />;
       case 'Login':
-        return <LoginPage navigator={navigator} />;
+        return <LoginPage navigation={navigation} />;
       case 'UserProfile':
-        return <UserProfilePage navigator={navigator} />;
+        return <UserProfilePage navigation={navigation} />;
       case 'UserSettings':
-        return <UserSettingsPage navigator={navigator} />;
+        return <UserSettingsPage navigation={navigation} />;
       case 'AnswerSettings':
-        return <AnswerSettingsPage navigator={navigator} />;
+        return <AnswerSettingsPage navigation={navigation} />;
       case 'Past':
-        return <PastPage navigator={navigator} />;
+        return <PastPage navigation={navigation} />;
       case 'List':
-        return <ListPage navigator={navigator} />;
+        return <ListPage navigation={navigation} />;
       case 'NewPrompt':
-        return <NewPromptPage navigator={navigator} />;
+        return <NewPromptPage navigation={navigation} />;
       case 'About':
-        return <AboutPage navigator={navigator} />;
+        return <AboutPage navigation={navigation} />;
       case 'Stop':
-        return <StopPage navigator={navigator} />;
+        return <StopPage navigation={navigation} />;
       default:
-        return <CategoriesPage navigator={navigator} />;
+        return <CategoriesPage navigation={navigation} />;
     }
   }
 
@@ -230,13 +230,13 @@ class App extends Component {
         <Navigator
           configureScene={this.configureScene}
           style={{ flex: 1 }}
-          initialRoute={{ name: 'Categories' }}
+          initialRoute={'Categories'}
           renderScene={this.renderScene}
           navigationBar={
             <Navigator.NavigationBar
               style={styles.nav}
               routeMapper={{
-                LeftButton: (route, navigator, index, navState) => {
+                LeftButton: (route, navigation, index, navState) => {
                   switch (route.name) {
                     case 'Categories':
                     case 'Streak':
@@ -253,7 +253,7 @@ class App extends Component {
                         <TouchableOpacity
                           style={styles.leftButton}
                           activeOpacity={0.7}
-                          onPress={() => this.handleBack(navigator)}
+                          onPress={() => this.handleBack(navigation)}
                         >
                           <Octicons size={24} name="x" color="#333" />
                         </TouchableOpacity>
@@ -263,7 +263,7 @@ class App extends Component {
                         <TouchableOpacity
                           style={styles.leftButton}
                           activeOpacity={0.7}
-                          onPress={() => this.handleCategories(navigator)}
+                          onPress={() => this.handleCategories(navigation)}
                         >
                           <Ionicons size={22} name="md-arrow-round-back" color="#333" />
                         </TouchableOpacity>
@@ -273,14 +273,14 @@ class App extends Component {
                         <TouchableOpacity
                           style={styles.leftButton}
                           activeOpacity={0.7}
-                          onPress={() => this.handleBack(navigator)}
+                          onPress={() => this.handleBack(navigation)}
                         >
                           <Ionicons size={22} name="md-arrow-round-back" color="#333" />
                         </TouchableOpacity>
                       );
                   }
                 },
-                Title: (route, navigator, index, navState) => {
+                Title: (route, navigation, index, navState) => {
                   switch (route.name) {
                     case 'Answer':
                       return (
@@ -310,7 +310,7 @@ class App extends Component {
                       return null;
                   }
                 },
-                RightButton: (route, navigator, index, navState) => {
+                RightButton: (route, navigation, index, navState) => {
                   switch (route.name) {
                     case 'NewPrompt':
                     case 'UserSettings':
@@ -334,7 +334,7 @@ class App extends Component {
                         <TouchableOpacity
                           style={styles.rightButton}
                           activeOpacity={0.7}
-                          onPress={() => this.handleSettings(navigator)}
+                          onPress={() => this.handleSettings(navigation)}
                         >
                           <Octicons size={22} name="gear" color="#333" />
                         </TouchableOpacity>
@@ -344,7 +344,7 @@ class App extends Component {
                         <TouchableOpacity
                           style={styles.rightButton}
                           activeOpacity={0.7}
-                          onPress={() => this.handleProfile(navigator)}
+                          onPress={() => this.handleProfile(navigation)}
                         >
                           <MaterialIcons name="person" size={22} color="#333" />
                         </TouchableOpacity>

@@ -17,27 +17,34 @@ import {
   changeLoginPassword,
   signupUser,
   loginUser,
-  clearLogin
+  clearLogin,
+  loadLogin
 } from '../actions/loginActions';
 import { setError } from '../actions/errorActions';
 import { capitalizeFirstLetter, checkEmail } from '../functions/stringFunctions';
 import Page from '../containers/Page';
 import Container from '../containers/Container';
 import Error from '../components/Error';
+import ListButton from '../components/ListButton';
 
 class LoginPage extends Component {
+  static navigationOptions = {
+    headerRight: null
+  };
+
   constructor(props) {
     super(props);
 
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeLogin = this.handleChangeLogin.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.name) {
-      this.props.navigator.resetTo({ name: 'Categories' });
+      this.props.navigation.popToTop('Categories');
     }
   }
 
@@ -55,6 +62,14 @@ class LoginPage extends Component {
 
   handleChangePassword(text) {
     this.props.changeLoginPassword(text);
+  }
+
+  handleChangeLogin() {
+    const { login, changeLoginState } = this.props;
+
+    Keyboard.dismiss(0);
+
+    changeLoginState(!login.login);
   }
 
   handleSubmit(e) {
@@ -117,7 +132,7 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { login, loading, error, navigator } = this.props;
+    const { loadLogin, login, loading, error, navigation } = this.props;
     const loginButton = loading && login.name ? 'Loading...' : login.login ? 'Log in' : 'Sign up';
     const policyButton = login.login ? 'Log in' : 'Sign up';
 
@@ -237,6 +252,9 @@ class LoginPage extends Component {
                 </Text>
               </TouchableOpacity>
             )}
+            <ListButton handleClick={() => loadLogin()}>
+              {!login.login ? 'Log in' : 'Sign up'}
+            </ListButton>
           </View>
         </Container>
       </Page>
@@ -257,27 +275,27 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   },
   name: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#333',
-    lineHeight: 24,
-    height: 32,
-    marginBottom: 5,
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginBottom: 8,
     fontWeight: '700'
   },
   email: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#333',
-    lineHeight: 24,
-    height: 32,
-    marginBottom: 5,
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginBottom: 8,
     fontWeight: '700'
   },
   password: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#333',
-    lineHeight: 32,
-    height: 32,
-    marginBottom: 25,
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginBottom: 16,
     fontWeight: '700'
   },
   loginButton: {
@@ -342,6 +360,7 @@ const styles = StyleSheet.create({
 });
 
 LoginPage.propTypes = {
+  loadLogin: PropTypes.func.isRequired,
   login: PropTypes.object.isRequired,
   changeLoginName: PropTypes.func.isRequired,
   changeLoginEmail: PropTypes.func.isRequired,
@@ -365,6 +384,7 @@ LoginPage = connect(mapStateToProps, {
   changeLoginName,
   changeLoginEmail,
   changeLoginPassword,
+  loadLogin,
   signupUser,
   loginUser,
   clearLogin,

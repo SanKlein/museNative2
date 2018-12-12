@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 const ListButton = ({ children, handleClick }) => (
-  <TouchableHighlight style={styles.listButton} onClick={handleClick}>
-    <Text>{children}</Text>
-  </TouchableHighlight>
+  <TouchableOpacity style={styles.listButton} onPress={handleClick}>
+    <Text style={styles.listButtonText}>{children}</Text>
+  </TouchableOpacity>
 );
 
 ListButton.propTypes = {
@@ -15,11 +15,16 @@ ListButton.propTypes = {
 const styles = StyleSheet.create({
   listButton: {
     backgroundColor: 'transparent',
-    fontSize: 22,
-    fontWeight: '700',
-    padding: 15,
+    padding: 32,
+    textAlign: 'center',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  listButtonText: {
     color: '#333',
-    textAlign: 'center'
+    fontSize: 16,
+    fontWeight: '700'
   }
 });
 

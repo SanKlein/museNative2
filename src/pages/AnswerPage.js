@@ -90,7 +90,7 @@ class AnswerPage extends Component {
       category,
       list,
       loadCategory,
-      navigator,
+      navigation,
       seen
     } = this.props;
 
@@ -116,8 +116,8 @@ class AnswerPage extends Component {
       let roundPrompts = [];
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          const route = navigator.getCurrentRoutes().find(route => route.name === 'List');
-          route ? navigator.popToRoute(route) : navigator.pop(0);
+          const route = navigation.getCurrentRoutes().find(route => route.name === 'List');
+          route ? navigation.goBackToRoute(route) : navigation.goBack(0);
           return;
         } else {
           roundPrompts = listPrompts;
@@ -175,7 +175,7 @@ class AnswerPage extends Component {
         new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
       );
     } else {
-      navigator.pop(0);
+      navigation.goBack(0);
     }
   }
 
@@ -202,7 +202,7 @@ class AnswerPage extends Component {
 
   handleSettings() {
     this.checkSave();
-    this.props.navigator.push({ name: 'AnswerSettings' });
+    this.props.navigation.navigate('AnswerSettings');
   }
 
   handleClick(e) {
@@ -228,7 +228,7 @@ class AnswerPage extends Component {
       updateStreak,
       resetStreak,
       category,
-      navigator,
+      navigation,
       answers,
       answer,
       loadAnswer
@@ -239,7 +239,7 @@ class AnswerPage extends Component {
     if (category === 'Answers') {
       let answerIndex = answers.findIndex(a => a._id === answer._id);
       if (answerIndex <= 0) {
-        navigator.pop(0);
+        navigation.goBack(0);
       } else {
         var a = answers[answerIndex - 1];
         loadAnswer(a);
@@ -261,7 +261,7 @@ class AnswerPage extends Component {
 
     const todayAnswers = answers.filter(a => isToday(a.answered));
     if (todayAnswers.length === 5) {
-      navigator.push({ name: 'Stop' });
+      navigation.navigate('Stop');
       return;
     }
 
@@ -273,16 +273,16 @@ class AnswerPage extends Component {
     } else {
       resetStreak(user._id);
     }
-    navigator.push({ name: 'Streak' });
+    navigation.navigate('Streak');
   }
 
   handleDone() {
-    let { user, updateStreak, resetStreak, category, navigator } = this.props;
+    let { user, updateStreak, resetStreak, category, navigation } = this.props;
 
     Keyboard.dismiss(0);
 
     if (!this.state.answered) {
-      navigator.pop(0);
+      navigation.goBack(0);
       return;
     }
 
@@ -294,14 +294,14 @@ class AnswerPage extends Component {
     }
 
     if (isToday(user.last)) {
-      navigator.pop(0);
+      navigation.goBack(0);
       return;
     } else if (isYesterday(user.last)) {
       updateStreak(user);
     } else {
       resetStreak(user._id);
     }
-    navigator.push({ name: 'Streak' });
+    navigation.navigate('Streak');
   }
 
   handleNewAnswer() {

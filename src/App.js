@@ -4,6 +4,8 @@ import ObjectID from 'bson-objectid';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux';
 
 import {
@@ -20,8 +22,8 @@ import {
   editUser,
   resetSeen
 } from './actions/userActions';
+import NavigationButton from './components/NavigationButton';
 import { isToday } from './functions/dateFunctions';
-
 import LoginPage from './pages/LoginPage';
 import CategoriesPage from './pages/CategoriesPage';
 import AnswerPage from './pages/AnswerPage';
@@ -51,53 +53,51 @@ const ViewNavigator = createStackNavigator(
     },
     Stop: {
       screen: StopPage
-    }
-  },
-  {
-    initialRouteName: 'Categories'
-  }
-);
-
-const ModalNavigator = createStackNavigator({
-  Login: {
-    screen: LoginPage
-  },
-  AnswerSettings: {
-    screen: AnswerSettingsPage
-  },
-  Past: {
-    screen: PastPage
-  },
-  UserProfile: {
-    screen: UserProfilePage
-  },
-  UserSettings: {
-    screen: UserSettingsPage
-  },
-  NewPrompt: {
-    screen: NewPromptPage
-  },
-  About: {
-    screen: AboutPage
-  }
-});
-
-const AppNavigator = createStackNavigator(
-  {
-    View: {
-      screen: ViewNavigator
     },
-    Modal: {
-      screen: ModalNavigator
+    Login: {
+      screen: LoginPage
+    },
+    AnswerSettings: {
+      screen: AnswerSettingsPage
+    },
+    Past: {
+      screen: PastPage
+    },
+    UserProfile: {
+      screen: UserProfilePage
+    },
+    UserSettings: {
+      screen: UserSettingsPage
+    },
+    NewPrompt: {
+      screen: NewPromptPage
+    },
+    About: {
+      screen: AboutPage
     }
   },
   {
-    mode: 'modal',
-    headerMode: 'none'
+    initialRouteName: 'Categories',
+    defaultNavigationOptions: {
+      headerStyle: {
+        borderBottomWidth: 0
+      },
+      headerBackImage: (
+        <NavigationButton>
+          <Ionicons size={22} name="md-arrow-round-back" color="#333" />
+        </NavigationButton>
+      ),
+      headerBackTitle: null,
+      headerRight: (
+        <NavigationButton style={{ padding: 16 }} activeOpacity={0.7} navigate={'UserProfile'}>
+          <MaterialIcons name="person" size={22} color="#333" />
+        </NavigationButton>
+      )
+    }
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(ViewNavigator);
 
 class App extends Component {
   componentWillMount() {

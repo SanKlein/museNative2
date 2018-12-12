@@ -45,19 +45,19 @@ class StreakPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { navigator } = this.props;
+    const { navigation } = this.props;
     if (!isToday(nextProps.user.last)) {
-      navigator.popToTop();
+      navigation.popToTop();
     }
   }
 
   handleSignup() {
-    this.props.navigator.push({ name: 'Login' });
+    this.props.navigation.navigate('Login');
   }
 
   handleMain() {
-    const { navigator } = this.props;
-    navigator.popToTop();
+    const { navigation } = this.props;
+    navigation.popToTop();
   }
 
   handleNext() {
@@ -70,7 +70,7 @@ class StreakPage extends Component {
       category,
       list,
       loadCategory,
-      navigator
+      navigation
     } = this.props;
 
     if (category === 'Everything') {
@@ -92,8 +92,8 @@ class StreakPage extends Component {
       let roundPrompts = [];
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          const listRoute = navigator.getCurrentRoutes().find(route => route.name === 'List');
-          listRoute ? navigator.popToRoute(listRoute) : navigator.popToTop();
+          const listRoute = navigation.getCurrentRoutes().find(route => route.name === 'List');
+          listRoute ? navigation.goBackToRoute(listRoute) : navigation.popToTop();
           return;
         } else {
           roundPrompts = listPrompts;
@@ -147,11 +147,11 @@ class StreakPage extends Component {
       createNewAnswer(
         new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
       );
-      const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer');
-      route ? navigator.popToRoute(route) : navigator.popToTop();
+      const route = navigation.getCurrentRoutes().find(route => route.name === 'Answer');
+      route ? navigation.goBackToRoute(route) : navigation.popToTop();
     } else {
-      const answerRoute = navigator.getCurrentRoutes().find(route => route.name === 'Categories');
-      answerRoute ? navigator.popToRoute(answerRoute) : navigator.popToTop();
+      const answerRoute = navigation.getCurrentRoutes().find(route => route.name === 'Categories');
+      answerRoute ? navigation.goBackToRoute(answerRoute) : navigation.popToTop();
     }
   }
 

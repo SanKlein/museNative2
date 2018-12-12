@@ -28,17 +28,17 @@ class AnswerSettingsPage extends Component {
   }
 
   componentWillMount() {
-    const { answer, navigator } = this.props;
+    const { answer, navigation } = this.props;
     if (!answer.prompt_id) {
-      navigator.pop(0);
+      navigation.goBack(0);
     }
   }
 
   handleLoadAnswer(e, answer) {
-    const { loadAnswer, navigator } = this.props;
+    const { loadAnswer, navigation } = this.props;
     e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true);
     loadAnswer(answer);
-    navigator.pop(0);
+    navigation.goBack(0);
   }
 
   confirmDelete(e, a) {
@@ -51,15 +51,15 @@ class AnswerSettingsPage extends Component {
   }
 
   deleteAnswer(a) {
-    const { deleteAnswer, answer, navigator } = this.props;
+    const { deleteAnswer, answer, navigation } = this.props;
     deleteAnswer(a._id);
     if (a._id === answer._id) {
-      navigator.pop(0);
+      navigation.goBack(0);
     }
   }
 
   handleNewAnswer() {
-    const { user, answer, createNewAnswer, navigator, category, loadCategory, list } = this.props;
+    const { user, answer, createNewAnswer, navigation, category, loadCategory, list } = this.props;
 
     if (category === 'Answers' || list) {
       loadCategory(answer.categories[0]);
@@ -75,7 +75,7 @@ class AnswerSettingsPage extends Component {
         answer.categories
       )
     );
-    navigator.pop(0);
+    navigation.goBack(0);
   }
 
   render() {

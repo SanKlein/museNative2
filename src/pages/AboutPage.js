@@ -20,7 +20,7 @@ class AboutPage extends Component {
   }
 
   handleBack() {
-    this.props.navigator.pop();
+    this.props.navigation.goBack();
   }
 
   emailParker() {

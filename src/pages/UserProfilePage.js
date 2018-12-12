@@ -1,17 +1,29 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Linking, TouchableOpacity } from 'react-native';
+import Octicons from 'react-native-vector-icons/Octicons';
 import { connect } from 'react-redux';
+
 import { formattedDate } from '../functions/dateFunctions';
 import { loadListTitle } from '../actions/promptActions';
+import { loadLogin } from '../actions/loginActions';
 import { editUser } from '../actions/userActions';
 import Page from '../containers/Page';
 import SignupButton from '../components/SignupButton';
 import Container from '../containers/Container';
 import ScrollContainer from '../containers/ScrollContainer';
 import FlexButton from '../components/FlexButton';
+import NavigationButton from '../components/NavigationButton';
 
 class UserProfilePage extends Component {
+  static navigationOptions = {
+    headerRight: (
+      <NavigationButton navigate="UserSettings">
+        <Octicons size={22} name="gear" color="#333" />
+      </NavigationButton>
+    )
+  };
+
   constructor(props) {
     super(props);
 
@@ -23,25 +35,30 @@ class UserProfilePage extends Component {
   }
 
   handlePast() {
-    this.props.navigator.push({ name: 'Past' });
+    this.props.navigation.navigate('Past');
   }
 
   handleSignup() {
-    this.props.navigator.push({ name: 'Login' });
+    this.props.navigation.navigate('Login');
+  }
+
+  handleLogin() {
+    this.props.loadLogin();
+    this.props.navigation.navigate('Login');
   }
 
   handleNewPrompt() {
-    this.props.navigator.push({ name: 'NewPrompt' });
+    this.props.navigation.navigate('NewPrompt');
   }
 
   handleLoadList(list) {
-    const { loadListTitle, navigator } = this.props;
+    const { loadListTitle, navigation } = this.props;
     loadListTitle(list);
-    navigator.push({ name: 'List' });
+    navigation.navigate('List');
   }
 
   handleAbout() {
-    this.props.navigator.push({ name: 'About' });
+    this.props.navigation.navigate('About');
   }
 
   render() {
@@ -50,7 +67,16 @@ class UserProfilePage extends Component {
     return (
       <Page>
         <Container>
-          {!user.name && <FlexButton handleClick={this.handleSignup} text="Signup / Login" />}
+          <View flexDirection="row">
+            {!user.name && (
+              <FlexButton
+                handleClick={this.handleSignup}
+                text="Signup"
+                style={{ marginRight: 8 }}
+              />
+            )}
+            {!user.name && <FlexButton purple handleClick={this.handleSignup} text="Login" />}
+          </View>
           {user.name ? (
             <View style={styles.nameSection}>
               <Text style={styles.name}>{user.name}</Text>
@@ -176,6 +202,6 @@ UserProfilePage.propTypes = {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-UserProfilePage = connect(mapStateToProps, { editUser, loadListTitle })(UserProfilePage);
+UserProfilePage = connect(mapStateToProps, { editUser, loadListTitle, loadLogin })(UserProfilePage);
 
 export default UserProfilePage;

@@ -32,15 +32,15 @@ class PastPage extends Component {
   }
 
   handleLoadAnswer(answer) {
-    const { loadCategory, loadAnswer, navigator } = this.props;
+    const { loadCategory, loadAnswer, navigation } = this.props;
 
     Keyboard.dismiss(0);
 
     loadCategory('Answers');
     loadAnswer(answer);
-    navigator.push({ name: 'Answer' });
-    // const route = navigator.getCurrentRoutes().find(route => route.name === 'Answer')
-    // route ? navigator.popToRoute(route) : navigator.push({ name: 'Answer' })
+    navigation.navigate('Answer');
+    // const route = navigation.getCurrentRoutes().find(route => route.name === 'Answer')
+    // route ? navigation.goBackToRoute(route) : navigation.navigate( 'Answer' )
   }
 
   confirmDelete(e, a) {
@@ -53,7 +53,7 @@ class PastPage extends Component {
   }
 
   deleteAnswer(a) {
-    const { deleteAnswer, navigator } = this.props;
+    const { deleteAnswer, navigation } = this.props;
     deleteAnswer(a._id);
   }
 
