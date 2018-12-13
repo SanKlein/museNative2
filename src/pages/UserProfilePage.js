@@ -29,6 +29,7 @@ class UserProfilePage extends Component {
 
     this.handlePast = this.handlePast.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
     this.handleLoadList = this.handleLoadList.bind(this);
     this.handleNewPrompt = this.handleNewPrompt.bind(this);
     this.handleAbout = this.handleAbout.bind(this);
@@ -68,14 +69,8 @@ class UserProfilePage extends Component {
       <Page>
         <Container>
           <View flexDirection="row">
-            {!user.name && (
-              <FlexButton
-                handleClick={this.handleSignup}
-                text="Signup"
-                style={{ marginRight: 8 }}
-              />
-            )}
-            {!user.name && <FlexButton purple handleClick={this.handleSignup} text="Login" />}
+            {!user.name && <FlexButton handleClick={this.handleSignup} text="Signup" />}
+            {!user.name && <FlexButton purple handleClick={this.handleLogin} text="Login" />}
           </View>
           {user.name ? (
             <View style={styles.nameSection}>
@@ -197,6 +192,7 @@ const styles = StyleSheet.create({
 UserProfilePage.propTypes = {
   user: PropTypes.object.isRequired,
   loadListTitle: PropTypes.func.isRequired,
+  loadLogin: PropTypes.func.isRequired,
   editUser: PropTypes.func.isRequired
 };
 

@@ -18,6 +18,12 @@ import Footer from '../containers/Footer';
 import FooterButton from '../components/FooterButton';
 
 class AnswerSettingsPage extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('title')
+    };
+  };
+
   constructor(props) {
     super(props);
 
@@ -30,15 +36,16 @@ class AnswerSettingsPage extends Component {
   componentWillMount() {
     const { answer, navigation } = this.props;
     if (!answer.prompt_id) {
-      navigation.goBack(0);
+      navigation.goBack();
     }
+    navigation.setParams({ title: answer.categories.join(', ') });
   }
 
   handleLoadAnswer(e, answer) {
     const { loadAnswer, navigation } = this.props;
     e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true);
     loadAnswer(answer);
-    navigation.goBack(0);
+    navigation.goBack();
   }
 
   confirmDelete(e, a) {
@@ -54,7 +61,7 @@ class AnswerSettingsPage extends Component {
     const { deleteAnswer, answer, navigation } = this.props;
     deleteAnswer(a._id);
     if (a._id === answer._id) {
-      navigation.goBack(0);
+      navigation.goBack();
     }
   }
 
@@ -75,7 +82,7 @@ class AnswerSettingsPage extends Component {
         answer.categories
       )
     );
-    navigation.goBack(0);
+    navigation.goBack();
   }
 
   render() {

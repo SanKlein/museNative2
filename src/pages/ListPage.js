@@ -12,6 +12,7 @@ import {
 import { loadList } from '../actions/promptActions';
 import Answer from '../objects/Answer';
 import { isToday } from '../functions/dateFunctions';
+import { capitalizeFirstLetter } from '../functions/stringFunctions';
 import Page from '../containers/Page';
 import Container from '../containers/Container';
 import ScrollContainer from '../containers/ScrollContainer';
@@ -23,6 +24,13 @@ import Footer from '../containers/Footer';
 import FooterButton from '../components/FooterButton';
 
 class ListPage extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const listTitle = navigation.getParam('listTitle', '');
+    return {
+      title: capitalizeFirstLetter(listTitle)
+    };
+  };
+
   constructor(props) {
     super(props);
 
@@ -36,8 +44,10 @@ class ListPage extends Component {
     const { listTitle, navigation } = this.props;
 
     if (!listTitle) {
-      navigation.goBack(0);
+      navigation.goBack();
     }
+
+    navigation.setParams({ listTitle });
   }
 
   confirmRemove(prompt) {

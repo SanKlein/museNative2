@@ -26,6 +26,10 @@ import Footer from '../containers/Footer';
 import FooterButton from '../components/FooterButton';
 
 class NewPromptPage extends Component {
+  static navigationOptions = {
+    title: 'New Prompt'
+  };
+
   constructor(props) {
     super(props);
 
@@ -85,7 +89,7 @@ class NewPromptPage extends Component {
     createNewAnswer(
       new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
     );
-    navigation.goBack.navigate('Answer');
+    navigation.goBack().navigate('Answer');
   }
 
   loadAnswer() {

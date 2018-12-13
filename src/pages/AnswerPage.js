@@ -13,6 +13,7 @@ import {
 // import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { connect } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
 import ObjectID from 'bson-objectid';
 import {
   createNewAnswer,
@@ -37,8 +38,22 @@ import Message from '../components/Message';
 import PromptTitle from '../components/PromptTitle';
 import Footer from '../containers/Footer';
 import FooterButton from '../components/FooterButton';
+import NavigationButton from '../components/NavigationButton';
 
 class AnswerPage extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const category = navigation.getParam('category');
+    const list = navigation.getParam('list');
+    return {
+      headerRight: (
+        <NavigationButton navigate="UserSettings">
+          <Octicons size={22} name="gear" color="#333" />
+        </NavigationButton>
+      ),
+      title: list ? capitalizeFirstLetter(list) : category
+    };
+  };
+
   constructor(props) {
     super(props);
 
@@ -61,6 +76,13 @@ class AnswerPage extends Component {
     this.focusAnswer = this.focusAnswer.bind(this);
     this.showActionSheet = this.showActionSheet.bind(this);
     this.getHeight = this.getHeight.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.navigation.setParams({
+      list: this.props.list,
+      category: this.props.category || 'Everything'
+    });
   }
 
   componentWillUnmount() {
@@ -116,8 +138,7 @@ class AnswerPage extends Component {
       let roundPrompts = [];
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          const route = navigation.getCurrentRoutes().find(route => route.name === 'List');
-          route ? navigation.goBackToRoute(route) : navigation.goBack(0);
+          navigation.goBack();
           return;
         } else {
           roundPrompts = listPrompts;
@@ -175,7 +196,7 @@ class AnswerPage extends Component {
         new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
       );
     } else {
-      navigation.goBack(0);
+      navigation.goBack();
     }
   }
 
@@ -239,7 +260,7 @@ class AnswerPage extends Component {
     if (category === 'Answers') {
       let answerIndex = answers.findIndex(a => a._id === answer._id);
       if (answerIndex <= 0) {
-        navigation.goBack(0);
+        navigation.goBack();
       } else {
         var a = answers[answerIndex - 1];
         loadAnswer(a);
@@ -282,7 +303,7 @@ class AnswerPage extends Component {
     Keyboard.dismiss(0);
 
     if (!this.state.answered) {
-      navigation.goBack(0);
+      navigation.goBack();
       return;
     }
 
@@ -294,7 +315,7 @@ class AnswerPage extends Component {
     }
 
     if (isToday(user.last)) {
-      navigation.goBack(0);
+      navigation.goBack();
       return;
     } else if (isYesterday(user.last)) {
       updateStreak(user);

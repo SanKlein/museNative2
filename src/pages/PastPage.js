@@ -39,8 +39,6 @@ class PastPage extends Component {
     loadCategory('Answers');
     loadAnswer(answer);
     navigation.navigate('Answer');
-    // const route = navigation.getCurrentRoutes().find(route => route.name === 'Answer')
-    // route ? navigation.goBackToRoute(route) : navigation.navigate( 'Answer' )
   }
 
   confirmDelete(e, a) {

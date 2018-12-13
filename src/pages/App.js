@@ -52,85 +52,15 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.handleBack = this.handleBack.bind(this);
     this.renderScene = this.renderScene.bind(this);
     this.changeSearchText = this.changeSearchText.bind(this);
     this.handleSettings = this.handleSettings.bind(this);
     this.handleCategories = this.handleCategories.bind(this);
-    this.handleProfile = this.handleProfile.bind(this);
     this.handleChangeLogin = this.handleChangeLogin.bind(this);
-  }
-
-  componentWillMount() {
-    let {
-      user,
-      loadApprovedPrompts,
-      loadUserPrompts,
-      loadUser,
-      loadUserAnswers,
-      loadCategories,
-      createUser,
-      loadTodayPrompt,
-      resetSeen,
-      seen,
-      loadCategory
-    } = this.props;
-
-    loadApprovedPrompts();
-    loadCategories();
-    loadTodayPrompt();
-    loadCategory('');
-
-    if (!isToday(seen.today)) {
-      resetSeen();
-    }
-
-    if (user._id) {
-      loadUserPrompts(user._id);
-      loadUser(user._id);
-      loadUserAnswers(user._id);
-    } else {
-      var newUser = {
-        _id: ObjectID(),
-        last: user.last
-      };
-      createUser(newUser);
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let { user, createUser } = this.props;
-
-    if (!nextProps.user._id) {
-      var newUser = {
-        _id: ObjectID(),
-        last: user.last
-      };
-      createUser(newUser);
-    }
-  }
-
-  componentWillUnmount() {
-    this.clearTimeout();
   }
 
   changeSearchText(text) {
     this.props.changeSearch(text);
-  }
-
-  handleProfile(navigation) {
-    Keyboard.dismiss(0);
-
-    const { category, loadCategory, list } = this.props;
-
-    if (category === 'Answers' || list) {
-      loadCategory('');
-      const route = navigation.getCurrentRoutes().find(route => route.name === 'UserProfile');
-      route ? navigation.goBackToRoute(route) : navigation.navigate('UserProfile');
-      return;
-    }
-
-    navigation.navigate('UserProfile');
   }
 
   handleSettings(navigation) {
@@ -140,12 +70,6 @@ class App extends Component {
     navigation.navigate('UserSettings');
   }
 
-  handleBack(navigation) {
-    Keyboard.dismiss(0);
-
-    navigation.goBack(0);
-  }
-
   handleCategories(navigation) {
     const { category, loadCategory, list } = this.props;
 
@@ -153,15 +77,7 @@ class App extends Component {
 
     if (category === 'Answers') {
       loadCategory('');
-      const route = navigation.getCurrentRoutes().find(route => route.name === 'Past');
-      route ? navigation.goBackToRoute(route) : navigation.popToTop();
-      return;
-    }
-
-    if (list) {
-      loadCategory('');
-      const listRoute = navigation.getCurrentRoutes().find(route => route.name === 'List');
-      listRoute ? navigation.goBackToRoute(listRoute) : navigation.popToTop();
+      navigation.popToTop();
       return;
     }
 

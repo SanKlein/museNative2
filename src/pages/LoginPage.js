@@ -44,7 +44,7 @@ class LoginPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.name) {
-      this.props.navigation.popToTop('Categories');
+      this.props.navigation.popToTop();
     }
   }
 
@@ -132,7 +132,7 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { loadLogin, login, loading, error, navigation } = this.props;
+    const { loadLogin, login, loading, error } = this.props;
     const loginButton = loading && login.name ? 'Loading...' : login.login ? 'Log in' : 'Sign up';
     const policyButton = login.login ? 'Log in' : 'Sign up';
 

@@ -82,6 +82,12 @@ const ViewNavigator = createStackNavigator(
       headerStyle: {
         borderBottomWidth: 0
       },
+      headerTitleStyle: {
+        fontSize: 17,
+        alignSelf: 'center',
+        color: '#333',
+        fontWeight: '700'
+      },
       headerBackImage: (
         <NavigationButton>
           <Ionicons size={22} name="md-arrow-round-back" color="#333" />
@@ -164,7 +170,7 @@ App.propTypes = {
   createUser: PropTypes.func.isRequired,
   loadTodayPrompt: PropTypes.func.isRequired,
   resetSeen: PropTypes.func.isRequired,
-  seen: PropTypes.array.isRequired,
+  seen: PropTypes.object.isRequired,
   loadCategory: PropTypes.func.isRequired
 };
 

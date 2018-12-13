@@ -91,8 +91,7 @@ class StopPage extends Component {
       let roundPrompts = [];
       if (unansweredListPrompts.length === 0) {
         if (listPrompts.length === 0) {
-          const listRoute = navigation.getCurrentRoutes().find(route => route.name === 'List');
-          listRoute ? navigation.goBackToRoute(listRoute) : navigation.popToTop();
+          navigation.popToTop();
           return;
         } else {
           roundPrompts = listPrompts;
@@ -146,12 +145,8 @@ class StopPage extends Component {
       createNewAnswer(
         new Answer(user._id, user.name, prompt._id, prompt.title, prompt.type, prompt.categories)
       );
-      const route = navigation.getCurrentRoutes().find(route => route.name === 'Answer');
-      route ? navigation.goBackToRoute(route) : navigation.popToTop();
-    } else {
-      const answerRoute = navigation.getCurrentRoutes().find(route => route.name === 'Categories');
-      answerRoute ? navigation.goBackToRoute(answerRoute) : navigation.popToTop();
     }
+    navigation.popToTop();
   }
 
   render() {
