@@ -9,6 +9,7 @@
   "dependencies": {
     "bson-objectid": "^1.1.5",
     "lodash": "^4.17.4",
+    "moment": "^2.23.0",
     "react": "16.6.1",
     "react-native": "0.57.7",
     "react-native-dismiss-keyboard": "^1.0.0",

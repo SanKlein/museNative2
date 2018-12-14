@@ -18,6 +18,7 @@ import prompts from './promptsReducer';
 import answers from './answersReducer';
 import seen from './seenReducer';
 import offline from './offlineReducer';
+import sharedAnswers from './sharedAnswersReducer';
 
 const rootReducer = combineReducers({
   loading,
@@ -38,7 +39,8 @@ const rootReducer = combineReducers({
   prompts,
   answers,
   seen,
-  offline
+  offline,
+  sharedAnswers
 });
 
 export default rootReducer;

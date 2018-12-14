@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux';
 
+import { loadSharedAnswers } from './actions/answerActions';
 import {
   loadApprovedPrompts,
   loadUserPrompts,
@@ -36,6 +37,7 @@ import NewPromptPage from './pages/NewPromptPage';
 import StreakPage from './pages/StreakPage';
 import AboutPage from './pages/AboutPage';
 import StopPage from './pages/StopPage';
+import WorldPage from './pages/WorldPage';
 
 const ViewNavigator = createStackNavigator(
   {
@@ -74,6 +76,9 @@ const ViewNavigator = createStackNavigator(
     },
     About: {
       screen: AboutPage
+    },
+    World: {
+      screen: WorldPage
     }
   },
   {
@@ -116,6 +121,7 @@ class App extends Component {
       loadCategories,
       createUser,
       loadTodayPrompt,
+      loadSharedAnswers,
       resetSeen,
       seen,
       loadCategory
@@ -123,6 +129,7 @@ class App extends Component {
 
     loadApprovedPrompts();
     loadCategories();
+    loadSharedAnswers();
     loadTodayPrompt();
     loadCategory('');
 
@@ -171,7 +178,8 @@ App.propTypes = {
   loadTodayPrompt: PropTypes.func.isRequired,
   resetSeen: PropTypes.func.isRequired,
   seen: PropTypes.object.isRequired,
-  loadCategory: PropTypes.func.isRequired
+  loadCategory: PropTypes.func.isRequired,
+  loadSharedAnswers: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ user, seen }) => ({
@@ -188,5 +196,6 @@ export default connect(mapStateToProps, {
   createUser,
   loadTodayPrompt,
   resetSeen,
-  loadCategory
+  loadCategory,
+  loadSharedAnswers
 })(App);

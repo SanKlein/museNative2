@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   ActionSheetIOS,
+  AlertIOS,
   Keyboard
 } from 'react-native';
 // import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
@@ -25,7 +26,9 @@ import {
   removeFavoritePrompt,
   addFavoritePrompt,
   removeSavePrompt,
-  addSavePrompt
+  addSavePrompt,
+  shareAnswer,
+  unshareAnswer
 } from '../actions/answerActions';
 import { updateStreak, resetStreak } from '../actions/userActions';
 import { loadCategory } from '../actions/promptActions';
@@ -45,11 +48,6 @@ class AnswerPage extends Component {
     const category = navigation.getParam('category');
     const list = navigation.getParam('list');
     return {
-      headerRight: (
-        <NavigationButton navigate="UserSettings">
-          <Octicons size={22} name="gear" color="#333" />
-        </NavigationButton>
-      ),
       title: list ? capitalizeFirstLetter(list) : category
     };
   };
@@ -62,20 +60,23 @@ class AnswerPage extends Component {
       height: 0
     };
 
+    this.checkPrompt = this.checkPrompt.bind(this);
+    this.focusAnswer = this.focusAnswer.bind(this);
+    this.getHeight = this.getHeight.bind(this);
+    this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
+    this.handleDailyPrompt = this.handleDailyPrompt.bind(this);
+    this.handleDone = this.handleDone.bind(this);
+    this.handleFavoritePrompt = this.handleFavoritePrompt.bind(this);
+    this.handleNewAnswer = this.handleNewAnswer.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.handleSavePrompt = this.handleSavePrompt.bind(this);
+    this.handleSettings = this.handleSettings.bind(this);
+    this.handleShareAnswer = this.handleShareAnswer.bind(this);
+    this.handleUnshareAnswer = this.handleUnshareAnswer.bind(this);
     this.loadRandom = this.loadRandom.bind(this);
     this.saveAnswer = this.saveAnswer.bind(this);
-    this.handleSettings = this.handleSettings.bind(this);
-    this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-    this.handleDone = this.handleDone.bind(this);
-    this.handleNewAnswer = this.handleNewAnswer.bind(this);
-    this.checkPrompt = this.checkPrompt.bind(this);
-    this.handleSavePrompt = this.handleSavePrompt.bind(this);
-    this.handleFavoritePrompt = this.handleFavoritePrompt.bind(this);
-    this.handleDailyPrompt = this.handleDailyPrompt.bind(this);
-    this.focusAnswer = this.focusAnswer.bind(this);
+    this.shareAnswer = this.shareAnswer.bind(this);
     this.showActionSheet = this.showActionSheet.bind(this);
-    this.getHeight = this.getHeight.bind(this);
   }
 
   componentWillMount() {
@@ -432,6 +433,46 @@ class AnswerPage extends Component {
     }
   }
 
+  handleShareAnswer(anonymous) {
+    const { answer, shareAnswer } = this.props;
+
+    shareAnswer(answer, anonymous);
+  }
+
+  shareAnswer() {
+    const { user } = this.props;
+
+    if (!user.name) {
+      this.handleShareAnswer(true);
+      return;
+    }
+
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        title: 'Share as',
+        options: [user.name, 'Anonymous', 'Cancel'],
+        cancelButtonIndex: 2,
+        tintColor: '#333'
+      },
+      buttonIndex => {
+        if (buttonIndex === 2) {
+          return null;
+        } else {
+          this.handleShareAnswer(buttonIndex === 1);
+        }
+      }
+    );
+  }
+
+  handleUnshareAnswer() {
+    const { answer, unshareAnswer } = this.props;
+
+    AlertIOS.alert('Are you sure you want to unshare?', null, [
+      { text: 'Cancel', onPress: () => null, style: 'cancel' },
+      { text: 'Unshare', onPress: () => unshareAnswer(answer._id), style: 'destructive' }
+    ]);
+  }
+
   getHeight(layout) {
     this.setState({ height: layout.height });
   }
@@ -495,6 +536,13 @@ class AnswerPage extends Component {
           ) : (
             <FooterButton green text="Saved" id="save" handleClick={this.hideKeyboard} />
           )}
+          {!!answer.text &&
+            answerState !== 'changed' &&
+            (answer.shared ? (
+              <FooterButton handleClick={this.handleUnshareAnswer} green text="Shared" />
+            ) : (
+              <FooterButton handleClick={this.shareAnswer} purple text="Share" />
+            ))}
           {!answer.text &&
           category === 'Answers' &&
           answerState === 'none' &&
@@ -611,7 +659,9 @@ AnswerPage = connect(mapStateToProps, {
   removeFavoritePrompt,
   addFavoritePrompt,
   removeSavePrompt,
-  addSavePrompt
+  addSavePrompt,
+  shareAnswer,
+  unshareAnswer
 })(AnswerPage);
 
 export default AnswerPage;

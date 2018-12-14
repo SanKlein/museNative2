@@ -75,5 +75,6 @@ export default {
     removeFavorites: [],
     daily: [],
     removeDaily: []
-  }
+  },
+  sharedAnswers: []
 };

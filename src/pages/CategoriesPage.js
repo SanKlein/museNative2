@@ -10,6 +10,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { createNewAnswer, loadAnswer } from '../actions/answerActions';
@@ -19,6 +20,7 @@ import Page from '../containers/Page';
 import Container from '../containers/Container';
 import ScrollContainer from '../containers/ScrollContainer';
 import FlexButton from '../components/FlexButton';
+import NavigationButton from '../components/NavigationButton';
 import Answer from '../objects/Answer';
 import { isToday } from '../functions/dateFunctions';
 
@@ -35,14 +37,15 @@ const messages = [
 class CategoriesPage extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
+      headerLeft: (
+        <NavigationButton navigate="World">
+          <FontAwesome size={22} name="globe" color="#333" />
+        </NavigationButton>
+      ),
       headerRight: (
-        <TouchableOpacity
-          style={{ padding: 8, marginRight: 8 }}
-          activeOpacity={0.7}
-          onPress={() => navigation.navigate('UserProfile')}
-        >
+        <NavigationButton navigate="UserProfile">
           <MaterialIcons name="person" size={24} color="#333" />
-        </TouchableOpacity>
+        </NavigationButton>
       )
     };
   };
