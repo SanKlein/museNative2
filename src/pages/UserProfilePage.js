@@ -16,12 +16,15 @@ import FlexButton from '../components/FlexButton';
 import NavigationButton from '../components/NavigationButton';
 
 class UserProfilePage extends Component {
-  static navigationOptions = {
-    headerRight: (
-      <NavigationButton navigate="UserSettings">
-        <Octicons size={22} name="gear" color="#333" />
-      </NavigationButton>
-    )
+  static navigationOptions = ({ navigation }) => {
+    const name = navigation.getParam('name');
+    return {
+      headerRight: name ? (
+        <NavigationButton navigate="UserSettings">
+          <Octicons size={22} name="gear" color="#333" />
+        </NavigationButton>
+      ) : null
+    };
   };
 
   constructor(props) {
@@ -33,6 +36,12 @@ class UserProfilePage extends Component {
     this.handleLoadList = this.handleLoadList.bind(this);
     this.handleNewPrompt = this.handleNewPrompt.bind(this);
     this.handleAbout = this.handleAbout.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.navigation.setParams({
+      name: this.props.user.name
+    });
   }
 
   handlePast() {

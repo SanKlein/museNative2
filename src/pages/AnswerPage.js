@@ -10,8 +10,7 @@ import {
   AlertIOS,
   Keyboard
 } from 'react-native';
-// import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
-// import KeyboardSpacer from 'react-native-keyboard-spacer';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { connect } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -509,6 +508,7 @@ class AnswerPage extends Component {
               }}
             >
               <TextInput
+                autoFocus
                 placeholderTextColor="#AAA"
                 selectionColor="#967ADC"
                 style={{ ...styles.answer, height: this.state.height }}
@@ -564,6 +564,7 @@ class AnswerPage extends Component {
             <FooterButton hide text="" />
           )}
         </Footer>
+        <KeyboardSpacer />
       </Page>
     );
   }

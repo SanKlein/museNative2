@@ -18,6 +18,10 @@ import ComponentSubtext from '../components/ComponentSubtext';
 import ComponentButton from '../components/ComponentButton';
 
 class PastPage extends Component {
+  static navigationOptions = {
+    title: 'Answers'
+  };
+
   constructor(props) {
     super(props);
 
